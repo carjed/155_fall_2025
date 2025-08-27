@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>  – STAT 155</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon-32x32.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT 155</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./syllabus.html" aria-current="page"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./activities/L01-foundations-welcome.html">
+ <span class="dropdown-text">Data Collection Activity and Intro to R</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./assignments.html"> 
+<span class="menu-text">Practice Problems</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html"> 
+<span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#stat-155-intro-to-statistical-modeling" id="toc-stat-155-intro-to-statistical-modeling" class="nav-link active" data-scroll-target="#stat-155-intro-to-statistical-modeling">STAT 155: Intro to Statistical Modeling</a>
+  <ul class="collapse">
+  <li><a href="#your-instructor" id="toc-your-instructor" class="nav-link" data-scroll-target="#your-instructor">Your instructor</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#how-to-thrive-and-what-to-expect" id="toc-how-to-thrive-and-what-to-expect" class="nav-link" data-scroll-target="#how-to-thrive-and-what-to-expect">How to thrive and what to expect</a></li>
+  </ul></li>
+  <li><a href="#resources-and-communication" id="toc-resources-and-communication" class="nav-link" data-scroll-target="#resources-and-communication">Resources and Communication</a>
+  <ul class="collapse">
+  <li><a href="#textbook" id="toc-textbook" class="nav-link" data-scroll-target="#textbook">Textbook</a></li>
+  <li><a href="#statistical-software" id="toc-statistical-software" class="nav-link" data-scroll-target="#statistical-software">Statistical software</a></li>
+  <li><a href="#each-other" id="toc-each-other" class="nav-link" data-scroll-target="#each-other">Each other!</a></li>
+  <li><a href="#course-website" id="toc-course-website" class="nav-link" data-scroll-target="#course-website">Course website</a></li>
+  <li><a href="#moodle" id="toc-moodle" class="nav-link" data-scroll-target="#moodle">Moodle</a></li>
+  <li><a href="#preceptors" id="toc-preceptors" class="nav-link" data-scroll-target="#preceptors">Preceptors</a></li>
+  <li><a href="#drop-in-office-hours" id="toc-drop-in-office-hours" class="nav-link" data-scroll-target="#drop-in-office-hours">Drop-in (office) hours</a></li>
+  <li><a href="#email" id="toc-email" class="nav-link" data-scroll-target="#email">Email</a></li>
+  </ul></li>
+  <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a>
+  <ul class="collapse">
+  <li><a href="#engagement" id="toc-engagement" class="nav-link" data-scroll-target="#engagement">1. Engagement</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">2. Preparation</a></li>
+  <li><a href="#practice-homework-assignments" id="toc-practice-homework-assignments" class="nav-link" data-scroll-target="#practice-homework-assignments">3. Practice (homework assignments)</a></li>
+  <li><a href="#collaboration-application-group-project" id="toc-collaboration-application-group-project" class="nav-link" data-scroll-target="#collaboration-application-group-project">4. Collaboration &amp; Application (group project)</a></li>
+  <li><a href="#demonstrating-expertise-quizzes" id="toc-demonstrating-expertise-quizzes" class="nav-link" data-scroll-target="#demonstrating-expertise-quizzes">5. Demonstrating Expertise (quizzes)</a></li>
+  </ul></li>
+  <li><a href="#grading-system" id="toc-grading-system" class="nav-link" data-scroll-target="#grading-system">Grading system</a></li>
+  </ul></li>
+  <li><a href="#other-policies" id="toc-other-policies" class="nav-link" data-scroll-target="#other-policies">Other policies</a>
+  <ul class="collapse">
+  <li><a href="#religious-observance" id="toc-religious-observance" class="nav-link" data-scroll-target="#religious-observance">Religious Observance</a></li>
+  <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic integrity</a></li>
+  <li><a href="#artificial-intelligence-ai-use" id="toc-artificial-intelligence-ai-use" class="nav-link" data-scroll-target="#artificial-intelligence-ai-use">Artificial Intelligence (AI) Use</a></li>
+  <li><a href="#well-being" id="toc-well-being" class="nav-link" data-scroll-target="#well-being">Well-being</a></li>
+  </ul></li>
+  <li><a href="#guiding-values-course-manifesto" id="toc-guiding-values-course-manifesto" class="nav-link" data-scroll-target="#guiding-values-course-manifesto">Guiding Values / Course Manifesto</a>
+  <ul class="collapse">
+  <li><a href="#you-belong-here" id="toc-you-belong-here" class="nav-link" data-scroll-target="#you-belong-here">You belong here!</a></li>
+  <li><a href="#informed-skepticism" id="toc-informed-skepticism" class="nav-link" data-scroll-target="#informed-skepticism">Informed skepticism</a></li>
+  <li><a href="#a-commitment-to-ethical-deliberation-and-conduct" id="toc-a-commitment-to-ethical-deliberation-and-conduct" class="nav-link" data-scroll-target="#a-commitment-to-ethical-deliberation-and-conduct">A commitment to ethical deliberation and conduct</a></li>
+  <li><a href="#mistakes-and-uncertainty-are-essential" id="toc-mistakes-and-uncertainty-are-essential" class="nav-link" data-scroll-target="#mistakes-and-uncertainty-are-essential">Mistakes and uncertainty are essential</a></li>
+  <li><a href="#context-before-content" id="toc-context-before-content" class="nav-link" data-scroll-target="#context-before-content">Context before content</a></li>
+  </ul></li>
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">Note</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"> </h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="stat-155-intro-to-statistical-modeling" class="level1">
+<h1>STAT 155: Intro to Statistical Modeling</h1>
+<p>Macalester College, Fall 2025</p>
+<ul>
+<li><strong>Section 05</strong>: Tu/Th 9:40-11:10am, THTR 202</li>
+</ul>
+<section id="your-instructor" class="level2">
+<h2 class="anchored" data-anchor-id="your-instructor">Your instructor</h2>
+<p><img src="https://www.macalester.edu/mscs/wp-content/uploads/sites/591/2024/08/Carlson_headshot-scaled-150x0-c-default.jpg" width="200" style="float: right; padding-right: 20px; padding-bottom: 20px;"></p>
+<p><strong>Jedidiah (Jed) Carlson, PhD</strong></p>
+<p><strong>Pronouns</strong>: he/him</p>
+<p><strong>Pronunciation</strong>: <a href="https://namedrop.io/jedidiahcarlson">listen here</a></p>
+<p><strong>Office</strong>: Olin-Rice 236</p>
+<p><strong>Website</strong>: <a href="https://jedidiahcarlson.com" class="uri">https://jedidiahcarlson.com</a></p>
+<p><strong>Email</strong>: <a href="mailto:jcarls13@macalester.edu" class="email">jcarls13@macalester.edu</a></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Call me &quot;Jed&quot;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Call me “Jed”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Feel free to call me (in order of my personal preference), Jed, Professor Carlson, or Dr.&nbsp;Carlson–but please use whichever of these options you are most comfortable with! (note that “Professor Jed” makes me cringe)</p>
+</div>
+</div>
+<p><strong>Drop-in (office) hours</strong>:</p>
+<ul>
+<li><strong>location</strong>: My office (OLRI 236)</li>
+<li><strong>times</strong>: See <a href="https://calendar.google.com/calendar/u/1?cid=Y19jMjNhMWIyZmZkM2FkNTUxN2NjZTg2NjdmMTQxNjdiMGI2MTVmNmY3MzE4ZjdkMmE1ODY2ZDU3MDFkNmM3YTRhQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">this calendar</a>.</li>
+</ul>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This course provides an introduction to statistical modeling. In other words, you will develop the basic skills to <strong>analyze data</strong>, <strong>test research hypotheses</strong>, and <strong>make predictions</strong> about the world.</p>
+<p>Being able to <strong>summarize</strong>, <strong>interpret</strong>, and <strong>communicate</strong> about data are crucial for navigating today’s information landscape, and these are precisely the skills that we’ll build in this class. Throughout the semester, we’ll study the fundamental methods that statisticians use to extract knowledge from data, emphasizing statistical literacy &amp; intuition, real data applications, and modern computing over memorizing facts and formulas.</p>
+<section id="learning-goals" class="level3">
+<h3 class="anchored" data-anchor-id="learning-goals">Learning goals</h3>
+<p>By actively participating in this course, you will develop and/or strengthen your abilities to:</p>
+<ul>
+<li><p><strong>Visualize</strong>: explore, understand, and describe patterns in data with plots and graphics</p></li>
+<li><p><strong>Model</strong>: build, interpret, and evaluate statistical models to identify trends in data</p></li>
+<li><p><strong>Infer</strong>: extend observations from sample data to draw conclusions and make predictions</p></li>
+<li><p><strong>Compute</strong>: use the (free!) statistical software R to analyze real data and create reproducible reports</p></li>
+<li><p><strong>Contextualize</strong>: interpret results in context, by considering the methods of data collection, the scientific and social contexts, and ethical dimensions</p></li>
+<li><p><strong>Communicate</strong>: accurately describe methods and results in a way that is scientifically sound and widely accessible</p></li>
+<li><p><strong>Collaborate</strong>: work productively and effectively in a group setting</p></li>
+</ul>
+</section>
+<section id="how-to-thrive-and-what-to-expect" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-thrive-and-what-to-expect">How to thrive and what to expect</h3>
+<p>When taking a new course, figuring out the right workflow/cadence of effort throughout the week can be a big adjustment. And most of you are doing this for 4 different courses! Below are some suggestions for what to expect in the course and how to focus your time and attention during and outside of class.</p>
+<section id="before-class" class="level4">
+<h4 class="anchored" data-anchor-id="before-class">Before class</h4>
+<p><strong>Plan Ahead</strong></p>
+<p>In a typical week, plan to spend <strong>8-10 hours</strong> on STAT 155 (or any 4-credit course), including class time.</p>
+<ul>
+<li>If you are working far more or far less than 8 hours per week, let me know.</li>
+<li>Carve out dedicated time on your calendar for intentionally studying/reviewing and doing homework.</li>
+<li>Stay up-to-date on the course calendar.</li>
+</ul>
+</section>
+<section id="during-class" class="level4">
+<h4 class="anchored" data-anchor-id="during-class">During class</h4>
+<p><strong>Do the things</strong></p>
+<p>Class time will be a mix of interactive lecture and longer stretches of group work. During the lecture portion, I will pause explanation frequently to prompt a short exercise or ask questions that you’ll reflect on individually or together.</p>
+<ul>
+<li>Attend class and actively engage in class</li>
+<li>Work with your classmates; ask each other questions; share your ideas</li>
+<li>Complete the in-class activities (this might mean completing it outside of class, if you didn’t finish)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Suggestion">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Review your learning process and group work reflections just before class to frame how you want to engage in class. (Perhaps you’ve noted a struggle and want to try a new strategy.)</p>
+</div>
+</div>
+</section>
+<section id="after-class" class="level4">
+<h4 class="anchored" data-anchor-id="after-class">After class</h4>
+<p><strong>Reflect</strong></p>
+<p>Make sure to take the time to finish the activity and review the solutions. I will have a checkpoint on Moodle for most days to draw attention to important concepts covered in the previous class.</p>
+<p><strong>Review</strong></p>
+<p>Most class periods will involve working with a new tool and computational concept. Rewrite / organize your notes. Summarize concepts in your own words.</p>
+<p><strong>Be Curious</strong></p>
+<p>Don’t be afraid to ask questions. These are opportunities to learn and dig deeper. You get out what you put into a course.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Suggestion">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Open the checkpoint on Moodle as you review the material. Jot down questions or ideas that you have about topics in the material.</li>
+<li>Record any reflections from in-class time about your learning process or interactions with peers while they are still fresh.</li>
+<li>After learning a new topic in class, it is helpful to immediately attempt the related exercises on the upcoming homework assignment.</li>
+<li>Come to instructor office drop-in hours to chat about the course or anything else! 😃</li>
+</ul>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+</section>
+<section id="resources-and-communication" class="level2">
+<h2 class="anchored" data-anchor-id="resources-and-communication">Resources and Communication</h2>
+<section id="textbook" class="level3">
+<h3 class="anchored" data-anchor-id="textbook">Textbook</h3>
+<p>There is no required textbook for this course—there will occasionally be some readings assigned from the <a href="https://mac-stat.github.io/Stat155Notes/">155 Course Notes</a> or other sources. All links and materials needed will be provided on the <a href="./schedule.html">Schedule</a> tab of this website.</p>
+<p>The best resources for this course are course content videos, attending and participating in class / assignments, and office hours. I am happy to talk about possible additional materials / strategies for effective learning at any time throughout the semester!</p>
+</section>
+<section id="statistical-software" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-software">Statistical software</h3>
+<p>We will use the (completely free and open source) R programming language extensively throughout this course. RStudio (an interface for R) will facilitate our use of R. You may use RStudio in one of two ways:</p>
+<ol type="1">
+<li><p>Desktop version: Download for Windows or Mac at <a href="https://posit.co/downloads/" class="uri">https://posit.co/downloads/</a>. Note: You first need to download and install R on your computer in order to use the desktop version of RStudio</p></li>
+<li><p>Online: Go to <a href="https://rstudio.macalester.edu" class="uri">https://rstudio.macalester.edu</a>, and log in with your full Mac email address and your usual Mac password to get access. (Note that this is a shared resource across MSCS, and you may experience performance issues due to high traffic, server outages, etc.)</p></li>
+</ol>
+<p>More detailed instructions on downloading, installing, and getting started with R, RStudio, and an important package called Quarto is available on the <a href="./tech_setup.html">Tech Setup</a> tab.</p>
+</section>
+<section id="each-other" class="level3">
+<h3 class="anchored" data-anchor-id="each-other">Each other!</h3>
+<p>Your peers in the class are an underappreciated resource for learning the material and helping you stay on top of deadlines, course policies, etc. I strongly encourage you to connect with one another, in the form of a weekly study group, WhatsApp chat, etc.</p>
+</section>
+<section id="course-website" class="level3">
+<h3 class="anchored" data-anchor-id="course-website">Course website</h3>
+<p>All course materials will be posted on the <a href="https://carjed.github.io/155_fall_2025">course website</a>. The <a href="./schedule.html">Schedule tab</a> of this website will be updated regularly with information about due dates, in-class activities, etc.</p>
+</section>
+<section id="moodle" class="level3">
+<h3 class="anchored" data-anchor-id="moodle">Moodle</h3>
+<p>Moodle will be used to submit assignments/checkpoint quizzes, post grades, assignment feedback, announcements, and more. Please check the course Moodle page every day before class!</p>
+</section>
+<section id="preceptors" class="level3">
+<h3 class="anchored" data-anchor-id="preceptors">Preceptors</h3>
+<p>We have many preceptors for this course! You may attend office hours for any of the STAT 155 preceptors, not just those grading/attending my sections. All MSCS courses will also share a dedicated R preceptor who can help with any issues you have with your R code or RStudio configuration. The course Moodle site contains detailed information and a Google Calendar link for preceptor office hour times/locations.</p>
+<p>The role of an MSCS preceptor is to help students with content questions, assist in the navigation of available resources, advise on studying approaches for classes, and assist with concepts, tools, and skills needed for problem sets. <strong>However, students are accountable for their own learning</strong>; as such, preceptors are not allowed to share answers to assignments (unless specifically directed by the instructor), are not expected to immediately know the right approach, or provide assistance outside of office hours. Guidelines and expectations on how to interact with preceptors can be found <a href="https://docs.google.com/document/d/1USu-3R1NsGDVm0yU0HTzHuTpzCD3onBjNI5n8w9VBik/edit?usp=sharing">here</a>.</p>
+</section>
+<section id="drop-in-office-hours" class="level3">
+<h3 class="anchored" data-anchor-id="drop-in-office-hours">Drop-in (office) hours</h3>
+<p>Office hours are an open-ended time for you to go over coursework, clarify concepts, solicit my <del>biased opinions</del> sage wisdom on career planning/graduate school, discuss research/internship opportunities, connect you with resources you need, or chat about life in general.</p>
+<p>Office hours are oriented around group discussion. They are <strong>not</strong> first come, first served appointments, nor are they a place to sit and work on your assignments until you have questions. Please be respectful of your peers and do not monopolize the time.</p>
+</section>
+<section id="email" class="level3">
+<h3 class="anchored" data-anchor-id="email">Email</h3>
+<p>If you’re not finding the answer you’re looking for using any of the resources above, or if you wish to discuss a private matter (e.g., attendance, grades, accommodations, etc.) please contact me via email. <strong>Please put “STAT 155” in the subject line of all emails</strong> <strong>to me,</strong> to help ensure that it does not get lost in my inbox!</p>
+<p>I will generally not respond to emails outside of business hours (9am-5pm M-F). Please <strong>allow 1 business day for a response</strong> (e.g.&nbsp;an email sent on Friday may not get a response until the following Monday).</p>
+<p>Any urgent announcements (e.g.&nbsp;unexpected class cancellations, notice of modifications to assignments) will be made over email.</p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="grading-and-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
+<p>The grading system in this course is designed to help you achieve the learning objectives while allowing space to make and learn from mistakes along the way. Your final letter grade will be determined by your progress towards five core course components:</p>
+<section id="engagement" class="level3">
+<h3 class="anchored" data-anchor-id="engagement">1. Engagement</h3>
+<p>Engagement and commitment to growth are foundational to your own learning &amp; to fostering a supportive learning community. So that we can share clear and consistent information about meeting these expectations, information about attendance and engagement will be recorded in the “In-class engagement” activity on Moodle.</p>
+<p><strong>EXPECTATIONS</strong>:</p>
+<ul>
+<li><p>In class:</p>
+<ul>
+<li><p>Do not miss &gt;3 in-person class sessions. (4-6 absences will lower your grade. 7+ absences will result in a D/NC.)</p></li>
+<li><p>Be on time &amp; don’t leave early</p></li>
+<li><p>Do not use your phone (they must be put away when you enter class, even if class hasn’t started)</p></li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0360131512002254">Do not use your laptop</a> for anything other than taking notes or working on the in-class activity. I recommend using a different browser window rather than opening up a new tab alongside the rest of your personal/school stuff.</p></li>
+<li><p>Be actively present. Don’t work alone, work on other courses, or work on practice problems for this course without explicit permission</p></li>
+</ul></li>
+<li><p>Outside class:</p>
+<ul>
+<li><p>stay updated on announcements (typically via email), deadlines, Moodle</p></li>
+<li><p>Visit my office hours at least 2 times during the semester (once before fall break and once after), and at least 2 of the preceptors’ office hours</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="preparation" class="level3">
+<h3 class="anchored" data-anchor-id="preparation">2. Preparation</h3>
+<p>Roughly half of our class sessions will require some prep work to build a common foundation and maximize our time together (just like assigned reading &amp; reflection in a humanities class!). Before these classes, you will watch short videos and/or read sections of the <a href="https://mac-stat.github.io/Stat155Notes/">online textbook</a> which introduce new concepts, then take a low-stakes checkpoint quiz (CP) on Moodle.</p>
+<p><strong>EXPECTATIONS:</strong> Pass 13+ of the 16 CPs (pass ~80%); OR earn at least 80% of total points across all CPs.</p>
+<p><strong>POLICIES:</strong></p>
+<ul>
+<li><p>CPs are due 10 minutes before class on the assigned date. <strong>There are no extensions for CPs</strong>. They’re important preparation for the relevant class session.</p></li>
+<li><p>You will make mistakes and that’s ok!</p>
+<ul>
+<li><p>You can reattempt most CP questions with a 33% penalty for each incorrect response. Exceptions are open-ended questions or multiple choice questions with only 2 options (TRUE/FALSE).</p></li>
+<li><p>CPs are graded pass / fail. <strong>To pass, you must earn at least 80% of the points.</strong></p></li>
+<li><p>The goal is to pass 13+ CPs. Thus you might miss or not pass 3 CPs without it impacting your grade.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="practice-homework-assignments" class="level3">
+<h3 class="anchored" data-anchor-id="practice-homework-assignments">3. Practice (homework assignments)</h3>
+<p>In 8 practice problem sets (PP), you will practice and explore the course material in more depth. The following flexibility is built in to help reduce stress and to facilitate deeper learning. Detailed directions and policies are <a href="https://docs.google.com/document/d/1r8URNncf5zv33Bcis-XNjdf2LK9OiMngukgpnpDqcq0/edit?usp=sharing">here</a>.</p>
+<ul>
+<li><p><strong>Grading<br>
+</strong>You can make some mistakes without it chipping away at your score (e.g.&nbsp;you will earn 5/5 points on an exercise if it’s at least 90% correct &amp; complete).</p></li>
+<li><p><strong>Dropped score<br>
+</strong>IF you submit and demonstrate clear effort on all 8 PPs, your lowest PP score will be dropped from your final grade.</p></li>
+<li><p><strong>Extensions<br>
+</strong>Limited extensions will be provided (see the <a href="https://docs.google.com/document/d/1r8URNncf5zv33Bcis-XNjdf2LK9OiMngukgpnpDqcq0/edit?usp=sharing">assignment policy document</a> for details).</p></li>
+</ul>
+</section>
+<section id="collaboration-application-group-project" class="level3">
+<h3 class="anchored" data-anchor-id="collaboration-application-group-project">4. Collaboration &amp; Application (group project)</h3>
+<p>More details will be provided later in the semester. Here are some basics:</p>
+<ul>
+<li><p>We’ll start working on projects in ~week 6, with the majority of the work happening later in the semester.</p></li>
+<li><p>Project groups will be (semi-)assigned by me. Before the projects start, I will send out a survey to gauge your preferences (either for project members or topical interests) and do my best to assign groups that honor those preferences. So it’s in your best interest to meet other students that you might want to work with!</p></li>
+<li><p>Project grades will be based upon a final group written report (no oral presentation), multiple group and individual checkpoints, and individual contributions to the project (thus it’s possible for different group members to earn different grades).</p></li>
+</ul>
+<p>More generally, collaboration improves higher-level thinking, confidence, communication, community, &amp; more. You will work in groups in and outside class. These groups will occasionally switch &amp; will often be assigned.</p>
+<p>Expectations:</p>
+<ul>
+<li><p>Follow the MSCS Community Guidelines.</p></li>
+<li><p>In group settings, both in and outside class, you:</p>
+<ul>
+<li><p>actively contribute to discussions</p></li>
+<li><p>actively include all other group members in discussion</p></li>
+<li><p>create a space where others feel comfortable making mistakes &amp; sharing their ideas</p></li>
+<li><p>effectively communicate with your project group about meeting times, etc.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="demonstrating-expertise-quizzes" class="level3">
+<h3 class="anchored" data-anchor-id="demonstrating-expertise-quizzes">5. Demonstrating Expertise (quizzes)</h3>
+<p>Your course engagement, preparation, practice, and application will support your deeper understanding of the course material. This will be assessed through three quizzes. <strong>These are in-person quizzes. You must schedule all travel etc. around them – there will not be any alternative quiz times</strong> (with the exception of <a href="https://www.macalester.edu/academic-programs/academicpolicies/attendance/#:~:text=II.%20College%2DAuthorized%20Absence%20for%20College%2DSponsored%20Activities">college-authorized absences</a> for college-sponsored activities)<strong>:</strong></p>
+<ul>
+<li><p><strong>Quiz 1: Thursday, September 25. 1 hour in class.</strong></p></li>
+<li><p><strong>Quiz 2: Thursday, October 30. 1 hour in class.</strong></p></li>
+<li><p><strong>Quiz 3: Tuesday, 12/16 from 10:30am-12:30pm (Finals Week)<br>
+</strong> The final quiz will be written to take ~1.25 hours, but you will have the full 2-hour period to complete it.</p></li>
+</ul>
+<p>Quiz policies:</p>
+<ul>
+<li><p>All quizzes will have the following format:</p>
+<ul>
+<li><p>taken individually, using pen/pencil &amp; paper</p></li>
+<li><p>you will not need to write code, but you will need to read &amp; interpret R output</p></li>
+<li><p>you cannot use and will not need to use a calculator</p></li>
+<li><p>closed notes, but you can use a 3x5 index card with writing on both sides. These can be handwritten or typed, but you may not include screenshots or share note cards – making your own card is important to the review process. You are required to hand this in with your quiz.</p></li>
+</ul></li>
+<li><p>Quizzes 2 &amp; 3 will be cumulative. This is unavoidable as the material builds upon itself.</p></li>
+<li><p>There will be limited opportunities for revision:</p>
+<ul>
+<li><p>You can earn <strong>up to</strong> 50% of missed points back on Quizzes 1 &amp; 2 if you:</p>
+<ol type="1">
+<li><p>Write corrections for any exercise on which you missed points. These must be on a separate sheet of paper (not your original quiz), clearly labeled, and with exercises listed in numerical order.</p></li>
+<li><p>On a separate piece of paper, write a reflection: (a) how you prepared for the quiz ; (b) on what topics you felt strongest prior to the quiz; and (c) on what topics you felt most uncertain prior to the quiz.</p></li>
+<li><p>Staple your corrections and reflection to the back of the original quiz.</p></li>
+<li><p>Submit this material to the instructor, no later than 1 week after quizzes were handed back in class.</p></li>
+</ol></li>
+</ul></li>
+</ul>
+<p>You cannot earn back points on Quiz 3 as it occurs during finals week.</p>
+</section>
+</section>
+<section id="grading-system" class="level2">
+<h2 class="anchored" data-anchor-id="grading-system">Grading system</h2>
+<p>Your course grade will be primarily determined by three evenly-weighted components (Quizzes, Practice Problems, and the Project).</p>
+<ul>
+<li>33% Quizzes</li>
+<li>33% Practice Problems</li>
+<li>33% Project</li>
+</ul>
+<p>Overall percentages on these three components will correspond to the following letter grades:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Letter Grade</th>
+<th>Overall Course Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>&gt;93%</td>
+</tr>
+<tr class="even">
+<td>A-</td>
+<td>87-93%</td>
+</tr>
+<tr class="odd">
+<td>B+</td>
+<td>84-87%</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>81-84%</td>
+</tr>
+<tr class="odd">
+<td>B-</td>
+<td>78-81%</td>
+</tr>
+<tr class="even">
+<td>C+</td>
+<td>75-78%</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>72-75%</td>
+</tr>
+<tr class="even">
+<td>C-</td>
+<td>69-72%</td>
+</tr>
+<tr class="odd">
+<td>D/NC</td>
+<td>&lt;69% or 7+ absences</td>
+</tr>
+</tbody>
+</table>
+<p>This grade may then be <strong>modified by</strong> your progress towards the Engagement and Preparation (Checkpoint Quizzes) goals:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modifier</th>
+<th>Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>none (e.g.&nbsp;A → A)</td>
+<td>meets expectations in both areas (Engagement &amp; Preparation)</td>
+</tr>
+<tr class="even">
+<td>1/3 lower grade (e.g., A → A-)</td>
+<td>demonstrates strong progress toward expectations in both areas (e.g., 4 absences or 70% Checkpoint total)</td>
+</tr>
+<tr class="odd">
+<td>1 lower grade (e.g., A → B)</td>
+<td>demonstrates moderate progress toward expectations in both areas (e.g., 5-6 absences or 50% Checkpoint total)</td>
+</tr>
+<tr class="even">
+<td>&gt;1 lower grade</td>
+<td>demonstrates little progress toward expectations in one or both areas</td>
+</tr>
+<tr class="odd">
+<td>Drop to D/NC</td>
+<td>has 7+ absences</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The goal of sharing this specific information is to provide transparency around final grades, hence clear goals to work toward. That said, assigning grades is much more nuanced than any grading rubric / framework might suggest (for good reasons). What’s shared here is a general scenario — it represents the <strong>minimum</strong> expectations for each grade — but I may slightly relax the cutoffs for letter grades on a case-by-case basis, depending on your overall engagement in class, utilization of office hours, demonstrated growth on quizzes, contributions to your group project, etc.</p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="other-policies" class="level1">
+<h1>Other policies</h1>
+<section id="religious-observance" class="level2">
+<h2 class="anchored" data-anchor-id="religious-observance">Religious Observance</h2>
+<p>If you have a religious observance/practice that conflicts with your participation in the course, please contact me before the end of the second week of the semester to discuss appropriate accommodations.</p>
+</section>
+<section id="academic-integrity" class="level2">
+<h2 class="anchored" data-anchor-id="academic-integrity">Academic integrity</h2>
+<p>Academic integrity is the cornerstone of our learning community. Students are expected to strictly abide by the <a href="http://www.macalester.edu/academicprograms/academicpolicies/academicintegrity/">college’s standards</a> on academic integrity.</p>
+<p>I encourage you to work with your classmates to discuss material and ideas for assignments, but in order for you to receive individualized feedback on your own learning, you must submit your own work. This involves writing your own code and putting explanations into your own words. Always cite any sources you use, including AI (see section below).</p>
+</section>
+<section id="artificial-intelligence-ai-use" class="level2">
+<h2 class="anchored" data-anchor-id="artificial-intelligence-ai-use">Artificial Intelligence (AI) Use</h2>
+<p>In this course, I <strong>strongly discourage</strong> the use of so-called AI tools (ChatGPT, Google Gemini, Claude, Grok, etc.) for any work done in or outside of class, for two major pedagogical reasons (in addition to numerous ethical/technical concerns that we can discuss in class).</p>
+<ul>
+<li><p>Learning is an innately social act. If you rely on LLMs for answering questions and overcoming obstacles related to the course, you severely limit your (and others’!) opportunities for building community and a shared intellectual life. *ChatGPT also NEVER has donuts available when you ask it a question, whereas my office hours SOMETIMES do.</p></li>
+<li><p>My goal as a professor (and part of Macalester’s <a href="https://www.macalester.edu/about/mission/">Statement of Purpose</a>), is to train you become “adept at critical, analytical and logical thinking.” Sidestepping that process of intellectual development by outsourcing your thinking to so-called AI is no different than trying to learn how to make coffee by drinking convenience store espresso, or “solving” a Sudoku puzzle by feeding it to a brute-force search algorithm. While AI may provide a quick shortcut to correct answers on a homework assignment, <strong>there are no shortcuts in actual <em>learning</em></strong>.</p></li>
+</ul>
+<p>Please note that my discouraging of these tools is not an outright ban (partly because I do not want to inadvertently incentivize you to use AI in ways that violate Macalester’s academic integrity policy, and partly because I have no interest in investing the time and effort to police it). Instead, I ask that you simply be honest and transparent about if/how/when you use these tools, <strong>with no penalty to your grade</strong>. This not only maintains a standard of integrity and gives me insight into how you learn, but also provides me with valuable information that we can use to improve the course content (e.g., if several students felt like they needed to use ChatGPT to answer a homework question, it was probably a poorly written question!).<br>
+<br>
+To this end, on each homework assignment, there will be a <strong>Disclosures and Citations</strong> section where I ask you to briefly describe any outside help you sought while completing it, including Office Hours, study groups, AI use, etc.</p>
+</section>
+<section id="well-being" class="level2">
+<h2 class="anchored" data-anchor-id="well-being">Well-being</h2>
+<p>I want you to succeed. Both here at Macalester and beyond. To help make this happen, I am committed to the following.</p>
+<p><strong>Respect:</strong> Everyone comes from a different path through life, and it is our moral duty as human beings to listen to each other without judgment and to respect one another. I have no tolerance for discrimination of any kind, in and out of the classroom. If you are seeking campus resources regarding discrimination, the <a href="https://www.macalester.edu/multiculturallife/">Department of Multicultural Life</a> and the <a href="https://www.macalester.edu/religiouslife/">Center for Religious and Spiritual Life</a> are wonderful resources. We will also respect the <a href="https://docs.google.com/document/d/e/2PACX-1vSlLLWmyOf8WKGDKJ_qypgA_kQI1dNFGEKH0mtFoqfAUARZN7ypVCgivnmPjccks9jJzW1rgEzt7QMI/pub">MSCS Community Guidelines</a>.</p>
+<p><strong>Sensitive Topics:</strong> Applications in this course span issues in science, policy, and society. As such, the material may sometimes broach sensitive topics. I will try to announce in class if an assignment or activity involves a potentially sensitive topic. If you have reservations about a particular topic, please come talk to me to discuss possible options.</p>
+<p><strong>Accommodations:</strong> If you need accommodations for any reason, please contact <a href="https://www.macalester.edu/studentaffairs/disabilityservices/accommodations/">Disability Services</a> to discuss your needs, and speak with me as soon as possible afterwards so that we can discuss your accommodation plan. If you already have official accommodations, please discuss these with me within the first week of class so that you get off to a great start. Contact me if you have other special circumstances. I will find resources for you.</p>
+<p><strong>Title IX:</strong> You deserve a community free from discrimination, sexual harassment, hostility, sexual assault, domestic violence, dating violence, and stalking. If you or anyone you know has experienced harassment or discrimination, know that you are not alone. Macalester provides staff and resources to help you find support. <strong>Please be aware that as a faculty member, it is my responsibility to report disclosure about sexual harassment, sexual misconduct, relationship violence, and stalking to the Title IX Office.</strong> The purpose of this report is to ensure that anyone experiencing harm receives the resources and support they need. I will keep this information private, and it will not be shared beyond this required report.</p>
+<p>You may also contact Macalester’s Title IX Coordinator directly (phone: 651-696-6258; e-mail: titleixcordinator@macalester.edu); they will provide you with supportive measures, resources, and referrals. Additional information about how to file a report (including anonymously) is available on the <a href="https://www.macalester.edu/titleix/">Title IX website</a>.</p>
+<p><strong>Other resources:</strong></p>
+<ul>
+<li><p><a href="https://www.macalester.edu/current-students/">find help</a><a href="#0"><br>
+</a>This go-to page includes links to student resources, housing and food resources, academic support, and financial resources. Included:</p>
+<ul>
+<li><p><a href="https://www.macalester.edu/financialaid/emergencyaid/">Emergency aid</a> fund for students experiencing unexpected financial hardship.</p></li>
+<li><p>Reporting incidents of <a href="https://www.macalester.edu/harassment/">harassment, bias, &amp; discrimination</a>.</p></li>
+</ul></li>
+<li><p><a href="https://www.macalester.edu/healthandwellness/urgent-emergency-care/">mental health &amp; wellness</a>–The Hamre Center can provide or connect you to ongoing, urgent, emergency, and telehealth care.</p></li>
+</ul>
+</section>
+</section>
+<section id="guiding-values-course-manifesto" class="level1">
+<h1>Guiding Values / Course Manifesto</h1>
+<section id="you-belong-here" class="level2">
+<h2 class="anchored" data-anchor-id="you-belong-here">You belong here!</h2>
+<p>Statistics and data science have a long history of excluding and exploiting people from marginalized communities and identities. Many of the earliest statisticians in the 19th and 20th centuries used and abused statistics to justify <a href="https://nautil.us/how-eugenics-shaped-statistics-238014/">colonialism, ableism, classism, sexism, eugenics, and white supremacy</a>.</p>
+<p>On top of this problematic history, cultural norms around academic performance in quantitative disciplines can make courses like this one feel intimidating and exclusionary, rather than collaborative and interdisciplinary.</p>
+<p>To counter these barriers, my central goal as an instructor is to <strong>intentionally foster community and connectedness.</strong> I believe that your unique voices and perspectives in this class will enrich our collective learning process and, in turn, your college experience. I encourage you to get to know your classmates (<a href="#drop-in-office-hours">and me!</a>) beyond a superficial familiarity and connect over our shared interests, identities, and ideas. You can help cultivate that community by being thoughtful about the way you engage with others and stretching your comfort zone to interact with people who are outside of your established social circles.</p>
+</section>
+<section id="informed-skepticism" class="level2">
+<h2 class="anchored" data-anchor-id="informed-skepticism">Informed skepticism</h2>
+<p>In virtually all of contemporary Western science, data analysis and statistical reasoning are crucial cogs in how knowledge is generated. However, it is shockingly common to encounter “data-driven” conclusions that are 1) not generalizable or cannot be replicated, 2) invalidated by honest coding/modeling mistakes, 3) based on deliberately cherry-picked models, or–in extreme cases–4) data that have been outright fabricated/falsified. Like in all aspects of life, trust in scientific claims must be earned.</p>
+<p>In this course and beyond, I encourage you to approach any statistical results or data summaries you encounter with a healthy skepticism, informed by both your gut intuition and the material you’ve learned. Know that <a href="#mistakes-and-uncertainty-are-essential">you may be wrong</a> (counter-intuitive results are abundant!) but you should <strong>always</strong> feel empowered to respectfully and rigorously challenge statistical claims.</p>
+</section>
+<section id="a-commitment-to-ethical-deliberation-and-conduct" class="level2">
+<h2 class="anchored" data-anchor-id="a-commitment-to-ethical-deliberation-and-conduct">A commitment to ethical deliberation and conduct</h2>
+<p>Because statistics and data science are a way to make sense of the world around us, it is also a way to influence it. This comes with an inherent responsibility to grapple with the ethical and sociopolitical dimensions of the content in this course. This includes delving into the context of how methods were developed, questioning assumptions, and considering the potential for misuse and misinterpretation. Throughout the course, you will be challenged to consider the broader impact of your work: How might your results and interpretations directly or indirectly affect the environment, specific individuals, or human culture &amp; society? Whose prior scientific contributions are you amplifying or ignoring? How do your assumptions and biases shape your scientific approach and communication?</p>
+</section>
+<section id="mistakes-and-uncertainty-are-essential" class="level2">
+<h2 class="anchored" data-anchor-id="mistakes-and-uncertainty-are-essential">Mistakes and uncertainty are essential</h2>
+<p>I expect that you and I will make lots of mistakes along the way in this course. Perhaps paradoxically, this is an important way to gain confidence: as we <em>make</em> mistakes, we will develop skills for <em>recognizing</em> and correcting them. These skills are <strong>vital</strong> for succeeding in STEM careers (and life in general). This course will provide a low-stakes environment for us to practice accountability, reflection, and troubleshooting when mistakes occur.</p>
+</section>
+<section id="context-before-content" class="level2">
+<h2 class="anchored" data-anchor-id="context-before-content">Context before content</h2>
+<p>Rigorous statistical reasoning and data science demands that we understand the context of our data and our research questions before we run a model and obtain/interpret results. I also aim to be mindful of various other contexts that shape our learning experience: our individual identities/histories, the classroom environment, the campus climate, etc. Throughout the semester, we will create space to address and discuss whatever contexts might impact our ability to engage the material (and how they may even relate to the material!).</p>
+</section>
+</section>
+<section id="note" class="level1">
+<h1>Note</h1>
+<p>This syllabus is subject to change at any time! Announcements of changes will be made in class or via email.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Jedidiah Carlson, 2025<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Site built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

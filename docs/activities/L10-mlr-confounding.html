@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>l10-mlr-confounding – STAT 155</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon-32x32.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">STAT 155</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="../activities/L01-foundations-welcome.html">
+ <span class="dropdown-text">Data Collection Activity and Intro to R</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments.html"> 
+<span class="menu-text">Practice Problems</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tech_setup.html"> 
+<span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#confounding-variables" id="toc-confounding-variables" class="nav-link active" data-scroll-target="#confounding-variables">Confounding variables</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#readings-and-videos" id="toc-readings-and-videos" class="nav-link" data-scroll-target="#readings-and-videos">Readings and videos</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-review" id="toc-exercise-1-review" class="nav-link" data-scroll-target="#exercise-1-review">Exercise 1: Review</a></li>
+  <li><a href="#exercise-2-confounders" id="toc-exercise-2-confounders" class="nav-link" data-scroll-target="#exercise-2-confounders">Exercise 2: Confounders</a></li>
+  <li><a href="#exercise-2b-how-why-do-confounders-bias-results" id="toc-exercise-2b-how-why-do-confounders-bias-results" class="nav-link" data-scroll-target="#exercise-2b-how-why-do-confounders-bias-results">Exercise 2b: How &amp; why do confounders bias results?</a></li>
+  <li><a href="#exercise-3-controlling-for-confounders" id="toc-exercise-3-controlling-for-confounders" class="nav-link" data-scroll-target="#exercise-3-controlling-for-confounders">Exercise 3: Controlling for confounders</a></li>
+  <li><a href="#exercise-4-age" id="toc-exercise-4-age" class="nav-link" data-scroll-target="#exercise-4-age">Exercise 4: Age</a></li>
+  <li><a href="#exercise-5-more-confounders" id="toc-exercise-5-more-confounders" class="nav-link" data-scroll-target="#exercise-5-more-confounders">Exercise 5: More confounders</a></li>
+  <li><a href="#exercise-6-even-more" id="toc-exercise-6-even-more" class="nav-link" data-scroll-target="#exercise-6-even-more">Exercise 6: Even more</a></li>
+  <li><a href="#exercise-7-biggest-model-yet" id="toc-exercise-7-biggest-model-yet" class="nav-link" data-scroll-target="#exercise-7-biggest-model-yet">Exercise 7: Biggest model yet</a></li>
+  <li><a href="#exercise-8-reflection" id="toc-exercise-8-reflection" class="nav-link" data-scroll-target="#exercise-8-reflection">Exercise 8: Reflection</a></li>
+  <li><a href="#exercise-9-a-new-extreme-example" id="toc-exercise-9-a-new-extreme-example" class="nav-link" data-scroll-target="#exercise-9-a-new-extreme-example">Exercise 9: A new (extreme) example</a></li>
+  <li><a href="#exercise-10-size" id="toc-exercise-10-size" class="nav-link" data-scroll-target="#exercise-10-size">Exercise 10: Size</a></li>
+  <li><a href="#exercise-11-simpsons-paradox" id="toc-exercise-11-simpsons-paradox" class="nav-link" data-scroll-target="#exercise-11-simpsons-paradox">Exercise 11: Simpson’s Paradox</a></li>
+  <li><a href="#exercise-12-final-conclusion" id="toc-exercise-12-final-conclusion" class="nav-link" data-scroll-target="#exercise-12-final-conclusion">Exercise 12: Final conclusion</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  </ul></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-review-1" id="toc-exercise-1-review-1" class="nav-link" data-scroll-target="#exercise-1-review-1">Exercise 1: Review</a></li>
+  <li><a href="#exercise-2-confounders-1" id="toc-exercise-2-confounders-1" class="nav-link" data-scroll-target="#exercise-2-confounders-1">Exercise 2: Confounders</a></li>
+  <li><a href="#exercise-3-controlling-for-confounders-1" id="toc-exercise-3-controlling-for-confounders-1" class="nav-link" data-scroll-target="#exercise-3-controlling-for-confounders-1">Exercise 3: Controlling for confounders</a></li>
+  <li><a href="#exercise-4-age-1" id="toc-exercise-4-age-1" class="nav-link" data-scroll-target="#exercise-4-age-1">Exercise 4: Age</a></li>
+  <li><a href="#exercise-5-more-confounders-1" id="toc-exercise-5-more-confounders-1" class="nav-link" data-scroll-target="#exercise-5-more-confounders-1">Exercise 5: More confounders</a></li>
+  <li><a href="#exercise-6-even-more-1" id="toc-exercise-6-even-more-1" class="nav-link" data-scroll-target="#exercise-6-even-more-1">Exercise 6: Even more</a></li>
+  <li><a href="#exercise-7-biggest-model-yet-1" id="toc-exercise-7-biggest-model-yet-1" class="nav-link" data-scroll-target="#exercise-7-biggest-model-yet-1">Exercise 7: Biggest model yet</a></li>
+  <li><a href="#exercise-8-reflection-1" id="toc-exercise-8-reflection-1" class="nav-link" data-scroll-target="#exercise-8-reflection-1">Exercise 8: Reflection</a></li>
+  <li><a href="#exercise-9-a-new-extreme-example-1" id="toc-exercise-9-a-new-extreme-example-1" class="nav-link" data-scroll-target="#exercise-9-a-new-extreme-example-1">Exercise 9: A new (extreme) example</a></li>
+  <li><a href="#exercise-10-size-1" id="toc-exercise-10-size-1" class="nav-link" data-scroll-target="#exercise-10-size-1">Exercise 10: Size</a></li>
+  <li><a href="#exercise-11-simpsons-paradox-1" id="toc-exercise-11-simpsons-paradox-1" class="nav-link" data-scroll-target="#exercise-11-simpsons-paradox-1">Exercise 11: Simpson’s Paradox</a></li>
+  <li><a href="#exercise-12-final-conclusion-1" id="toc-exercise-12-final-conclusion-1" class="nav-link" data-scroll-target="#exercise-12-final-conclusion-1">Exercise 12: Final conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="confounding-variables" class="level1">
+<h1>Confounding variables</h1>
+<!-- create student notes from activity in core-->
+<!-- pull activity from core -->
+</section>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1ZCcWJaumyh_BohkXlsYZwHvPGpfQF8RrH5sc2sgwUf4/edit?usp=sharing">Slides</a> with comments on Quiz 1</li>
+<li>You can download a template file to work with <a href="../activity_templates/10_mlr_confounding.qmd">here</a>.</li>
+<li><strong>File organization:</strong> Save this file in the “Activities” subfolder of your “STAT155” folder.</li>
+</ul>
+<section id="learning-goals" class="level2">
+<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
+<p>By the end of this lesson, you should be familiar with:</p>
+<ul>
+<li>confounding variables</li>
+<li>how to control for confounding variables in our models</li>
+<li>how to represent the role of confounding variables using causal diagrams</li>
+</ul>
+</section>
+<section id="readings-and-videos" class="level2">
+<h2 class="anchored" data-anchor-id="readings-and-videos">Readings and videos</h2>
+<p>Before class you should have read and watched:</p>
+<ul>
+<li>Sections 3.9.2 in the <a href="https://mac-stat.github.io/Stat155Notes/">STAT 155 Notes</a></li>
+<li><a href="https://voicethread.com/myvoice/thread/15362352/96009456/96009456">Confounding (and other causal diagrams)</a>
+<ul>
+<li>Watch from 0:00 - 6:54</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<section id="exercise-1-review" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-review">Exercise 1: Review</h2>
+<p>The <code>peaks</code> data includes information on hiking trails in the 46 “high peaks” in the Adirondack mountains of northern New York state:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load useful packages and data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>peaks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://mac-stat.github.io/data/high_peaks.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ascent =</span> ascent <span class="sc">/</span> <span class="dv">1000</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Check it out </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(peaks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below is a model of the <code>time</code> (in hours) that it takes to complete a hike by the hike’s <code>length</code> (in miles), vertical <code>ascent</code>(in 1000s of feet), and <code>rating</code> (easy, moderate, or difficult):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>peaks_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(time <span class="sc">~</span> length <span class="sc">+</span> ascent <span class="sc">+</span> rating, <span class="at">data =</span> peaks)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(peaks_model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Interpret the <code>length</code> and <code>ratingeasy</code> coefficients in the model formula below by using our strategy:</p>
+<blockquote class="blockquote">
+<p><strong>Strategy:</strong> When interpreting a coefficient for a variable x, compare two units whose values of x differ by 1 but who are identical for all other variables.</p>
+</blockquote>
+<p>E[time | length, ascent, rating] = 6.511 + 0.459 length + 0.187 ascent - 3.169 ratingeasy - 2.477 ratingmoderate</p>
+<hr>
+<p>Synthesis:</p>
+<ul>
+<li>Interpreting the coefficient <span class="math inline">\(\beta_Q\)</span> for a quantitative variable Q:
+<ul>
+<li>Holding all other variables constant, each unit increase in Q is associated with <span class="math inline">\(\beta_Q\)</span> change (note if it’s an increase or decrease) in Y on average.</li>
+</ul></li>
+<li>Interpreting the coefficient <span class="math inline">\(\beta_C\)</span> for an indicator variable:
+<ul>
+<li>Holding all other variables constant, the average outcome for the group referenced by this indicator (group for whom indicator = 1), is <span class="math inline">\(\beta_C\)</span> higher/lower than that of the reference group.</li>
+</ul></li>
+</ul>
+</section>
+<section id="exercise-2-confounders" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-confounders">Exercise 2: Confounders</h2>
+<blockquote class="blockquote">
+<p><strong>Research question:</strong> Is there a wage gap, hence possibly discrimination, by marital status among 18-34 year olds?</p>
+</blockquote>
+<p>To explore, we can revisit the <code>cps</code> data with employment information collected by the U.S. Current Population Survey (CPS) in 2018. View the codebook <a href="https://github.com/Mac-STAT/data/blob/main/cps_2018_codebook.md">here</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://mac-stat.github.io/data/cps_2018.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>, age <span class="sc">&lt;=</span> <span class="dv">34</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(wage <span class="sc">&lt;</span> <span class="dv">250000</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Check it out</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recall that a <strong>simple linear regression model</strong> of <code>wage</code> by <code>marital</code> suggests that single workers make $17,052 <em>less</em> than married workers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wage_model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital, <span class="at">data =</span> cps)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That’s a big gap!!</p>
+<p>BUT this model ignores important <strong>confounding variables</strong> that might help explain this gap.</p>
+<p>A confounding variable is a cause of both the predictor of interest (<code>marital</code>) and of the response variable (<code>wage</code>).</p>
+<p>We can represent this idea with a <strong>causal diagram</strong>:</p>
+<p>Another definition of a confounding variable is one that</p>
+<ul>
+<li>is a cause of the outcome (wage)</li>
+<li>is associated with the main variable of interest (marital status)</li>
+<li>NOT caused by the variable of interest</li>
+</ul>
+<p>We can represent this on the causal diagram with a line from the confounder to the variable of interest (instead of an arrow):</p>
+<p>Name at least 2 potential confounders.</p>
+</section>
+<section id="exercise-2b-how-why-do-confounders-bias-results" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2b-how-why-do-confounders-bias-results">Exercise 2b: How &amp; why do confounders bias results?</h2>
+<p>Unaccounted-for confounders are often a source of <strong>bias</strong> in our models, meaning that when we ignore them, we often over- or under-estimate the true underlying relationship between a predictor and response variable. To explore why this is important, let’s first look at how our focal predictor <code>marital</code> is associated with our response variable, <code>wage</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>marital, <span class="at">y=</span>wage))<span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, let’s consider <code>age</code> as a potential confounder. The following plot shows how age is associated with marital status:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>marital))<span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…this should make sense, because the older a person is, the more likely they are to be married. Similarly, we can show how <code>age</code> is associated with <code>wage</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>wage))<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F)<span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we see that there is a positive correlation between age and wages (which again makes sense, because people who have been in the workforce longer typically earn more).</p>
+<p>Let’s revisit our initial plot showing the relationship between marital status and wages:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>marital, <span class="at">y=</span>wage))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since we now know that age is associated with both being married <em>and</em> higher wages, this plot doesn’t tell the full story–people who are married could simply be earning higher wages because they tend to be older, <em>not necessarily because they are married!</em> Age is therefore a <strong>confounder</strong> in the relationship between marital status and wages.</p>
+</section>
+<section id="exercise-3-controlling-for-confounders" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-controlling-for-confounders">Exercise 3: Controlling for confounders</h2>
+<p>The exercise above illustrates that it is important to <em>control</em> or <em>adjust</em> for confounding variables when trying to understand the <em>actual</em> causal relationship between a predictor (e.g.&nbsp;<code>marital</code>) and response (e.g.&nbsp;<code>wage</code>).</p>
+<ol type="a">
+<li><p>Sometimes, we can control (adjust) for confounding variables through a carefully designed <strong>experiment</strong>. For example, in comparing the effectiveness (y) of 2 different cold remedies (x), we might want to control for the age, general health, and severity of symptoms among the participants. How might we do that?</p></li>
+<li><p>BUT we’re often working with <strong>observational</strong>, not experimental, data. Why? Well, explain what an experiment might look like if we wanted to explore the relationship between <code>wage</code> (y) and <code>marital</code> status (x) while controlling for <code>age</code>.</p></li>
+</ol>
+</section>
+<section id="exercise-4-age" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-age">Exercise 4: Age</h2>
+<p>We’re in luck.</p>
+<p>We can control (adjust) for confounding variables by <em>including them in our model</em>!</p>
+<p>That’s one of the superpowers of <strong>multiple linear regression</strong>.</p>
+<p>Let’s start simple, by <em>controlling for</em> age in our model of wages by marital status:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>wage_model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age, cps)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>Visualize this model by modifying the code below.</li>
+</ol>
+<p>(Note: The last line where we add a <code>geom_line</code> layer adds in trendlines similar to what we might obtain using <code>geom_smooth</code>, but it uses the exact fitted values from our model. <code>geom_smooth</code>, on the other hand, adds in trendlines based on fitting two separate models to the <code>married</code> and <code>single</code> subsets of the data. Tray adding <code>geom_smooth(method="lm", se=F, linetype="dashed")</code> to the plot to see how they compare).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cps, <span class="fu">aes</span>(<span class="at">y =</span> ___, <span class="at">x =</span> ___, <span class="at">color =</span> ___)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom____</span>(<span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage_model_2<span class="sc">$</span>fitted.values), <span class="at">linewidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li><p>Suppose 2 workers are the <em>same age</em>, but one is married and one is single. By how much do we expect the single worker’s wage to differ from the married worker’s wage? (How does this compare to the $17,052 marital gap among all workers?)</p></li>
+<li><p>How can we interpret the <code>maritalsingle</code> coefficient?</p></li>
+</ol>
+</section>
+<section id="exercise-5-more-confounders" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-more-confounders">Exercise 5: More confounders</h2>
+<p>Let’s control for even more potential confounders!</p>
+<p>Model wages by marital status while controlling for <code>age</code> <em>and</em> years of <code>education</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wage_model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age <span class="sc">+</span> education, cps)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>With so many variables, this is a tough model to visualize. If you <em>had</em> to draw it, how would the model trend appear: 1 point, 2 points, 2 lines, 1 plane, or 2 planes? Explain your rationale. Hint: pay attention to whether your predictors are quantitative or categorical.</p></li>
+<li><p>Given our research question, which coefficient is of primary interest? Interpret this coefficient.</p></li>
+<li><p>Interpret the two other coefficients in this model.</p></li>
+</ol>
+</section>
+<section id="exercise-6-even-more" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-even-more">Exercise 6: Even more</h2>
+<p>Let’s control for <em>another</em> potential confounder, the job <code>industry</code> in which one works (categorical):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wage_model_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age <span class="sc">+</span> education <span class="sc">+</span> industry, cps)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we <em>had</em> to draw it, this model would appear as 12 planes.</p>
+<p>The original plane explains the relationship between wage and the 2 quantitative predictors, age and education.</p>
+<p>Then this plane is split into 12 (2*6) individual planes, 1 for each possible combination of marital status (2 possibilities) and industry (6 possibilities).</p>
+<ol type="a">
+<li><p>Interpret the main coefficient of interest for our research question.</p></li>
+<li><p>When controlling for a worker’s age, marital status, and education level, which industry tends to have the highest wages? The lowest? Note: the following table shows the 6 industries:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span> <span class="fu">count</span>(industry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-7-biggest-model-yet" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7-biggest-model-yet">Exercise 7: Biggest model yet</h2>
+<p>Build a model that helps us explore <code>wage</code> by <code>marital</code> status while controlling for: <code>age</code>, <code>education</code>, job <code>industry</code>, typical number of work <code>hours</code>, and <code>health</code> status.</p>
+<p>Store this model as <code>wage_model_5</code>.</p>
+</section>
+<section id="exercise-8-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8-reflection">Exercise 8: Reflection</h2>
+<p>Take two workers – one is married and the other is single.</p>
+<p>The models above provided the following insights into the typical difference in wages for these two groups:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Assume the two people have the same…</th>
+<th style="text-align: right;">Wage difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>wage_model_1</code></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">-$17,052</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>wage_model_2</code></td>
+<td style="text-align: left;">age</td>
+<td style="text-align: right;">-$7,500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>wage_model_3</code></td>
+<td style="text-align: left;">age, education</td>
+<td style="text-align: right;">-$6,478</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>wage_model_4</code></td>
+<td style="text-align: left;">age, education, industry</td>
+<td style="text-align: right;">-$5,893</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>wage_model_5</code></td>
+<td style="text-align: left;">age, education, industry, hours, health</td>
+<td style="text-align: right;">-$4,993</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li><p>Though not the case in every analysis, the <code>marital</code> coefficient got closer and closer to 0 as we controlled for more confounders. Explain the significance of this phenomenon, in context - what does it <em>mean</em>?</p></li>
+<li><p>Do you still find the wage gap for single vs married people to be meaningfully “large”? Can you think of any remaining factors that might explain part of this remaining gap? Or do you think we’ve found evidence of inequitable wage practices for single vs married workers?</p></li>
+</ol>
+</section>
+<section id="exercise-9-a-new-extreme-example" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9-a-new-extreme-example">Exercise 9: A new (extreme) example</h2>
+<p>For a more extreme example of why it’s important to control for confounding variables, let’s return to the <code>diamonds</code> data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and wrangle the data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cut =</span> <span class="fu">factor</span>(cut, <span class="at">ordered =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">factor</span>(color, <span class="at">ordered =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">clarity =</span> <span class="fu">factor</span>(clarity, <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(price, clarity, cut, color, carat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our goal is to explore how the <code>price</code> of a diamond depends upon its <code>clarity</code> (a measure of quality).</p>
+<p>Clarity is classified as follows, in order from best to worst:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">clarity</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">IF</td>
+<td style="text-align: left;">flawless (no internal imperfections)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VVS1</td>
+<td style="text-align: left;">very very slightly imperfect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VVS2</td>
+<td style="text-align: left;">” ”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VS1</td>
+<td style="text-align: left;">very slightly imperfect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VS2</td>
+<td style="text-align: left;">” ”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SI1</td>
+<td style="text-align: left;">slightly imperfect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SI2</td>
+<td style="text-align: left;">” ”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I1</td>
+<td style="text-align: left;">imperfect</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>Check out a model of <code>price</code> by <code>clarity</code>. What clarity has the highest average price? The lowest? (This is surprising!)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diamond_model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> clarity, <span class="at">data =</span> diamonds)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a model summary</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(diamond_model_1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>What <em>confounding variable</em> might explain these results? What’s your rationale?</li>
+</ol>
+</section>
+<section id="exercise-10-size" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-10-size">Exercise 10: Size</h2>
+<p>It turns out that <code>carat</code>, the <em>size</em> of a diamond, is an important confounding variable.</p>
+<p>Let’s explore what happens when we control for this in our model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>diamond_model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> clarity <span class="sc">+</span> carat, <span class="at">data =</span> diamonds)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a model summary</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(diamond_model_2))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the model</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> carat, <span class="at">color =</span> clarity)) <span class="sc">+</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> diamond_model_2<span class="sc">$</span>fitted.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What do you think now?</p>
+<p>Which clarity has the highest expected price?</p>
+<p>The lowest?</p>
+<p>Provide numerical evidence from the model.</p>
+</section>
+<section id="exercise-11-simpsons-paradox" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-11-simpsons-paradox">Exercise 11: Simpson’s Paradox</h2>
+<p>Controlling for <code>carat</code> didn’t just <em>change</em> the <code>clarity</code> coefficients, hence our understanding of the relationship between <code>price</code> and <code>clarity</code>… It flipped the <em>signs</em> of many of these coefficients.</p>
+<p>This extreme scenario has a name: <strong>Simpson’s paradox</strong>.</p>
+<p>CHALLENGE: Explain <em>why</em> this happened and support your argument with <em>graphical</em> evidence.</p>
+<p>HINTS: Think about the causal diagram below. <em>How</em> do you think <code>carat</code> influences <code>clarity</code>? <em>How</em> do you think <code>carat</code> influences <code>price</code>? Make 2 <code>ggplot()</code> that support your answers.</p>
+</section>
+<section id="exercise-12-final-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-12-final-conclusion">Exercise 12: Final conclusion</h2>
+<p>What’s your final conclusion about diamond prices?</p>
+<p>Which diamonds are more expensive: flawed ones or flawless ones?</p>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>Write a one-sentence warning label for what might happen if we do <em>not</em> control for confounding variables in our model.</p>
+<blockquote class="blockquote">
+<p><strong>Response:</strong> Put your response here.</p>
+</blockquote>
+<p><br>
+<br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="solutions" class="level1">
+<h1>Solutions</h1>
+<section id="exercise-1-review-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-review-1">Exercise 1: Review</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>peaks_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(time <span class="sc">~</span> length <span class="sc">+</span> ascent <span class="sc">+</span> rating, <span class="at">data =</span> peaks)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(peaks_model))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                  Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)     6.5106514 1.62983740  3.994663 2.627176e-04</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## length          0.4590819 0.08158314  5.627166 1.465288e-06</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ascent          0.1874830 0.34215350  0.547950 5.866973e-01</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ratingeasy     -3.1685224 0.86219113 -3.674965 6.827232e-04</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ratingmoderate -2.4767827 0.61058560 -4.056405 2.177589e-04</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>length</code> coefficient:
+<ul>
+<li>Among hikes with the same vertical ascent and challenge rating, each additional mile of the hike is associated with a 0.46 hour increase in completion time on average.</li>
+<li>Holding vertical ascent and challenge rating constant (fixed), each additional mile of the hike is associated with a 0.46 hour increase in completion time on average.</li>
+</ul></li>
+<li><code>ratingeasy</code> coefficient:
+<ul>
+<li>Among hikes with the same length and vertical ascent, the average completion time of easy hikes is 3.2 hours less than that of difficult hikes (reference category).</li>
+<li>Holding constant hike length and vertical ascent, the average completion time of easy hikes is 3.2 hours less than that of difficult hikes.</li>
+</ul></li>
+</ul>
+</section>
+<section id="exercise-2-confounders-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-confounders-1">Exercise 2: Confounders</h2>
+<p>age, education, job industry, …</p>
+<p><code>marital</code> vs <code>wage</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>marital, <span class="at">y=</span>wage))<span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>age</code> vs <code>marital</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>marital))<span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>age</code> vs <code>wage</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>wage))<span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F)<span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-controlling-for-confounders-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-controlling-for-confounders-1">Exercise 3: Controlling for confounders</h2>
+<ol type="a">
+<li><p>create 2 separate groups that are as similar as possible with respect to these variables. give the groups different remedies.</p></li>
+<li><p>we’d have to get 2 groups that are similar with respect to age, and assign 1 group to get married and 1 group to be single. that would be weird (and unethical).</p></li>
+</ol>
+</section>
+<section id="exercise-4-age-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-age-1">Exercise 4: Age</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the model</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>wage_model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age, cps)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_2))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">##                 Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)   -19595.948  3691.6998 -5.308110 1.184066e-07</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="do">## maritalsingle  -7500.146  1191.8526 -6.292847 3.545964e-10</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="do">## age             2213.869   120.7701 18.331265 2.035782e-71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage, <span class="at">x =</span> age, <span class="at">color =</span> marital)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage_model_2<span class="sc">$</span>fitted.values), <span class="at">size =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>bonus! adding in the <code>geom_smooth</code> layer:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cps <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage, <span class="at">x =</span> age, <span class="at">color =</span> marital)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> wage_model_2<span class="sc">$</span>fitted.values), <span class="at">size =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F, <span class="at">linetype=</span><span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="a">
+<li><p>-$7500</p></li>
+<li><ul>
+<li>When controlling for (“holding constant”) age, single workers make $7500 less than married workers on average.</li>
+<li>Among workers of the same age, single workers make $7500 less than married workers on average.</li>
+</ul></li>
+</ol>
+</section>
+<section id="exercise-5-more-confounders-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-more-confounders-1">Exercise 5: More confounders</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wage_model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age <span class="sc">+</span> education, cps)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_3))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                 Estimate Std. Error    t value     Pr(&gt;|t|)</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)   -64898.607  4099.8737 -15.829416 2.254709e-54</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="do">## maritalsingle  -6478.094  1119.9345  -5.784351 7.988760e-09</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="do">## age             1676.796   116.3086  14.416777 1.102113e-45</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="do">## education       4285.259   207.2158  20.680173 3.209448e-89</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>2 planes: There are 2 quantitative predictors which form the dimensions of the plane. The marital status categorical predictor creates 2 planes.</p></li>
+<li><p>The <code>maritalsingle</code> coefficient is of main interest:</p>
+<ul>
+<li>Among workers of the same age and years of education, single workers earn $6478 less than married workers.</li>
+</ul></li>
+<li><ul>
+<li><code>age</code> coefficient: Among workers of the same marital status and years of education, each additional year of age is associated with a $1677 increase in salary on average.</li>
+<li><code>education</code> coefficient: Among workers of the same marital status and age, each additional year of education is associated with a $4285 increase in salary on average.</li>
+</ul></li>
+</ol>
+</section>
+<section id="exercise-6-even-more-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-even-more-1">Exercise 6: Even more</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wage_model_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age <span class="sc">+</span> education <span class="sc">+</span> industry, cps)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_4))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                                   Estimate Std. Error    t value     Pr(&gt;|t|)</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)                     -52498.857  7143.8481 -7.3488206 2.533275e-13</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="do">## maritalsingle                    -5892.842  1105.6898 -5.3295615 1.053631e-07</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="do">## age                               1493.360   116.1673 12.8552586 6.651441e-37</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="do">## education                         3911.117   243.0192 16.0938565 4.500408e-56</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="do">## industryconstruction              5659.082  6218.5649  0.9100302 3.628760e-01</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="do">## industryinstallation_production   1865.650  6109.2613  0.3053806 7.600964e-01</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="do">## industrymanagement                1476.884  6031.2901  0.2448704 8.065727e-01</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="do">## industryservice                  -7930.403  5945.6509 -1.3338158 1.823603e-01</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="do">## industrytransportation           -1084.176  6197.2462 -0.1749448 8.611342e-01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>Among workers of the same job industry, education, and age, single workers make $5893 less than a married worker on average.</p></li>
+<li><p>highest = construction (because it has the highest positive coefficient), lowest = service (because it has the most negative coefficient)</p></li>
+</ol>
+</section>
+<section id="exercise-7-biggest-model-yet-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7-biggest-model-yet-1">Exercise 7: Biggest model yet</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wage_model_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> marital <span class="sc">+</span> age <span class="sc">+</span> education <span class="sc">+</span> industry <span class="sc">+</span> hours <span class="sc">+</span> health, cps)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(wage_model_5))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                                    Estimate Std. Error     t value     Pr(&gt;|t|)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)                     -64886.5747 6914.18198 -9.38456275 1.171028e-20</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="do">## maritalsingle                    -4992.7685 1061.84882 -4.70195794 2.687274e-06</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="do">## age                               1061.1410  115.83503  9.16079518 9.031462e-20</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="do">## education                         3443.7625  236.12723 14.58435151 1.128646e-46</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="do">## industryconstruction              5381.3857 5959.05620  0.90306007 3.665630e-01</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="do">## industryinstallation_production   2951.0372 5854.23981  0.50408547 6.142365e-01</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="do">## industrymanagement                5107.6364 5782.95334  0.88322283 3.771832e-01</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="do">## industryservice                  -3074.5127 5705.56537 -0.53886207 5.900201e-01</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="do">## industrytransportation            -207.3439 5940.02074 -0.03490626 9.721567e-01</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="do">## hours                              732.1340   43.72488 16.74410733 2.340115e-60</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="do">## healthfair                       -7407.7981 2901.71339 -2.55290483 1.072955e-02</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="do">## healthgood                       -2470.8096 1259.44276 -1.96182766 4.987035e-02</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="do">## healthpoor                       -9086.9110 7657.43781 -1.18667774 2.354441e-01</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="do">## healthvery_good                    292.5278 1020.89213  0.28654136 7.744823e-01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-8-reflection-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8-reflection-1">Exercise 8: Reflection</h2>
+<ol type="a">
+<li>These confounders explained away more and more of the wage gap between single and married workers.</li>
+<li>Answers will vary. A potential factor that we haven’t considered is a worker’s role within a given industry.</li>
+</ol>
+</section>
+<section id="exercise-9-a-new-extreme-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-9-a-new-extreme-example-1">Exercise 9: A new (extreme) example</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">clarity</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">IF</td>
+<td style="text-align: left;">flawless (no internal imperfections)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VVS1</td>
+<td style="text-align: left;">very very slightly imperfect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VVS2</td>
+<td style="text-align: left;">” ”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VS1</td>
+<td style="text-align: left;">very slightly imperfect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VS2</td>
+<td style="text-align: left;">” ”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SI1</td>
+<td style="text-align: left;">slightly imperfect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SI2</td>
+<td style="text-align: left;">” ”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I1</td>
+<td style="text-align: left;">imperfect</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>diamond_model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> clarity, <span class="at">data =</span> diamonds)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a model summary</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(diamond_model_1))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="do">##                Estimate Std. Error    t value     Pr(&gt;|t|)</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  3677.41676   25.88161 142.086092 0.000000e+00</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity.L   -1723.35264   98.72036 -17.456913 4.696367e-68</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity.Q    -428.36467   96.70081  -4.429794 9.450847e-06</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity.C     647.87442   83.30820   7.776838 7.567234e-15</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^4    -123.13052   66.72533  -1.845334 6.499443e-02</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^5     804.80570   54.62487  14.733320 4.907171e-49</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^6    -273.65013   47.67881  -5.739449 9.549240e-09</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^7      81.18721   42.01910   1.932150 5.334619e-02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>highest = SI2, lowest = VVS1</p></li>
+<li><p>will vary.</p></li>
+</ol>
+</section>
+<section id="exercise-10-size-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-10-size-1">Exercise 10: Size</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>diamond_model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> clarity <span class="sc">+</span> carat, <span class="at">data =</span> diamonds)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a model summary</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(diamond_model_2))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="do">##                Estimate Std. Error      t value      Pr(&gt;|t|)</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) -2977.26896   13.11110 -227.0799509  0.000000e+00</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity.L    4216.77507   33.65424  125.2969766  0.000000e+00</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity.Q   -1931.40632   31.87080  -60.6011296  0.000000e+00</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity.C    1005.84704   27.39341   36.7185805 1.486332e-291</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^4    -480.17830   21.94294  -21.8830399 1.089041e-105</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^5     283.94435   17.97527   15.7963882  4.403172e-56</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^6      12.66308   15.68062    0.8075624  4.193461e-01</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="do">## clarity^7     198.04828   13.81518   14.3355543  1.597902e-46</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="do">## carat        8440.05729   12.65126  667.1315412  0.000000e+00</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the model</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> carat, <span class="at">color =</span> clarity)) <span class="sc">+</span> </span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> diamond_model_2<span class="sc">$</span>fitted.values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>highest = IF, lowest = I1 (reference category)</p>
+<p>This is what we would have expected!</p>
+</section>
+<section id="exercise-11-simpsons-paradox-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-11-simpsons-paradox-1">Exercise 11: Simpson’s Paradox</h2>
+<p>The bigger the diamond the bigger the price:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> price, <span class="at">x =</span> carat)) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>BUT the bigger the diamond, the more flawed it tends to be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> carat, <span class="at">x =</span> clarity)) <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="L10-mlr-confounding_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Thus flawed diamonds looked more expensive, but only because they also tend to be bigger (and size is a bigger driver of price).</p>
+</section>
+<section id="exercise-12-final-conclusion-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-12-final-conclusion-1">Exercise 12: Final conclusion</h2>
+<p>Flawless diamonds are more expensive.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Jedidiah Carlson, 2025<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Site built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

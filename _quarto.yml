@@ -1,0 +1,86 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!activity_templates/"
+    - "!template_qmds/"
+    - "!activitiesOLD/"
+    - "!activities/alternate/"
+    - "!solutions/"
+    - "!assignments/"
+    - "!working/"
+  post-render: "cp -r activities docs/activity_templates" # adds activity qmd as downloadable template
+  resources:
+    - "data/*.csv"
+    # - "activity_templates/*.qmd"
+    - "assignments/*.qmd"
+
+website:
+  title: "STAT 155"
+  favicon: favicon-32x32.png
+  navbar:
+    background: primary
+    search: true
+    left:
+      - file: index.qmd
+        text: "Home"
+      - file: syllabus.qmd
+        text: "Syllabus"
+      - file: schedule.qmd
+        text: "Schedule"
+      - sidebar:activities
+      - file: assignments.qmd
+        text: "Practice Problems"
+      - file: project.qmd
+        text: "Project"
+      - file: tech_setup.qmd
+        text: "Tech Setup"
+
+  sidebar:
+    - id: activities
+      title: "Activities"
+      contents:
+        # - "activities/L26-p-values-discussion.qmd"
+        # - "activities/L25-f-tests.qmd"
+        # - "activities/L24-hypothesis-testing-considerations.qmd"
+        # - "activities/L23-hypothesis-testing-details.qmd"
+        # - "activities/L22-hypothesis-testing-discovery.qmd"
+        # - "activities/L21-confidence-intervals.qmd" 
+        # # - "activities/L20-bootstrapping.qmd"
+        # - "activities/L19-20-sampling-dist-clt-bootstrap.qmd"
+        # - "activities/L18-sampling-normal.qmd"
+        # - "activities/L17-logistic-multiple-evaluation.qmd"
+        # # - "activities/L16-logistic-univariate.qmd"
+        # - "activities/L15-prob-odds.qmd"
+        # - "activities/L14-mlr-model-building-2.qmd"
+        # - "activities/L13-mlr-model-building-1.qmd"
+        # # - "activities/L12-mlr-interaction-practice.qmd"
+        # - "activities/L11-mlr-interaction-explore.qmd"
+        # - "activities/L10-mlr-confounding.qmd"
+        # # - "activities/L09-mlr-principles.qmd"
+        # - "activities/L08-mlr-intro.qmd"
+        # - "activities/L07-slr-cat-predictor.qmd"
+        # - "activities/L06-slr-transformations.qmd"
+        # - "activities/L05-slr-model-eval.qmd"
+        # - "activities/L03-slr-introduction.qmd"
+        # - "activities/L02-foundations-univariate.qmd"
+        - "activities/L01-foundations-welcome.qmd"
+  
+  page-footer:
+    left: |
+      &copy; Jedidiah Carlson, 2025<br>
+      All content licensed under ![](https://static.thenounproject.com/png/70967-200.png){height=20px} ([CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/))
+    right: |
+      Site built with [Quarto](https://quarto.org/)
+
+format:
+  html:
+    theme:
+      light: simplex
+      dark: [simplex, simplex-dark.scss]
+    # css: styles.css
+    toc: true
+    code-overflow: wrap
+
+editor: source

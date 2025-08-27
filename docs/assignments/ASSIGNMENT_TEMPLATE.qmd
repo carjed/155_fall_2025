@@ -1,0 +1,49 @@
+---
+title: "(Homework)(Assignment)(Practice Problems) #"
+author: "STUDENT NAME"
+date: now
+date-format: "YYYY-MM-DDTHH:mm:ssZ"
+format:
+  html:
+    embed-resources: true
+    code-tools: true    
+---
+
+<center>
+**Due [due date and time] on [Moodle](INSERT_LINK_TO_MOODLE_ASSIGNMENT).**
+</center>
+
+# Purpose
+
+The purpose of this assignment is to help you practice... and explore...
+
+
+
+
+
+# Directions and criteria for success
+
+- General directions explaining the task that the students need to perform
+- Depending on your grading system, describe what students need to do to succeed for this assignment
+
+
+
+
+
+# Exercises
+
+Data context and/or overview of exercises
+
+## Exercise 1
+
+Text
+
+## Exercise 2
+
+Text
+
+## Reflection
+
+Prompts
+
+> **Response:** Students can type responses here.

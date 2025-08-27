@@ -1,0 +1,44 @@
+---
+title: "LESSON TITLE (e.g., Univariate summaries and visualization)"
+subtitle: "Notes and in-class exercises"
+format: 
+  html:
+    embed-resources: true
+    toc: true
+---
+
+# Notes
+
+By the end of this lesson, you should be able to:
+
+- Learning goal 1
+- Learning goal 2
+
+Links to required video(s) / reading(s):
+
+- Link 1
+- Link 2
+
+<!-- This section is for any mini-lecture, review material, material to motivate today's lesson, more guided / structured examples than the exercises section below. -->
+
+
+
+
+
+# Exercises
+
+Data context and/or overview of exercises
+
+## Exercise 1
+
+Text
+
+## Exercise 2
+
+Text
+
+## Reflection
+
+Prompts
+
+> **Response:** Students can type responses here.

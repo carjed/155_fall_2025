@@ -1,0 +1,37 @@
+---
+title: ""
+sidebar: false
+---
+
+# STAT 155: Introduction to Statistical Modeling
+
+Macalester College, Fall 2025
+
+::: {style="font-size: 20px;"}
+Learn the fundamentals of summarizing, visualizing, and modeling data to answer research questions.
+:::
+
+<br>
+
+**Instructor:** [Jedidiah Carlson](https://jedidiahcarlson.com) <br> **Class meeting times:**
+
+-   **Section 05**: Tu/Th 9:40-11:10am
+
+**Class location:** THTR 202 <br>
+
+**Jed's drop-in hours:**
+
+-   **location**: My office (OLRI 236)
+-   **times**: See [this calendar](https://calendar.google.com/calendar/u/1?cid=Y19mODU5MTcxYTdjYzUwNWFkMDE1MjVmZGRlMWMwZWFmNDQwZTVlMjk3MDEzNzdhNjQwNDdjNjIyOWY5ZWI4N2E4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20).
+
+------------------------------------------------------------------------
+
+[**R/RStudio Preceptor Office Hours:**]{.underline} Available on the [MSCS Events google calendar](https://www.macalester.edu/mscs/mscs-events-calendar/) (*not* to be used for questions about course content, only R-related things!)
+
+[**STAT 155 Preceptor Office Hours:**]{.underline} There is a link to a Google Calendar containing *all* preceptor office hours available at the top of the course Moodle page!
+
+------------------------------------------------------------------------
+
+This course website will be updated throughout the semester with new activities, assignments, and announcements, so please bookmark this page if you are enrolled in the course!
+
+If you find any typos, bugs, dead links, or have other questions, please email [jcarls13\@macalester.edu](mailto:jcarls13@macalester.edu){.email}

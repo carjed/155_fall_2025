@@ -1,0 +1,191 @@
+# Introduction to multiple regression
+
+
+```{r include = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE)
+```
+
+
+<!-- create student notes from activity in core-->
+
+{{< include _create_student_notes.qmd >}}
+
+```{r}
+#| echo: false
+#| eval: true
+make_student_notes('Introduction to multiple regression', '_L08-mlr-intro.qmd')
+```
+
+<!-- pull activity from core -->
+
+```{r knitr-opts}
+#| echo: false
+#| cache: false
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
+
+{{< include core/_L08-mlr-intro.qmd >}}
+
+
+
+\
+\
+\
+\
+
+
+
+# Solutions
+
+```{r eval = TRUE, echo = FALSE}
+# Load packages
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+# Load data
+library(palmerpenguins)
+data(penguins)
+penguins <- penguins %>% 
+  filter(species != "Adelie", bill_length_mm < 57)
+
+# Import data
+cps <- read_csv("https://mac-stat.github.io/data/cps_2018.csv") %>% 
+  select(-education, -hours) %>% 
+  filter(age >= 18, age <= 34) %>% 
+  filter(wage < 250000)
+```
+
+## Exercise 1: Visualizing the relationship
+
+a. no wrong answer
+
+b. There are multiple options!
+
+```{r eval = TRUE}
+penguins %>% 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + 
+  geom_point()
+
+penguins %>% 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, shape = species)) + 
+  geom_point()
+```
+
+
+
+
+
+
+
+
+
+
+## Exercise 2: Visualizing the model
+
+a. no wrong answer
+
+b. 
+
+```{r eval = TRUE}
+penguins %>% 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+
+## Exercise 3: Intuition
+
+a. Gentoo tend to have longer flippers.
+b. Flipper length is positively associated with bill length.
+c. No. the lines are parallel / have the same slopes.
+
+
+
+
+
+
+
+
+
+## Exercise 4: Model formula
+
+
+a.  `bill_length_mm + species`
+b. E[flipper_length_mm | bill_length_mm, speciesGentoo] = 127.75 + 1.40 * bill_length_mm + 22.85 * speciesGentoo
+
+
+
+
+
+
+## Exercise 5: Sub-model formulas
+
+Chinstrap: flipper_length_mm = 127.75 + 1.40 bill_length_mm
+
+Gentoo:    flipper_length_mm = (127.75 + 22.85) + 1.40 bill_length_mm = 150.6 + 1.40 bill_length_mm
+
+
+
+
+
+## Exercise 6: coefficients -- physical interpretation
+
+a. The intercept coefficient, 127.75, is the intercept of the line for **Chinstrap** penguins.
+
+b. The `bill_length_mm` coefficient, 1.40, is the **slope** of both lines.
+
+c. The `speciesGentoo` coefficient, 22.85, indicates that the **intercept** of the line for Gentoo is 22.85mm higher than the **intercept** of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any `bill_length_mm`.
+    
+    
+
+
+
+## Exercise 7: coefficients -- contextual interpretation
+
+a. For Chinstrap penguins with 0mm bills (silly), we expect a flipper length of 127.75mm.
+
+b. For both Chinstrap and Gentoo penguins, flipper lengths increase by 1.40mm on average for every additional mm in bill length.
+
+c. At any `bill_length_mm`, we expect the a Gentoo penguin to have 22.85mm longer flippers than a Chinstrap, on average.
+
+
+
+
+
+## Exercise 8: Prediction
+
+```{r eval = TRUE}
+# a
+127.75 + 1.40*50 + 22.85*0
+
+# b
+127.75 + 1.40*50 + 22.85*1
+
+# c
+predict(penguin_mod,
+        newdata = data.frame(bill_length_mm = 50, 
+                             species = "Chinstrap"))
+predict(penguin_mod,
+        newdata = data.frame(bill_length_mm = 50, 
+                             species = "Gentoo"))
+```
+
+
+
+
+
+
+## Exercise 9: R-squared
+
+a. species
+b. no wrong answer
+c. It's higher than the R-squared when we use either predictor alone!
+
