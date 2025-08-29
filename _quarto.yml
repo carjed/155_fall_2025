@@ -27,8 +27,8 @@ website:
         text: "Home"
       - file: syllabus.qmd
         text: "Syllabus"
-      - file: schedule.qmd
-        text: "Schedule"
+      # - file: schedule.qmd
+      #   text: "Schedule"
       - sidebar:activities
       - file: assignments.qmd
         text: "Practice Problems"
