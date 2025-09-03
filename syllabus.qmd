@@ -310,7 +310,7 @@ Overall percentages on these three components will correspond to the following l
 This grade may then be **modified by** your progress towards the Engagement and Preparation (Checkpoint Quizzes) goals:
 
 | Modifier | Scenario |
-|------------------------------------|------------------------------------|
+|----|----|
 | none (e.g. A → A) | meets expectations in both areas (Engagement & Preparation) |
 | 1/3 lower grade (e.g., A → A-) | demonstrates strong progress toward expectations in both areas (e.g., 4 absences or 70% Checkpoint total) |
 | 1 lower grade (e.g., A → B) | demonstrates moderate progress toward expectations in both areas (e.g., 5-6 absences or 50% Checkpoint total) |

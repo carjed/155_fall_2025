@@ -26,9 +26,11 @@ Learn the fundamentals of summarizing, visualizing, and modeling data to answer 
 
 # Essential Links
 
-| [Syllabus](syllabus.qmd) | [Homework Policies](https://docs.google.com/document/d/1r8URNncf5zv33Bcis-XNjdf2LK9OiMngukgpnpDqcq0/edit?usp=sharing) |
-|----|----|
-| [**Moodle**](https://moodle.macalester.edu/course/view.php?id=6316) | [**Installing R/RStudio**](tech_setup.qmd) |
++---------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| [Syllabus](syllabus.qmd)                                            | [Homework Policies](https://docs.google.com/document/d/1r8URNncf5zv33Bcis-XNjdf2LK9OiMngukgpnpDqcq0/edit?usp=sharing) |
++=====================================================================+=======================================================================================================================+
+| [**Moodle**](https://moodle.macalester.edu/course/view.php?id=6316) | [**Installing R/RStudio**](tech_setup.qmd)                                                                            |
++---------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 
 ------------------------------------------------------------------------
 
@@ -64,7 +66,9 @@ The **Topic** column will contain a link to today's activity (to follow along on
 |                                        |                                                                                      |                                                                                          | -   Complete the [Introductions survey](https://forms.gle/y5gBRYimGjR4uzce8) |
 |                                        |                                                                                      |                                                                                          | -   [Download R and RStudio](tech_setup.qmd)                                 |
 +----------------------------------------+--------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+
-| 9/4                                    | [Univariate visual & numerical summaries](activities/L02-foundations-univariate.qmd) | [02-foundations-univariate-notes.qmd](template_qmds/02-foundations-univariate-notes.qmd) | CP 1                                                                         |
+| 9/4                                    | [Univariate visual & numerical summaries](activities/L02-foundations-univariate.qmd) | [02-foundations-univariate-notes.qmd](template_qmds/02-foundations-univariate-notes.qmd) | Before class:                                                                |
+|                                        |                                                                                      |                                                                                          |                                                                              |
+|                                        |                                                                                      |                                                                                          | -   [CP 1](https://moodle.macalester.edu/mod/quiz/view.php?id=220406)        |
 +----------------------------------------+--------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+
 | 9/9                                    | Simple linear regression                                                             |                                                                                          | CP 2                                                                         |
 +----------------------------------------+--------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------+
