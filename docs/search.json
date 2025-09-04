@@ -1665,7 +1665,7 @@
     "href": "assignments.html",
     "title": "Practice Problems",
     "section": "",
-    "text": "Please review the Practice Problems Policies document!\n\nPractice Problems 1, due 9/12"
+    "text": "Please review the Practice Problems Policies document!\n\nPractice Problems 1, due 9/11"
   },
   {
     "objectID": "activities/99-appendix.html",
@@ -2519,7 +2519,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-4-random-sampling-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film     userscore_rt criticscore_rt\n##   &lt;chr&gt;           &lt;int&gt;          &lt;int&gt;\n## 1 Southpaw           80             59\n## 2 Get Hard           48             29\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                   userscore_rt criticscore_rt\n##   &lt;chr&gt;                         &lt;int&gt;          &lt;int&gt;\n## 1 Straight Outta Compton           94             90\n## 2 Mr. Turner                       56             98\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
   },
   {
     "objectID": "activities/L18-sampling-normal.html#exercise-5-take-your-own-sample-1",
