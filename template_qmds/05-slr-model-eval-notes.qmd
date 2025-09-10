@@ -83,9 +83,7 @@ Let's revisit the Capital Bikeshare data:
 
 ```{r}
 # Load packages and import data
-library(readr)
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
 
 bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv")
 ```
