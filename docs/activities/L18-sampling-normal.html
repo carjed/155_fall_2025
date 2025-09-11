@@ -155,7 +155,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Home / Schedule</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../syllabus.html"> 
@@ -166,6 +166,10 @@ window.Quarto = {
  <span class="menu-text">Activities</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="../activities/L06-slr-transformations.html">
+ <span class="dropdown-text">Simple linear regression: Transformations</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../activities/L05-slr-model-eval.html">
  <span class="dropdown-text">Simple linear regression: model evaluation</span></a>
@@ -705,10 +709,10 @@ E[UserScore \mid CriticScore] = 32.3 + 0.52 CriticScore
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Observe that the 2 films change every time &amp; differ from your neighbors' samples</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(fandango, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2 × 3</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   film        userscore_rt criticscore_rt</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;              &lt;int&gt;          &lt;int&gt;</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Paper Towns           57             55</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 Taken 3               46              9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   film           userscore_rt criticscore_rt</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                 &lt;int&gt;          &lt;int&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Fantastic Four           20              9</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 Blackhat                 25             34</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Observe that the 2 films are the same every time &amp; are the same as your neighbors' samples</span></span>

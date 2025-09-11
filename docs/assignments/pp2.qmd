@@ -9,11 +9,6 @@ format:
     code-tools: true    
 ---
 
-<center>
-**Due Friday, 9/20 at 5pm on [Moodle](INSERT_LINK_TO_MOODLE_ASSIGNMENT).**
-</center>
-
-
 ```{r setup}
 #| include: false
 
@@ -33,8 +28,8 @@ knitr::opts_chunk$set(
 
 The goal of this set of practice problems is to practice the following skills:
 
+- More practice fitting simple linear regression models
 - Model evaluation: Is the model "correct"? Is the model "strong"? Is the model "fair"?
-- Transformations of variables: center, scale, and log
 - Making and interpreting residual plots
 
 
@@ -114,7 +109,9 @@ Do you think this model is *fair*? Explain your reasoning. NOTE: There's not a s
 
 Report and interpret, in context, the multiple $R^2$ value from the linear regression model you fit in Exercise 2. Your answer should demonstrate your understanding of how to *interpret* this number (what it actually *means* or *measures*) and of whether it indicates that this particular model is strong, moderate, or weak.
 
-## Exercise 5: Thinking about transformations
+## OPTIONAL Exercise 5: Thinking about transformations
+
+This exercise will not be graded. However, you're encouraged to try it!
 
 ### Part a
 
@@ -156,7 +153,6 @@ Did you use AI for any part of this PP?
 If so, describe: where you used it (on which exercises), how long you worked on the exercises before turning to AI, and what prompts you used / typed into AI.
 
 **Your response:**
-
 
 
 

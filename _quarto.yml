@@ -24,7 +24,7 @@ website:
     search: true
     left:
       - file: index.qmd
-        text: "Home"
+        text: "Home / Schedule"
       - file: syllabus.qmd
         text: "Syllabus"
       # - file: schedule.qmd
@@ -61,7 +61,7 @@ website:
         # # - "activities/L09-mlr-principles.qmd"
         # - "activities/L08-mlr-intro.qmd"
         # - "activities/L07-slr-cat-predictor.qmd"
-        # - "activities/L06-slr-transformations.qmd"
+        - "activities/L06-slr-transformations.qmd"
         - "activities/L05-slr-model-eval.qmd"
         - "activities/L04-slr-formalization.qmd"
         - "activities/L03-slr-introduction.qmd"
