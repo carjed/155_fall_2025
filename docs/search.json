@@ -1351,7 +1351,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-4-random-sampling-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film       userscore_rt criticscore_rt\n##   &lt;chr&gt;             &lt;int&gt;          &lt;int&gt;\n## 1 Vacation             55             27\n## 2 Sinister 2           34             13\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                      userscore_rt criticscore_rt\n##   &lt;chr&gt;                            &lt;int&gt;          &lt;int&gt;\n## 1 Blackhat                            25             34\n## 2 What We Do in the Shadows           86             96\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
   },
   {
     "objectID": "activities/L18-sampling-normal.html#exercise-5-take-your-own-sample-1",
@@ -2172,7 +2172,7 @@
     "href": "index.html#schedule",
     "title": "STAT 155: Introduction to Statistical Modeling",
     "section": "Schedule",
-    "text": "Schedule\nThe Topic column will contain a link to today’s activity (to follow along on the screen), and the .qmd template column contains a link to download a .qmd file where you can work on the exercises.\n\nDetails for the current week will be filled in throughout the semester. Any urgent announcements will be made over email.\nProject-related due dates are not yet in the schedule.\nDetails are subject to change (with plenty of advance warning).\nUnless specified otherwise:\n\nMoodle Checkpoints (CPs) are due 10 minutes before class.\nPractice problems (PPs) are due on Moodle by 11:59pm on the due date.\n\n\n\n\n\nDate\nTopic\n.qmd template\nDue\n\n\nUnit 1: Simple Linear Regression\n\n\n\n\n\n9/2\nWelcome\n01-foundations-welcome-notes.qmd\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\n\n\n9/4\nUnivariate visual & numerical summaries\n02-foundations-univariate-notes.qmd\nBefore class:\n\nCP 1\n\n\n\n9/9\nIntro to simple linear regression\n03-slr-introduction-notes.qmd\nBefore class:\n\nCP 2\n\n\n\n9/11\nsimple linear regression: formalization\n04-slr-formalization-notes.qmd\nPP 1, CP 3\n\n\n9/16\nModel evaluation\n05-slr-model-eval-notes.qmd\nCP 4 (optional!)\n\n\n9/18\nCategorical predictors\n07-slr-cat-predictor-notes.qmd\nBefore class:\n\nCP 5\n\nDue tonight:\n\nPP 2\n\n\n\nUnit 2: Multiple Linear Regression\n\n\n\n\n\n9/23\nMultiple linear regression discovery day\n\n\n\n\n9/25\nQuiz 1\n\n\n\n\n9/30\nModeling principles\n\nCP 6\n\n\n10/2\nConfounding\n\nPP 3, CP 7\n\n\n10/7\nInteraction\n\nCP 8\n\n\n10/9\nReview + project time\n\n\n\n\n10/14\nModel building\n\nPP 4, CP 9\n\n\n10/16\nFall break (no class!)\n\n\n\n\nUnit 3: Logistic Regression\n\n\n\n\n\n10/21\nLogistic regression I\n\nCP 10\n\n\n10/23\nLogistic regression II\n\nCP 11\n\n\n10/28\nReview + project time\n\nPP 5\n\n\n10/30\nQuiz 2\n\n\n\n\nUnit 4: Inference\n\n\n\n\n\n11/4\nTools for inference\n\nCP 12\n\n\n11/6\nSampling distributions + CLT\n\nCP 13\n\n\n11/11\nConfidence intervals\n\nCP 14\n\n\n11/13\nTowards hypothesis testing\n\nPP 6\n\n\n11/18\nHypothesis tests for 1 coefficient\n\nCP 15\n\n\n11/20\nConsiderations in hypothesis testing\n\nPP 7\n\n\n11/25\nF tests\n\nCP 16\n\n\n11/27\nThanksgiving break\n\n\n\n\n12/2\nP-values + project time\n\n\n\n\n12/4\nProject time\n\nPP 8\n\n\n12/9\nProject time\n\n\n\n\n12/16 (10:30am-12:30pm)\nQuiz 3\n\n\n\n\n\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
+    "text": "Schedule\nThe Topic column will contain a link to today’s activity (to follow along on the screen), and the .qmd template column contains a link to download a .qmd file where you can work on the exercises.\n\nDetails for the current week will be filled in throughout the semester. Any urgent announcements will be made over email.\nProject-related due dates are not yet in the schedule.\nDetails are subject to change (with plenty of advance warning).\nUnless specified otherwise:\n\nMoodle Checkpoints (CPs) are due 10 minutes before class.\nPractice problems (PPs) are due on Moodle by 11:59pm on the due date.\n\n\n\n\n\nDate\nTopic\n.qmd template\nDue\n\n\nUnit 1: Simple Linear Regression\n\n\n\n\n\n9/2\nWelcome\n01-foundations-welcome-notes.qmd\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\n\n\n9/4\nUnivariate visual & numerical summaries\n02-foundations-univariate-notes.qmd\nBefore class:\n\nCP 1\n\n\n\n9/9\nIntro to simple linear regression\n03-slr-introduction-notes.qmd\nBefore class:\n\nCP 2\n\n\n\n9/11\nsimple linear regression: formalization\n04-slr-formalization-notes.qmd\nPP 1, CP 3\n\n\n9/16\nModel evaluation\n05-slr-model-eval-notes.qmd\nCP 4 (optional!)\n\n\n9/18\nCategorical predictors\n07-slr-cat-predictor-notes.qmd\nBefore class:\n\nCP 5\n\nDue tonight:\n\nPP 2\n\n\n\nUnit 2: Multiple Linear Regression\n\n\n\n\n\n9/23\nMultiple linear regression discovery day\n08-mlr-intro-notes.qmd\n\n\n\n9/25\nQuiz 1\n\n\n\n\n9/30\nModeling principles\n\nCP 6\n\n\n10/2\nConfounding\n\nPP 3, CP 7\n\n\n10/7\nInteraction\n\nCP 8\n\n\n10/9\nReview + project time\n\n\n\n\n10/14\nModel building\n\nPP 4, CP 9\n\n\n10/16\nFall break (no class!)\n\n\n\n\nUnit 3: Logistic Regression\n\n\n\n\n\n10/21\nLogistic regression I\n\nCP 10\n\n\n10/23\nLogistic regression II\n\nCP 11\n\n\n10/28\nReview + project time\n\nPP 5\n\n\n10/30\nQuiz 2\n\n\n\n\nUnit 4: Inference\n\n\n\n\n\n11/4\nTools for inference\n\nCP 12\n\n\n11/6\nSampling distributions + CLT\n\nCP 13\n\n\n11/11\nConfidence intervals\n\nCP 14\n\n\n11/13\nTowards hypothesis testing\n\nPP 6\n\n\n11/18\nHypothesis tests for 1 coefficient\n\nCP 15\n\n\n11/20\nConsiderations in hypothesis testing\n\nPP 7\n\n\n11/25\nF tests\n\nCP 16\n\n\n11/27\nThanksgiving break\n\n\n\n\n12/2\nP-values + project time\n\n\n\n\n12/4\nProject time\n\nPP 8\n\n\n12/9\nProject time\n\n\n\n\n12/16 (10:30am-12:30pm)\nQuiz 3\n\n\n\n\n\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
   },
   {
     "objectID": "activities/ACTIVITY_TEMPLATE.html",
@@ -2410,154 +2410,220 @@
     "href": "activities/L08-mlr-intro.html#learning-goals",
     "title": "Introduction to multiple regression",
     "section": "Learning goals",
-    "text": "Learning goals\nBy the end of this lesson, you should be familiar with:\n\nsome limitations of simple linear regression\nthe general goals behind multiple linear regression\nstrategies for visualizing and interpreting multiple linear regression models of \\(Y\\) vs 2 predictors, 1 quantitative and 1 categorical"
+    "text": "Learning goals\nBy the end of this lesson, you should be familiar with:\n\nsome limitations of simple linear regression\nthe general goals behind multiple linear regression\nstrategies for visualizing and interpreting multiple linear regression models of \\(Y\\) vs 2 predictors, 1 quantitative and 1 categorical",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#readings-and-videos",
     "href": "activities/L08-mlr-intro.html#readings-and-videos",
     "title": "Introduction to multiple regression",
     "section": "Readings and videos",
-    "text": "Readings and videos\nToday is a day to discover ideas, so no readings or videos to go through before class."
+    "text": "Readings and videos\nToday is a day to discover ideas, so no readings or videos to go through before class.",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#motivation",
     "href": "activities/L08-mlr-intro.html#motivation",
     "title": "Introduction to multiple regression",
     "section": "Motivation",
-    "text": "Motivation\nEXAMPLE 1\nLet’s explore some data on penguins. First, enter install.packages(\"palmerpenguins\") in the console (not Rmd). Then load the penguins data. You can find a codebook for these data by typing ?penguins in your console (not Rmd).\n\n# Load packages\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Load data\nlibrary(palmerpenguins)\ndata(penguins)\npenguins &lt;- penguins %&gt;% \n  filter(species != \"Adelie\", bill_length_mm &lt; 57)\n\n# Check it out\nhead(penguins)\n\nOur goal is to build a model that we can use to get good predictions of penguins’ flipper (“arm”) lengths. Consider 2 simple linear regression models of flipper_length_mm by penguin sex and species:\n\nsummary(lm(flipper_length_mm ~ sex, penguins))$r.squared\nsummary(lm(flipper_length_mm ~ species, penguins))$r.squared\n\nHow might we improve our predictions of flipper_length_mm using only these 2 predictors? What do you think is a reasonable range of possible values for the new R-squqared?\nEXAMPLE 2\nConsider a simple linear regression model of flipper_length_mm by bill_length_mm:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\nThoughts? What’s going on here? How does this highlight the limitations of a simple linear regression model?\nEXAMPLE 3\nThe cps dataset contains employment information collected by the U.S. Current Population Survey (CPS) in 2018. We can use these data to explore wages among 18-34 year olds. The original codebook is here.\n\n# Import data\ncps &lt;- read_csv(\"https://mac-stat.github.io/data/cps_2018.csv\") %&gt;% \n  select(-education, -hours) %&gt;% \n  filter(age &gt;= 18, age &lt;= 34) %&gt;% \n  filter(wage &lt; 250000)\n\n\n# Check it out\nhead(cps)\n\nWe can use a simple linear regression model to summarize the relationship of wage with marital status:\n\n# Build the model\nwage_mod &lt;- lm(wage ~ marital, data = cps)\n\n# Summarize the model\ncoef(summary(wage_mod))\n\nWhat do you / don’t you conclude from this model? How does it highlight the limitations of a simple linear regression model?\nReflection: Why are multiple regression models so useful?\nWe can put more than 1 predictor into a regression model! Adding predictors to models…\n\nPredictive viewpoint: Helps us better predict the response\nDescriptive viewpoint: Helps us better understand the isolated (causal) effect of a variable by holding constant confounders\n\nMultiple linear regression model formula\nIn general, a multiple linear regression model of \\(Y\\) with multiple predictors \\((X_1, X_2, ..., X_p)\\) is represented by the following formula:\n\\[E[Y \\mid X_1, X_2, ..., X_p] = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + ... + \\beta_p X_p\\]"
+    "text": "Motivation\nEXAMPLE 1\nLet’s explore some data on penguins. First, enter install.packages(\"palmerpenguins\") in the console (not Rmd). Then load the penguins data. You can find a codebook for these data by typing ?penguins in your console (not Rmd).\n\n# Load packages\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Load data\nlibrary(palmerpenguins)\ndata(penguins)\npenguins &lt;- penguins %&gt;% \n  filter(species != \"Adelie\", bill_length_mm &lt; 57)\n\n# Check it out\nhead(penguins)\n\nOur goal is to build a model that we can use to get good predictions of penguins’ flipper (“arm”) lengths. Consider 2 simple linear regression models of flipper_length_mm by penguin sex and species:\n\nsummary(lm(flipper_length_mm ~ sex, penguins))$r.squared\nsummary(lm(flipper_length_mm ~ species, penguins))$r.squared\n\nHow might we improve our predictions of flipper_length_mm using only these 2 predictors? What do you think is a reasonable range of possible values for the new R-squqared?\nEXAMPLE 2\nConsider a simple linear regression model of flipper_length_mm by bill_length_mm:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\nThoughts? What’s going on here? How does this highlight the limitations of a simple linear regression model?\nEXAMPLE 3\nThe cps dataset contains employment information collected by the U.S. Current Population Survey (CPS) in 2018. We can use these data to explore wages among 18-34 year olds. The original codebook is here.\n\n# Import data\ncps &lt;- read_csv(\"https://mac-stat.github.io/data/cps_2018.csv\") %&gt;% \n  select(-education, -hours) %&gt;% \n  filter(age &gt;= 18, age &lt;= 34) %&gt;% \n  filter(wage &lt; 250000)\n\n\n# Check it out\nhead(cps)\n\nWe can use a simple linear regression model to summarize the relationship of wage with marital status:\n\n# Build the model\nwage_mod &lt;- lm(wage ~ marital, data = cps)\n\n# Summarize the model\ncoef(summary(wage_mod))\n\nWhat do you / don’t you conclude from this model? How does it highlight the limitations of a simple linear regression model?\nReflection: Why are multiple regression models so useful?\nWe can put more than 1 predictor into a regression model! Adding predictors to models…\n\nPredictive viewpoint: Helps us better predict the response\nDescriptive viewpoint: Helps us better understand the isolated (causal) effect of a variable by holding constant confounders\n\nMultiple linear regression model formula\nIn general, a multiple linear regression model of \\(Y\\) with multiple predictors \\((X_1, X_2, ..., X_p)\\) is represented by the following formula:\n\\[E[Y \\mid X_1, X_2, ..., X_p] = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + ... + \\beta_p X_p\\]",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-1-visualizing-the-relationship",
     "href": "activities/L08-mlr-intro.html#exercise-1-visualizing-the-relationship",
     "title": "Introduction to multiple regression",
     "section": "Exercise 1: Visualizing the relationship",
-    "text": "Exercise 1: Visualizing the relationship\nWe’ve learned how to visualize the relationship of flipper_length_mm by bill_length_mm alone:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point()\n\n\nTHINK: How might we change the scatterplot points to also indicate information about penguin species? (There’s more than 1 approach!)\nTry out your idea by modifying the code below. If you get stuck, talk with the tables around you!\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +\n  geom_point()"
+    "text": "Exercise 1: Visualizing the relationship\nWe’ve learned how to visualize the relationship of flipper_length_mm by bill_length_mm alone:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point()\n\n\nTHINK: How might we change the scatterplot points to also indicate information about penguin species? (There’s more than 1 approach!)\nTry out your idea by modifying the code below. If you get stuck, talk with the tables around you!\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +\n  geom_point()",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-2-visualizing-the-model",
     "href": "activities/L08-mlr-intro.html#exercise-2-visualizing-the-model",
     "title": "Introduction to multiple regression",
     "section": "Exercise 2: Visualizing the model",
-    "text": "Exercise 2: Visualizing the model\nWe’ve also learned that a simple linear regression model of flipper_length_mm by bill_length_mm alone can be represented by a line:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n\nTHINK: Reflecting on your plot of flipper_length_mm by bill_length_mm and species in Exercise 1, how do you think a multiple regression model of flipper_length_mm using both of these predictors would be represented?\nCheck your intuition below by modifying the code below to include species in this plot, as you did in Exercise 1.\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)"
+    "text": "Exercise 2: Visualizing the model\nWe’ve also learned that a simple linear regression model of flipper_length_mm by bill_length_mm alone can be represented by a line:\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n\nTHINK: Reflecting on your plot of flipper_length_mm by bill_length_mm and species in Exercise 1, how do you think a multiple regression model of flipper_length_mm using both of these predictors would be represented?\nCheck your intuition below by modifying the code below to include species in this plot, as you did in Exercise 1.\n\n\npenguins %&gt;%\n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-3-intuition",
     "href": "activities/L08-mlr-intro.html#exercise-3-intuition",
     "title": "Introduction to multiple regression",
     "section": "Exercise 3: Intuition",
-    "text": "Exercise 3: Intuition\nYour plot in Exercise 2 demonstrated that the multiple linear regression model of flipper_length_mm by bill_length_mm and species is represented by 2 lines. Let’s interpret the punchlines!\nFor each question, provide an answer along with evidence from the model lines that supports your answer.\n\nWhat’s the relationship between flipper_length_mm and species, no matter a penguin’s bill_length_mm?\nWhat’s the relationship between flipper_length_mm and bill_length_mm, no matter a penguin’s species?\nDoes the rate of increase in flipper_length_mm with bill_length_mm differ between the two species?"
+    "text": "Exercise 3: Intuition\nYour plot in Exercise 2 demonstrated that the multiple linear regression model of flipper_length_mm by bill_length_mm and species is represented by 2 lines. Let’s interpret the punchlines!\nFor each question, provide an answer along with evidence from the model lines that supports your answer.\n\nWhat’s the relationship between flipper_length_mm and species, no matter a penguin’s bill_length_mm?\nWhat’s the relationship between flipper_length_mm and bill_length_mm, no matter a penguin’s species?\nDoes the rate of increase in flipper_length_mm with bill_length_mm differ between the two species?",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-4-model-formula",
     "href": "activities/L08-mlr-intro.html#exercise-4-model-formula",
     "title": "Introduction to multiple regression",
     "section": "Exercise 4: Model formula",
-    "text": "Exercise 4: Model formula\nOf course, there’s a formula behind the multiple regression model. We can obtain this using the usual lm() function.\n\n# Build the model\npenguin_mod &lt;- lm(flipper_length_mm ~ bill_length_mm + species, data = penguins)\n\n# Summarize the model\ncoef(summary(penguin_mod))\n\n\nIn the lm() function, how did we communicate that we wanted to model flipper_length_mm by both bill_length_mm and species?\nComplete the following model formula:\nE[flipper_length_mm | bill_length_mm, speciesGentoo] = ___ + ___ * bill_length_mm + ___ * speciesGentoo"
+    "text": "Exercise 4: Model formula\nOf course, there’s a formula behind the multiple regression model. We can obtain this using the usual lm() function.\n\n# Build the model\npenguin_mod &lt;- lm(flipper_length_mm ~ bill_length_mm + species, data = penguins)\n\n# Summarize the model\ncoef(summary(penguin_mod))\n\n\nIn the lm() function, how did we communicate that we wanted to model flipper_length_mm by both bill_length_mm and species?\nComplete the following model formula:\nE[flipper_length_mm | bill_length_mm, speciesGentoo] = ___ + ___ * bill_length_mm + ___ * speciesGentoo",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-5-sub-model-formulas",
     "href": "activities/L08-mlr-intro.html#exercise-5-sub-model-formulas",
     "title": "Introduction to multiple regression",
     "section": "Exercise 5: Sub-model formulas",
-    "text": "Exercise 5: Sub-model formulas\nOk. We now have a single formula for the model.\nAnd we observed earlier that this formula is represented by two lines: one describing the relationship between flipper_length_mm and bill_length_mm for Chinstrap penguins and the other for Gentoo penguins.\nLet’s bring these ideas together.\nUtilize the model formula to obtain the equations of these two lines, i.e. to obtain the sub-model formulas for the 2 species. Hint: Plug speciesGentoo = 0 and speciesGentoo = 1.\nChinstrap: flipper_length_mm = ___ + ___ bill_length_mm\nGentoo: flipper_length_mm = ___ + ___ bill_length_mm"
+    "text": "Exercise 5: Sub-model formulas\nOk. We now have a single formula for the model.\nAnd we observed earlier that this formula is represented by two lines: one describing the relationship between flipper_length_mm and bill_length_mm for Chinstrap penguins and the other for Gentoo penguins.\nLet’s bring these ideas together.\nUtilize the model formula to obtain the equations of these two lines, i.e. to obtain the sub-model formulas for the 2 species. Hint: Plug speciesGentoo = 0 and speciesGentoo = 1.\nChinstrap: flipper_length_mm = ___ + ___ bill_length_mm\nGentoo: flipper_length_mm = ___ + ___ bill_length_mm",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-6-coefficients-physical-interpretation",
     "href": "activities/L08-mlr-intro.html#exercise-6-coefficients-physical-interpretation",
     "title": "Introduction to multiple regression",
     "section": "Exercise 6: coefficients – physical interpretation",
-    "text": "Exercise 6: coefficients – physical interpretation\nReflecting on Exercise 5, let’s interpret what the model coefficients tell us about the physical properties of the two 2 sub-model lines. Choose the correct option given in parentheses:\n\nThe intercept coefficient, 127.75, is the intercept of the line for (Chinstrap / Gentoo) penguins.\nThe bill_length_mm coefficient, 1.40, is the (intercept / slope) of both lines.\nThe speciesGentoo coefficient, 22.85, indicates that the (intercept / slope) of the line for Gentoo is 22.85mm higher than the (intercept / slope) of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any bill_length_mm."
+    "text": "Exercise 6: coefficients – physical interpretation\nReflecting on Exercise 5, let’s interpret what the model coefficients tell us about the physical properties of the two 2 sub-model lines. Choose the correct option given in parentheses:\n\nThe intercept coefficient, 127.75, is the intercept of the line for (Chinstrap / Gentoo) penguins.\nThe bill_length_mm coefficient, 1.40, is the (intercept / slope) of both lines.\nThe speciesGentoo coefficient, 22.85, indicates that the (intercept / slope) of the line for Gentoo is 22.85mm higher than the (intercept / slope) of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any bill_length_mm.",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-7-coefficients-contextual-interpretation",
     "href": "activities/L08-mlr-intro.html#exercise-7-coefficients-contextual-interpretation",
     "title": "Introduction to multiple regression",
     "section": "Exercise 7: coefficients – contextual interpretation",
-    "text": "Exercise 7: coefficients – contextual interpretation\nNext, interpret each coefficient in a contextually meaningful way. What do they tell us about penguin flipper lengths?!\n\nInterpret 127.75 (intercept of the Chinstrap line).\nInterpret 1.40 (slope of both lines). For both Chinstrap and Gentoo penguins, we expect…\nInterpret 22.85. At any bill_length_mm, we expect…"
+    "text": "Exercise 7: coefficients – contextual interpretation\nNext, interpret each coefficient in a contextually meaningful way. What do they tell us about penguin flipper lengths?!\n\nInterpret 127.75 (intercept of the Chinstrap line).\nInterpret 1.40 (slope of both lines). For both Chinstrap and Gentoo penguins, we expect…\nInterpret 22.85. At any bill_length_mm, we expect…",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-8-prediction",
     "href": "activities/L08-mlr-intro.html#exercise-8-prediction",
     "title": "Introduction to multiple regression",
     "section": "Exercise 8: Prediction",
-    "text": "Exercise 8: Prediction\nNow that we better understand the model, let’s use it to predict flipper lengths! Recall the model summary and visualization:\n\ncoef(summary(penguin_mod))\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n\nPredict the flipper length of a Chinstrap penguin with a 50mm long bill. Make sure your calculation is consistent with the plot.\n\n\n127.75 + 1.40*___ + 22.85*___\n\n\nPredict the flipper length of a Gentoo penguin with a 50mm long bill. Make sure your calculation is consistent with the plot.\n\n\n127.75 + 1.40*___ + 22.85*___\n\n\nUse the predict() function to confirm your predictions in parts a and b.\n\n\n# Confirm the calculation in part a\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = ___, species = \"___\"))\n\n# Confirm the calculation in part b\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = ___, species = \"___\"))"
+    "text": "Exercise 8: Prediction\nNow that we better understand the model, let’s use it to predict flipper lengths! Recall the model summary and visualization:\n\ncoef(summary(penguin_mod))\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)\n\n\nPredict the flipper length of a Chinstrap penguin with a 50mm long bill. Make sure your calculation is consistent with the plot.\n\n\n127.75 + 1.40*___ + 22.85*___\n\n\nPredict the flipper length of a Gentoo penguin with a 50mm long bill. Make sure your calculation is consistent with the plot.\n\n\n127.75 + 1.40*___ + 22.85*___\n\n\nUse the predict() function to confirm your predictions in parts a and b.\n\n\n# Confirm the calculation in part a\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = ___, species = \"___\"))\n\n# Confirm the calculation in part b\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = ___, species = \"___\"))",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-9-r-squared",
     "href": "activities/L08-mlr-intro.html#exercise-9-r-squared",
     "title": "Introduction to multiple regression",
     "section": "Exercise 9: R-squared",
-    "text": "Exercise 9: R-squared\nFinally, recall that improving our predictions was one motivation for multiple linear regression (using 2 predictors instead of 1). To this end, consider the R-squared values of the simple linear regression models that use just one predictor at a time:\n\nmod_bill &lt;- lm(flipper_length_mm ~ bill_length_mm, data = penguins)\nsummary(mod_bill)\n\nmod_species &lt;- lm(flipper_length_mm ~ species, data = penguins)\nsummary(mod_species)\n\n\nIf you had to use only 1 of our 2 predictors, which would give the better predictions of flipper_length_mm?\nWhat do you guess is the R-squared of our multiple regression model that uses both of these predictors? Why?\nCheck your intuition. How does the R-squared of our multiple regression model compare to that of the 2 separate simple linear regression models?\n\n\nsummary(penguin_mod)"
+    "text": "Exercise 9: R-squared\nFinally, recall that improving our predictions was one motivation for multiple linear regression (using 2 predictors instead of 1). To this end, consider the R-squared values of the simple linear regression models that use just one predictor at a time:\n\nmod_bill &lt;- lm(flipper_length_mm ~ bill_length_mm, data = penguins)\nsummary(mod_bill)\n\nmod_species &lt;- lm(flipper_length_mm ~ species, data = penguins)\nsummary(mod_species)\n\n\nIf you had to use only 1 of our 2 predictors, which would give the better predictions of flipper_length_mm?\nWhat do you guess is the R-squared of our multiple regression model that uses both of these predictors? Why?\nCheck your intuition. How does the R-squared of our multiple regression model compare to that of the 2 separate simple linear regression models?\n\n\nsummary(penguin_mod)",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#reflection",
     "href": "activities/L08-mlr-intro.html#reflection",
     "title": "Introduction to multiple regression",
     "section": "Reflection",
-    "text": "Reflection\nYou’ve now explored your first multiple regression model! Thus you likely have a lot of questions about what’s to come. What are they?\n\nResponse: Put your response here."
+    "text": "Reflection\nYou’ve now explored your first multiple regression model! Thus you likely have a lot of questions about what’s to come. What are they?\n\nResponse: Put your response here.",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-1-visualizing-the-relationship-1",
     "href": "activities/L08-mlr-intro.html#exercise-1-visualizing-the-relationship-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 1: Visualizing the relationship",
-    "text": "Exercise 1: Visualizing the relationship\n\nno wrong answer\nThere are multiple options!\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point()\n\n\n\n\n\n\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, shape = species)) + \n  geom_point()"
+    "text": "Exercise 1: Visualizing the relationship\n\nno wrong answer\nThere are multiple options!\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point()\n\n\n\n\n\n\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, shape = species)) + \n  geom_point()",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-2-visualizing-the-model-1",
     "href": "activities/L08-mlr-intro.html#exercise-2-visualizing-the-model-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 2: Visualizing the model",
-    "text": "Exercise 2: Visualizing the model\n\nno wrong answer\n\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)"
+    "text": "Exercise 2: Visualizing the model\n\nno wrong answer\n\n\n\npenguins %&gt;% \n  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-3-intuition-1",
     "href": "activities/L08-mlr-intro.html#exercise-3-intuition-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 3: Intuition",
-    "text": "Exercise 3: Intuition\n\nGentoo tend to have longer flippers.\nFlipper length is positively associated with bill length.\nNo. the lines are parallel / have the same slopes."
+    "text": "Exercise 3: Intuition\n\nGentoo tend to have longer flippers.\nFlipper length is positively associated with bill length.\nNo. the lines are parallel / have the same slopes.",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-4-model-formula-1",
     "href": "activities/L08-mlr-intro.html#exercise-4-model-formula-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 4: Model formula",
-    "text": "Exercise 4: Model formula\n\nbill_length_mm + species\nE[flipper_length_mm | bill_length_mm, speciesGentoo] = 127.75 + 1.40 * bill_length_mm + 22.85 * speciesGentoo"
+    "text": "Exercise 4: Model formula\n\nbill_length_mm + species\nE[flipper_length_mm | bill_length_mm, speciesGentoo] = 127.75 + 1.40 * bill_length_mm + 22.85 * speciesGentoo",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-5-sub-model-formulas-1",
     "href": "activities/L08-mlr-intro.html#exercise-5-sub-model-formulas-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 5: Sub-model formulas",
-    "text": "Exercise 5: Sub-model formulas\nChinstrap: flipper_length_mm = 127.75 + 1.40 bill_length_mm\nGentoo: flipper_length_mm = (127.75 + 22.85) + 1.40 bill_length_mm = 150.6 + 1.40 bill_length_mm"
+    "text": "Exercise 5: Sub-model formulas\nChinstrap: flipper_length_mm = 127.75 + 1.40 bill_length_mm\nGentoo: flipper_length_mm = (127.75 + 22.85) + 1.40 bill_length_mm = 150.6 + 1.40 bill_length_mm",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-6-coefficients-physical-interpretation-1",
     "href": "activities/L08-mlr-intro.html#exercise-6-coefficients-physical-interpretation-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 6: coefficients – physical interpretation",
-    "text": "Exercise 6: coefficients – physical interpretation\n\nThe intercept coefficient, 127.75, is the intercept of the line for Chinstrap penguins.\nThe bill_length_mm coefficient, 1.40, is the slope of both lines.\nThe speciesGentoo coefficient, 22.85, indicates that the intercept of the line for Gentoo is 22.85mm higher than the intercept of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any bill_length_mm."
+    "text": "Exercise 6: coefficients – physical interpretation\n\nThe intercept coefficient, 127.75, is the intercept of the line for Chinstrap penguins.\nThe bill_length_mm coefficient, 1.40, is the slope of both lines.\nThe speciesGentoo coefficient, 22.85, indicates that the intercept of the line for Gentoo is 22.85mm higher than the intercept of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any bill_length_mm.",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-7-coefficients-contextual-interpretation-1",
     "href": "activities/L08-mlr-intro.html#exercise-7-coefficients-contextual-interpretation-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 7: coefficients – contextual interpretation",
-    "text": "Exercise 7: coefficients – contextual interpretation\n\nFor Chinstrap penguins with 0mm bills (silly), we expect a flipper length of 127.75mm.\nFor both Chinstrap and Gentoo penguins, flipper lengths increase by 1.40mm on average for every additional mm in bill length.\nAt any bill_length_mm, we expect the a Gentoo penguin to have 22.85mm longer flippers than a Chinstrap, on average."
+    "text": "Exercise 7: coefficients – contextual interpretation\n\nFor Chinstrap penguins with 0mm bills (silly), we expect a flipper length of 127.75mm.\nFor both Chinstrap and Gentoo penguins, flipper lengths increase by 1.40mm on average for every additional mm in bill length.\nAt any bill_length_mm, we expect the a Gentoo penguin to have 22.85mm longer flippers than a Chinstrap, on average.",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-8-prediction-1",
     "href": "activities/L08-mlr-intro.html#exercise-8-prediction-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 8: Prediction",
-    "text": "Exercise 8: Prediction\n\n# a\n127.75 + 1.40*50 + 22.85*0\n## [1] 197.75\n\n# b\n127.75 + 1.40*50 + 22.85*1\n## [1] 220.6\n\n# c\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = 50, \n                             species = \"Chinstrap\"))\n## Error: object 'penguin_mod' not found\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = 50, \n                             species = \"Gentoo\"))\n## Error: object 'penguin_mod' not found"
+    "text": "Exercise 8: Prediction\n\n# a\n127.75 + 1.40*50 + 22.85*0\n## [1] 197.75\n\n# b\n127.75 + 1.40*50 + 22.85*1\n## [1] 220.6\n\n# c\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = 50, \n                             species = \"Chinstrap\"))\n## Error: object 'penguin_mod' not found\npredict(penguin_mod,\n        newdata = data.frame(bill_length_mm = 50, \n                             species = \"Gentoo\"))\n## Error: object 'penguin_mod' not found",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L08-mlr-intro.html#exercise-9-r-squared-1",
     "href": "activities/L08-mlr-intro.html#exercise-9-r-squared-1",
     "title": "Introduction to multiple regression",
     "section": "Exercise 9: R-squared",
-    "text": "Exercise 9: R-squared\n\nspecies\nno wrong answer\nIt’s higher than the R-squared when we use either predictor alone!"
+    "text": "Exercise 9: R-squared\n\nspecies\nno wrong answer\nIt’s higher than the R-squared when we use either predictor alone!",
+    "crumbs": [
+      "Introduction to multiple regression"
+    ]
   },
   {
     "objectID": "activities/L20-bootstrapping.html#learning-goals",
