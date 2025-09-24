@@ -1351,7 +1351,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-4-random-sampling-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                      userscore_rt criticscore_rt\n##   &lt;chr&gt;                            &lt;int&gt;          &lt;int&gt;\n## 1 Blackhat                            25             34\n## 2 What We Do in the Shadows           86             96\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                           userscore_rt criticscore_rt\n##   &lt;chr&gt;                                 &lt;int&gt;          &lt;int&gt;\n## 1 The Stanford Prison Experiment           87             84\n## 2 Straight Outta Compton                   94             90\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
   },
   {
     "objectID": "activities/L18-sampling-normal.html#exercise-5-take-your-own-sample-1",
@@ -2172,7 +2172,7 @@
     "href": "index.html#schedule",
     "title": "STAT 155: Introduction to Statistical Modeling",
     "section": "Schedule",
-    "text": "Schedule\nThe Topic column will contain a link to today’s activity (to follow along on the screen), and the .qmd template column contains a link to download a .qmd file where you can work on the exercises.\n\nDetails for the current week will be filled in throughout the semester. Any urgent announcements will be made over email.\nProject-related due dates are not yet in the schedule.\nDetails are subject to change (with plenty of advance warning).\nUnless specified otherwise:\n\nMoodle Checkpoints (CPs) are due 10 minutes before class.\nPractice problems (PPs) are due on Moodle by 11:59pm on the due date.\n\n\n\n\n\nDate\nTopic\n.qmd template\nDue\n\n\nUnit 1: Simple Linear Regression\n\n\n\n\n\n9/2\nWelcome\n01-foundations-welcome-notes.qmd\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\n\n\n9/4\nUnivariate visual & numerical summaries\n02-foundations-univariate-notes.qmd\nBefore class:\n\nCP 1\n\n\n\n9/9\nIntro to simple linear regression\n03-slr-introduction-notes.qmd\nBefore class:\n\nCP 2\n\n\n\n9/11\nsimple linear regression: formalization\n04-slr-formalization-notes.qmd\nPP 1, CP 3\n\n\n9/16\nModel evaluation\n05-slr-model-eval-notes.qmd\nCP 4 (optional!)\n\n\n9/18\nCategorical predictors\n07-slr-cat-predictor-notes.qmd\nBefore class:\n\nCP 5\n\nDue tonight:\n\nPP 2\n\n\n\nUnit 2: Multiple Linear Regression\n\n\n\n\n\n9/23\nMultiple linear regression discovery day\n08-mlr-intro-notes.qmd\n\n\n\n9/25\nQuiz 1\n\n\n\n\n9/30\nModeling principles\n\nCP 6\n\n\n10/2\nConfounding\n\nPP 3, CP 7\n\n\n10/7\nInteraction\n\nCP 8\n\n\n10/9\nReview + project time\n\n\n\n\n10/14\nModel building\n\nPP 4, CP 9\n\n\n10/16\nFall break (no class!)\n\n\n\n\nUnit 3: Logistic Regression\n\n\n\n\n\n10/21\nLogistic regression I\n\nCP 10\n\n\n10/23\nLogistic regression II\n\nCP 11\n\n\n10/28\nReview + project time\n\nPP 5\n\n\n10/30\nQuiz 2\n\n\n\n\nUnit 4: Inference\n\n\n\n\n\n11/4\nTools for inference\n\nCP 12\n\n\n11/6\nSampling distributions + CLT\n\nCP 13\n\n\n11/11\nConfidence intervals\n\nCP 14\n\n\n11/13\nTowards hypothesis testing\n\nPP 6\n\n\n11/18\nHypothesis tests for 1 coefficient\n\nCP 15\n\n\n11/20\nConsiderations in hypothesis testing\n\nPP 7\n\n\n11/25\nF tests\n\nCP 16\n\n\n11/27\nThanksgiving break\n\n\n\n\n12/2\nP-values + project time\n\n\n\n\n12/4\nProject time\n\nPP 8\n\n\n12/9\nProject time\n\n\n\n\n12/16 (10:30am-12:30pm)\nQuiz 3\n\n\n\n\n\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
+    "text": "Schedule\nThe Topic column will contain a link to today’s activity (to follow along on the screen), and the .qmd template column contains a link to download a .qmd file where you can work on the exercises.\n\nDetails for the current week will be filled in throughout the semester. Any urgent announcements will be made over email.\nProject-related due dates are not yet in the schedule.\nDetails are subject to change (with plenty of advance warning).\nUnless specified otherwise:\n\nMoodle Checkpoints (CPs) are due 10 minutes before class.\nPractice problems (PPs) are due on Moodle by 11:59pm on the due date.\n\n\n\n\n\nDate\nTopic\n.qmd template\nDue\n\n\nUnit 1: Simple Linear Regression\n\n\n\n\n\n9/2\nWelcome\n01-foundations-welcome-notes.qmd\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\n\n\n9/4\nUnivariate visual & numerical summaries\n02-foundations-univariate-notes.qmd\nBefore class:\n\nCP 1\n\n\n\n9/9\nIntro to simple linear regression\n03-slr-introduction-notes.qmd\nBefore class:\n\nCP 2\n\n\n\n9/11\nsimple linear regression: formalization\n04-slr-formalization-notes.qmd\nPP 1, CP 3\n\n\n9/16\nModel evaluation\n05-slr-model-eval-notes.qmd\nCP 4 (optional!)\n\n\n9/18\nCategorical predictors\n07-slr-cat-predictor-notes.qmd\nBefore class:\n\nCP 5\n\nDue tonight:\n\nPP 2\n\n\n\nUnit 2: Multiple Linear Regression\n\n\n\n\n\n9/23\nMultiple linear regression discovery day\n08-mlr-intro-notes.qmd\n\n\n\n9/25\nQuiz 1\n\n\n\n\n9/30\nModeling principles\n09-mlr-principles-notes.qmd\nCP 6\n\n\n10/2\nConfounding\n10-mlr-confounding-notes.qmd\nCP 7\n\n\n10/7\nInteraction\n\nBefore class:\n\nCP 8\n\nDue tonight:\n\nPP 3\n\n\n\n10/9\nReview + project time\n\n\n\n\n10/14\nModel building\n\nBefore class:\n\nCP 9\n\nDue tonight:\n\nPP 4\n\n\n\n10/16\nFall break (no class!)\n\n\n\n\nUnit 3: Logistic Regression\n\n\n\n\n\n10/21\nLogistic regression I\n\nCP 10\n\n\n10/23\nLogistic regression II\n\nCP 11\n\n\n10/28\nReview + project time\n\nPP 5\n\n\n10/30\nQuiz 2\n\n\n\n\nUnit 4: Inference\n\n\n\n\n\n11/4\nTools for inference\n\nCP 12\n\n\n11/6\nSampling distributions + CLT\n\nCP 13\n\n\n11/11\nConfidence intervals\n\nCP 14\n\n\n11/13\nTowards hypothesis testing\n\nPP 6\n\n\n11/18\nHypothesis tests for 1 coefficient\n\nCP 15\n\n\n11/20\nConsiderations in hypothesis testing\n\nPP 7\n\n\n11/25\nF tests\n\nCP 16\n\n\n11/27\nThanksgiving break\n\n\n\n\n12/2\nP-values + project time\n\n\n\n\n12/4\nProject time\n\nPP 8\n\n\n12/9\nProject time\n\n\n\n\n12/16 (10:30am-12:30pm)\nQuiz 3\n\n\n\n\n\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
   },
   {
     "objectID": "activities/ACTIVITY_TEMPLATE.html",
@@ -2214,7 +2214,7 @@
     "href": "assignments.html",
     "title": "Practice Problems",
     "section": "",
-    "text": "Please review the Practice Problems Policies document!\n\nPractice Problems 1, due 9/12\nPractice Problems 2, due 9/18"
+    "text": "Please review the Practice Problems Policies document!\n\nPractice Problems 1, due 9/12\nPractice Problems 2, due 9/18\nPractice Problems 3, due 10/7 ::: content-hidden\nPractice Problems 4, due 10/14\nPractice Problems 5, due 3/26\nPractice Problems 6, due 4/9\nPractice Problems 7, due 4/16\nPractice Problems 8, due 4/23 :::"
   },
   {
     "objectID": "project.html",
@@ -2952,231 +2952,330 @@
     "href": "activities/L09-mlr-principles.html#learning-goals",
     "title": "Multiple regression principles",
     "section": "Learning goals",
-    "text": "Learning goals\nWorking with multiple predictors in our plots and models can get complicated!\nThere are no recipes for this process.\nBUT there are some guiding principles that assist in long-term retention, deeper understanding, and the ability to generalize our tools in new settings.\nBy the end of this lesson, you should be familiar with some general principles for…\n\nincorporating additional quantitative or categorical predictors in a visualization\nhow additional quantitative or categorical predictors impact the physical representation of a model\ninterpreting quantitative or categorical coefficients in a multiple regression model"
+    "text": "Learning goals\nWorking with multiple predictors in our plots and models can get complicated!\nThere are no recipes for this process.\nBUT there are some guiding principles that assist in long-term retention, deeper understanding, and the ability to generalize our tools in new settings.\nBy the end of this lesson, you should be familiar with some general principles for…\n\nincorporating additional quantitative or categorical predictors in a visualization\nhow additional quantitative or categorical predictors impact the physical representation of a model\ninterpreting quantitative or categorical coefficients in a multiple regression model",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#readings-and-videos",
     "href": "activities/L09-mlr-principles.html#readings-and-videos",
     "title": "Multiple regression principles",
     "section": "Readings and videos",
-    "text": "Readings and videos\nPlease watch the following video before class.\n\nInterpreting multivariate models (slides)"
+    "text": "Readings and videos\nPlease watch the following video before class.\n\nInterpreting multivariate models (slides)",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-1-review-visualization",
     "href": "activities/L09-mlr-principles.html#exercise-1-review-visualization",
     "title": "Multiple regression principles",
     "section": "Exercise 1: Review visualization",
-    "text": "Exercise 1: Review visualization\nLet’s build a model of rides by windspeed (quantitative) and weekend status (categorical).\n\nWrite a model statement for this regression model.\nPlot & describe, in words, the relationship between these 3 variables.\n\n\n# Plot of rides vs windspeed & weekend\n# HINT: Start with a plot of rides vs windspeed, then add an aesthetic for weekend!"
+    "text": "Exercise 1: Review visualization\nLet’s build a model of rides by windspeed (quantitative) and weekend status (categorical).\n\nWrite a model statement for this regression model.\nPlot & describe, in words, the relationship between these 3 variables.\n\n\n# Plot of rides vs windspeed & weekend\n# HINT: Start with a plot of rides vs windspeed, then add an aesthetic for weekend!",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-2-review-model",
     "href": "activities/L09-mlr-principles.html#exercise-2-review-model",
     "title": "Multiple regression principles",
     "section": "Exercise 2: Review model",
-    "text": "Exercise 2: Review model\nLet’s build the model. Run the following code:\n\nbike_model_1 &lt;- lm(rides ~ windspeed + weekend, data = bikes)\ncoef(summary(bike_model_1))\n\nThe model formula with our coefficient estimates filled in is therefore:\nE[rides | windspeed, weekendTRUE] = 4738.38 - 63.97 * windspeed - 925.16 * weekendTRUE\nThis model formula is represented by 2 lines, one corresponding to weekends and the other to weekdays. Simplify the model formula above for weekdays and weekends:\nweekdays: rides = ___ - ___ windspeed\nweekends: rides = ___ - ___ windspeed"
+    "text": "Exercise 2: Review model\nLet’s build the model. Run the following code:\n\nbike_model_1 &lt;- lm(rides ~ windspeed + weekend, data = bikes)\ncoef(summary(bike_model_1))\n\nThe model formula with our coefficient estimates filled in is therefore:\nE[rides | windspeed, weekendTRUE] = 4738.38 - 63.97 * windspeed - 925.16 * weekendTRUE\nThis model formula is represented by 2 lines, one corresponding to weekends and the other to weekdays. Simplify the model formula above for weekdays and weekends:\nweekdays: rides = ___ - ___ windspeed\nweekends: rides = ___ - ___ windspeed",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-3-review-coefficient-interpretation",
     "href": "activities/L09-mlr-principles.html#exercise-3-review-coefficient-interpretation",
     "title": "Multiple regression principles",
     "section": "Exercise 3: Review coefficient interpretation",
-    "text": "Exercise 3: Review coefficient interpretation\n\nThe intercept coefficient, 4738.38, represents the intercept of the sub-model for weekdays, the reference category. What’s its contextual interpretation?\nThe windspeed coefficient, -63.97, represents the shared slope of the weekend and weekday sub-models. What’s its contextual interpretation?\nThe weekendTRUE coefficient, -925.16, represents the change in intercept for the weekend vs weekday sub-model. What’s its contextual interpretation?"
+    "text": "Exercise 3: Review coefficient interpretation\n\nThe intercept coefficient, 4738.38, represents the intercept of the sub-model for weekdays, the reference category. What’s its contextual interpretation?\nThe windspeed coefficient, -63.97, represents the shared slope of the weekend and weekday sub-models. What’s its contextual interpretation?\nThe weekendTRUE coefficient, -925.16, represents the change in intercept for the weekend vs weekday sub-model. What’s its contextual interpretation?",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-4-2-categorical-predictors-visualization",
     "href": "activities/L09-mlr-principles.html#exercise-4-2-categorical-predictors-visualization",
     "title": "Multiple regression principles",
     "section": "Exercise 4: 2 categorical predictors – visualization",
-    "text": "Exercise 4: 2 categorical predictors – visualization\nThus far, we’ve explored a couple examples of multiple regression models that have 2 predictors, 1 quantitative and 1 categorical.\nSo what happens when both predictors are categorical?!\nTo this end, let’s model rides by weekend status and season.\nThe below code plots rides vs season.\nModify this code to also include information about weekend.\nHINT: Remember the visualization principle that additional categorical predictors require some sort of grouping mechanism / mechanism that distinguishes between the 2 groups.\n\n# rides vs season\nbikes %&gt;% \n  ggplot(aes(y = rides, x = season)) + \n  geom_boxplot()\n\n# rides vs season AND weekend\nbikes %&gt;%\n  ggplot(aes(y = rides, x = season, ___ = ___)) +\n  geom_boxplot()"
+    "text": "Exercise 4: 2 categorical predictors – visualization\nThus far, we’ve explored a couple examples of multiple regression models that have 2 predictors, 1 quantitative and 1 categorical.\nSo what happens when both predictors are categorical?!\nTo this end, let’s model rides by weekend status and season.\nThe below code plots rides vs season.\nModify this code to also include information about weekend.\nHINT: Remember the visualization principle that additional categorical predictors require some sort of grouping mechanism / mechanism that distinguishes between the 2 groups.\n\n# rides vs season\nbikes %&gt;% \n  ggplot(aes(y = rides, x = season)) + \n  geom_boxplot()\n\n# rides vs season AND weekend\nbikes %&gt;%\n  ggplot(aes(y = rides, x = season, ___ = ___)) +\n  geom_boxplot()",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-5-follow-up",
     "href": "activities/L09-mlr-principles.html#exercise-5-follow-up",
     "title": "Multiple regression principles",
     "section": "Exercise 5: follow-up",
-    "text": "Exercise 5: follow-up\n\nDescribe (in words) the relationship of ridership with season & weekend status.\nA model of rides by season alone would be represented by only 4 expected outcomes, 1 for each season. Considering this and the plot above, how do you anticipate a model of rides by season and weekend status will be represented?\n\n2 lines, 1 for each weekend status\n8 lines, 1 for each possible combination of season & weekend\n2 expected outcomes, 1 for each weekend status\n8 expected outcomes, 1 for each possible combination of season & weekend"
+    "text": "Exercise 5: follow-up\n\nDescribe (in words) the relationship of ridership with season & weekend status.\nA model of rides by season alone would be represented by only 4 expected outcomes, 1 for each season. Considering this and the plot above, how do you anticipate a model of rides by season and weekend status will be represented?\n\n2 lines, 1 for each weekend status\n8 lines, 1 for each possible combination of season & weekend\n2 expected outcomes, 1 for each weekend status\n8 expected outcomes, 1 for each possible combination of season & weekend",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-6-2-categorical-predictors-build-the-model",
     "href": "activities/L09-mlr-principles.html#exercise-6-2-categorical-predictors-build-the-model",
     "title": "Multiple regression principles",
     "section": "Exercise 6: 2 categorical predictors – build the model",
-    "text": "Exercise 6: 2 categorical predictors – build the model\nLet’s build the multiple regression model of rides vs season and weekend:\n\nbike_model_2 &lt;- lm(rides ~ weekend + season, bikes)\ncoef(summary(bike_model_2))\n\nThus the model formula with coefficient estimates filled in is given by:\nE[rides | weekend, season] = 4260.45 - 912.33 weekendTRUE - 116.38 seasonspring + 438.44 seasonsummer - 1719.06 seasonwinter\n\nUse this model to predict the ridership on the following days:\n\n\n# a fall weekday\n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a winter weekday    \n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a fall weekend day        \n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a winter weekend day\n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n\nWe only made 4 predictions here. How many possible predictions does this model produce? Is this consistent with your intuition in the previous exercise?"
+    "text": "Exercise 6: 2 categorical predictors – build the model\nLet’s build the multiple regression model of rides vs season and weekend:\n\nbike_model_2 &lt;- lm(rides ~ weekend + season, bikes)\ncoef(summary(bike_model_2))\n\nThus the model formula with coefficient estimates filled in is given by:\nE[rides | weekend, season] = 4260.45 - 912.33 weekendTRUE - 116.38 seasonspring + 438.44 seasonsummer - 1719.06 seasonwinter\n\nUse this model to predict the ridership on the following days:\n\n\n# a fall weekday\n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a winter weekday    \n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a fall weekend day        \n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n# a winter weekend day\n4260.45 - 912.33*___ - 116.38*___  + 438.44*___ - 1719.06*___\n\n\nWe only made 4 predictions here. How many possible predictions does this model produce? Is this consistent with your intuition in the previous exercise?",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-7-2-categorical-predictors-interpret-the-model",
     "href": "activities/L09-mlr-principles.html#exercise-7-2-categorical-predictors-interpret-the-model",
     "title": "Multiple regression principles",
     "section": "Exercise 7: 2 categorical predictors – interpret the model",
-    "text": "Exercise 7: 2 categorical predictors – interpret the model\nUse your above predictions and visualization to fill in the below interpretations of the model coefficients.\nHint: What is the consequence of plugging in 0 or 1 for the different weekend and season categories?\n\nInterpreting 4260: On average, we expect there to be 4260 riders on (weekdays/weekends) during the (fall/spring/summer/winter).\nInterpreting -912: On average, in any season, we expect there to be 912 (more/fewer) riders on weekends than on ___.\n\nAn alternative interpretation: On average, we expect there to be 912 (more/fewer) riders on weekends than on ___, adjusting for season.\n\nInterpreting -1719: On average, on both weekdays and weekends, we expect there to be 1719 (more/fewer) riders in winter than in ___.\n\nAn alternative interpretation: On average, we expect there to be 1719 (more/fewer) riders in winter than in ___, controlling for weekday status."
+    "text": "Exercise 7: 2 categorical predictors – interpret the model\nUse your above predictions and visualization to fill in the below interpretations of the model coefficients.\nHint: What is the consequence of plugging in 0 or 1 for the different weekend and season categories?\n\nInterpreting 4260: On average, we expect there to be 4260 riders on (weekdays/weekends) during the (fall/spring/summer/winter).\nInterpreting -912: On average, in any season, we expect there to be 912 (more/fewer) riders on weekends than on ___.\n\nAn alternative interpretation: On average, we expect there to be 912 (more/fewer) riders on weekends than on ___, adjusting for season.\n\nInterpreting -1719: On average, on both weekdays and weekends, we expect there to be 1719 (more/fewer) riders in winter than in ___.\n\nAn alternative interpretation: On average, we expect there to be 1719 (more/fewer) riders in winter than in ___, controlling for weekday status.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-8-2-quantitative-predictors-visualization",
     "href": "activities/L09-mlr-principles.html#exercise-8-2-quantitative-predictors-visualization",
     "title": "Multiple regression principles",
     "section": "Exercise 8: 2 quantitative predictors – visualization",
-    "text": "Exercise 8: 2 quantitative predictors – visualization\nNext, consider the relationship between rides and 2 quantitative predictors: windspeed and temp_feel. Check out the plot of this relationship below.\nThis reflect the visualization principle that quantitative variables require some sort of numerical scaling mechanism – rides and windspeed get numerical axes, and temp_feel gets a color scale.\n\nModify the code below to recreate this plot.\n\nbikes %&gt;%\n  ggplot(aes(y = rides, x = windspeed, ___ = ___)) +\n  geom_point()"
+    "text": "Exercise 8: 2 quantitative predictors – visualization\nNext, consider the relationship between rides and 2 quantitative predictors: windspeed and temp_feel. Check out the plot of this relationship below.\nThis reflect the visualization principle that quantitative variables require some sort of numerical scaling mechanism – rides and windspeed get numerical axes, and temp_feel gets a color scale.\n\nModify the code below to recreate this plot.\n\nbikes %&gt;%\n  ggplot(aes(y = rides, x = windspeed, ___ = ___)) +\n  geom_point()",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-9-follow-up",
     "href": "activities/L09-mlr-principles.html#exercise-9-follow-up",
     "title": "Multiple regression principles",
     "section": "Exercise 9: follow-up",
-    "text": "Exercise 9: follow-up\nDescribe (in words) the relationship of ridership with windspeed & temperature."
+    "text": "Exercise 9: follow-up\nDescribe (in words) the relationship of ridership with windspeed & temperature.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-10-2-quantitative-predictors-modeling",
     "href": "activities/L09-mlr-principles.html#exercise-10-2-quantitative-predictors-modeling",
     "title": "Multiple regression principles",
     "section": "Exercise 10: 2 quantitative predictors – modeling",
-    "text": "Exercise 10: 2 quantitative predictors – modeling\nLet’s build the multiple regression model of rides vs windspeed and temp_feel:\n\nbike_model_3 &lt;- lm(rides ~ windspeed + temp_feel, data = bikes)\ncoef(summary(bike_model_3))\n\nThus the model formula with coefficient estimates filled in is given by,\nE[rides | windspeed, temp_feel] = -24.06 - 36.54 windspeed + 55.52 temp_feel\n\nInterpret the intercept coefficient, -24.06, in context.\nInterpret the windspeed coefficient, -36.54, in context.\nInterpret the temp_feel coefficient, 55.52, in context."
+    "text": "Exercise 10: 2 quantitative predictors – modeling\nLet’s build the multiple regression model of rides vs windspeed and temp_feel:\n\nbike_model_3 &lt;- lm(rides ~ windspeed + temp_feel, data = bikes)\ncoef(summary(bike_model_3))\n\nThus the model formula with coefficient estimates filled in is given by,\nE[rides | windspeed, temp_feel] = -24.06 - 36.54 windspeed + 55.52 temp_feel\n\nInterpret the intercept coefficient, -24.06, in context.\nInterpret the windspeed coefficient, -36.54, in context.\nInterpret the temp_feel coefficient, 55.52, in context.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-11-which-is-best",
     "href": "activities/L09-mlr-principles.html#exercise-11-which-is-best",
     "title": "Multiple regression principles",
     "section": "Exercise 11: Which is “best”?",
-    "text": "Exercise 11: Which is “best”?\nWe’ve now observed 3 different models of ridership, each having 2 predictors. The R-squared values of these models, along with those of the simple linear regression models with each predictor alone, are summarized below.\n\n\n\nmodel\npredictors\nR-squared\n\n\n\n\nbike_model_1\nwindspeed & weekend\n0.119\n\n\nbike_model_2\nweekend & season\n0.349\n\n\nbike_model_3\nwindspeed & temp_feel\n0.310\n\n\nbike_model_4\nwindspeed\n0.047\n\n\nbike_model_5\ntemp_feel\n0.296\n\n\nbike_model_6\nweekend\n0.074\n\n\nbike_model_7\nseason\n0.279\n\n\n\n\nWhich model does the best job of explaining the variability in ridership from day to day?\nIf you could only pick one predictor, which would it be?\nWhat happens to R-squared when we add a second predictor to our model, and why does this make sense? For example, how does the R-squared for model 1 (with both windspeed and weekend) compare to those of model 4 (only windspeed) and model 6 (only weekend)?\nAre 2 predictors always better than 1? Provide evidence and explain why this makes sense."
+    "text": "Exercise 11: Which is “best”?\nWe’ve now observed 3 different models of ridership, each having 2 predictors. The R-squared values of these models, along with those of the simple linear regression models with each predictor alone, are summarized below.\n\n\n\nmodel\npredictors\nR-squared\n\n\n\n\nbike_model_1\nwindspeed & weekend\n0.119\n\n\nbike_model_2\nweekend & season\n0.349\n\n\nbike_model_3\nwindspeed & temp_feel\n0.310\n\n\nbike_model_4\nwindspeed\n0.047\n\n\nbike_model_5\ntemp_feel\n0.296\n\n\nbike_model_6\nweekend\n0.074\n\n\nbike_model_7\nseason\n0.279\n\n\n\n\nWhich model does the best job of explaining the variability in ridership from day to day?\nIf you could only pick one predictor, which would it be?\nWhat happens to R-squared when we add a second predictor to our model, and why does this make sense? For example, how does the R-squared for model 1 (with both windspeed and weekend) compare to those of model 4 (only windspeed) and model 6 (only weekend)?\nAre 2 predictors always better than 1? Provide evidence and explain why this makes sense.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-12-principles-of-interpretation",
     "href": "activities/L09-mlr-principles.html#exercise-12-principles-of-interpretation",
     "title": "Multiple regression principles",
     "section": "Exercise 12: Principles of interpretation",
-    "text": "Exercise 12: Principles of interpretation\nThese exercises have revealed some principles behind interpreting model coefficients, summarized below.\nReview and confirm that these make sense.\n\nPrinciples of interpretation\nConsider a multiple linear regression model:\n\\[E[Y | X_1, X_2, ..., X_p] = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + ... + \\beta_p X_p\\]\nWe can interpret the coefficients as follows:\n\n\\(\\beta_0\\) (“beta 0”) is the y-intercept. It describes the average value of \\(Y\\) when \\(X_1, X_2,..., X_k\\) are all 0, ie. when all quantitative predictors are set to 0 and the categorical predictors are set to their reference levels.\n\\(\\beta_i\\) (“beta i”) is the coefficient of \\(X_i\\).\n\nIf \\(X_i\\) is quantitative, \\(\\beta_i\\) describes the average change in \\(Y\\) associated with a 1-unit increase in \\(X_i\\) while at a fixed set of the other \\(X\\).\nIf \\(X_i\\) represents a category of a categorical variable, \\(\\beta_i\\) describes the average difference in \\(Y\\) between this category and the reference category, while at a fixed set of the other \\(X\\)."
+    "text": "Exercise 12: Principles of interpretation\nThese exercises have revealed some principles behind interpreting model coefficients, summarized below.\nReview and confirm that these make sense.\n\nPrinciples of interpretation\nConsider a multiple linear regression model:\n\\[E[Y | X_1, X_2, ..., X_p] = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2 + ... + \\beta_p X_p\\]\nWe can interpret the coefficients as follows:\n\n\\(\\beta_0\\) (“beta 0”) is the y-intercept. It describes the average value of \\(Y\\) when \\(X_1, X_2,..., X_k\\) are all 0, ie. when all quantitative predictors are set to 0 and the categorical predictors are set to their reference levels.\n\\(\\beta_i\\) (“beta i”) is the coefficient of \\(X_i\\).\n\nIf \\(X_i\\) is quantitative, \\(\\beta_i\\) describes the average change in \\(Y\\) associated with a 1-unit increase in \\(X_i\\) while at a fixed set of the other \\(X\\).\nIf \\(X_i\\) represents a category of a categorical variable, \\(\\beta_i\\) describes the average difference in \\(Y\\) between this category and the reference category, while at a fixed set of the other \\(X\\).",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-13-practice-1",
     "href": "activities/L09-mlr-principles.html#exercise-13-practice-1",
     "title": "Multiple regression principles",
     "section": "Exercise 13: Practice 1",
-    "text": "Exercise 13: Practice 1\nConsider the relationship of rides vs weekend and weather_cat.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients."
+    "text": "Exercise 13: Practice 1\nConsider the relationship of rides vs weekend and weather_cat.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-14-practice-2",
     "href": "activities/L09-mlr-principles.html#exercise-14-practice-2",
     "title": "Multiple regression principles",
     "section": "Exercise 14: Practice 2",
-    "text": "Exercise 14: Practice 2\nConsider the relationship of rides vs temp_feel and humidity.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients."
+    "text": "Exercise 14: Practice 2\nConsider the relationship of rides vs temp_feel and humidity.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-15-practice-3",
     "href": "activities/L09-mlr-principles.html#exercise-15-practice-3",
     "title": "Multiple regression principles",
     "section": "Exercise 15: Practice 3",
-    "text": "Exercise 15: Practice 3\nConsider the relationship of rides vs temp_feel and weather_cat.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients."
+    "text": "Exercise 15: Practice 3\nConsider the relationship of rides vs temp_feel and weather_cat.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret the first 3 model coefficients.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-16-challenge",
     "href": "activities/L09-mlr-principles.html#exercise-16-challenge",
     "title": "Multiple regression principles",
     "section": "Exercise 16: CHALLENGE",
-    "text": "Exercise 16: CHALLENGE\nWe’ve explored models with 2 predictors. What about 3 predictors?! Consider the relationship of rides vs temp_feel, humidity, AND weekend.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret each model coefficient."
+    "text": "Exercise 16: CHALLENGE\nWe’ve explored models with 2 predictors. What about 3 predictors?! Consider the relationship of rides vs temp_feel, humidity, AND weekend.\n\nConstruct a visualization of this relationship.\n\nConstruct a model of this relationship.\n\nInterpret each model coefficient.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-1-review-visualization-1",
     "href": "activities/L09-mlr-principles.html#exercise-1-review-visualization-1",
     "title": "Multiple regression principles",
     "section": "Exercise 1: Review visualization",
-    "text": "Exercise 1: Review visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = windspeed, color = weekend)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)"
+    "text": "Exercise 1: Review visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = windspeed, color = weekend)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = FALSE)",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-2-review-model-1",
     "href": "activities/L09-mlr-principles.html#exercise-2-review-model-1",
     "title": "Multiple regression principles",
     "section": "Exercise 2: Review model",
-    "text": "Exercise 2: Review model\nweekdays: rides = 4738.38 - 63.97 windspeed\nweekends: rides = 4738.38 - 63.97 windspeed - 925.16 = 3813.22 - 63.97 windspeed"
+    "text": "Exercise 2: Review model\nweekdays: rides = 4738.38 - 63.97 windspeed\nweekends: rides = 4738.38 - 63.97 windspeed - 925.16 = 3813.22 - 63.97 windspeed",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-3-review-coefficient-interpretation-1",
     "href": "activities/L09-mlr-principles.html#exercise-3-review-coefficient-interpretation-1",
     "title": "Multiple regression principles",
     "section": "Exercise 3: Review coefficient interpretation",
-    "text": "Exercise 3: Review coefficient interpretation\n\nWe expect an average of 4738 riders on weekdays with 0 windspeed.\nOn average, we expect a 1mph increase in windspeed to be associated with 64 fewer riders, controlling for weekend status.\nOn average, we expect 925 fewer riders on weekend days than on weekends, controlling for windspeed."
+    "text": "Exercise 3: Review coefficient interpretation\n\nWe expect an average of 4738 riders on weekdays with 0 windspeed.\nOn average, we expect a 1mph increase in windspeed to be associated with 64 fewer riders, controlling for weekend status.\nOn average, we expect 925 fewer riders on weekend days than on weekends, controlling for windspeed.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-4-2-categorical-predictors-visualization-1",
     "href": "activities/L09-mlr-principles.html#exercise-4-2-categorical-predictors-visualization-1",
     "title": "Multiple regression principles",
     "section": "Exercise 4: 2 categorical predictors – visualization",
-    "text": "Exercise 4: 2 categorical predictors – visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = season, fill = weekend)) + \n  geom_boxplot()"
+    "text": "Exercise 4: 2 categorical predictors – visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = season, fill = weekend)) + \n  geom_boxplot()",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-5-follow-up-1",
     "href": "activities/L09-mlr-principles.html#exercise-5-follow-up-1",
     "title": "Multiple regression principles",
     "section": "Exercise 5: follow-up",
-    "text": "Exercise 5: follow-up\n\nIn every season, ridership tends to be lower on weekends. Across weekend status, ridership tends to be highest in summer and lowest in winter.\n8 expected outcomes"
+    "text": "Exercise 5: follow-up\n\nIn every season, ridership tends to be lower on weekends. Across weekend status, ridership tends to be highest in summer and lowest in winter.\n8 expected outcomes",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-6-2-categorical-predictors-build-the-model-1",
     "href": "activities/L09-mlr-principles.html#exercise-6-2-categorical-predictors-build-the-model-1",
     "title": "Multiple regression principles",
     "section": "Exercise 6: 2 categorical predictors – build the model",
-    "text": "Exercise 6: 2 categorical predictors – build the model\n\n\n\n\n#fall weekday:    \n4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*0\n## [1] 4260.45\n\n#winter weekday:\n4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*1\n## [1] 2541.39\n\n#fall weekend:    \n4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*0\n## [1] 3348.12\n\n#winter weekend:\n4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*1\n## [1] 1629.06\n\n\n8: 2 weekend categories * 4 season categories"
+    "text": "Exercise 6: 2 categorical predictors – build the model\n\n\n\n\n#fall weekday:    \n4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*0\n## [1] 4260.45\n\n#winter weekday:\n4260.45 - 912.33*0 - 116.38*0 + 438.44*0 - 1719.06*1\n## [1] 2541.39\n\n#fall weekend:    \n4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*0\n## [1] 3348.12\n\n#winter weekend:\n4260.45 - 912.33*1 - 116.38*0 + 438.44*0 - 1719.06*1\n## [1] 1629.06\n\n\n8: 2 weekend categories * 4 season categories",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-7-2-categorical-predictors-interpret-the-model-1",
     "href": "activities/L09-mlr-principles.html#exercise-7-2-categorical-predictors-interpret-the-model-1",
     "title": "Multiple regression principles",
     "section": "Exercise 7: 2 categorical predictors – interpret the model",
-    "text": "Exercise 7: 2 categorical predictors – interpret the model\n\nWe expect there to be, on average, 4260 riders on weekdays during the fall.\nOn average, we expect there to be 912 fewer riders on weekends than on weekends, adjusting for season.\nOn average, we expect there to be 1719 fewer riders in winter than in fall, adjusting for weekday status."
+    "text": "Exercise 7: 2 categorical predictors – interpret the model\n\nWe expect there to be, on average, 4260 riders on weekdays during the fall.\nOn average, we expect there to be 912 fewer riders on weekends than on weekends, adjusting for season.\nOn average, we expect there to be 1719 fewer riders in winter than in fall, adjusting for weekday status.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-8-2-quantitative-predictors-visualization-1",
     "href": "activities/L09-mlr-principles.html#exercise-8-2-quantitative-predictors-visualization-1",
     "title": "Multiple regression principles",
     "section": "Exercise 8: 2 quantitative predictors – visualization",
-    "text": "Exercise 8: 2 quantitative predictors – visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = windspeed, color = temp_feel)) + \n  geom_point()"
+    "text": "Exercise 8: 2 quantitative predictors – visualization\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = windspeed, color = temp_feel)) + \n  geom_point()",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-9-follow-up-1",
     "href": "activities/L09-mlr-principles.html#exercise-9-follow-up-1",
     "title": "Multiple regression principles",
     "section": "Exercise 9: follow-up",
-    "text": "Exercise 9: follow-up\nRidership tends to increase with temperature (no matter the windspeed) and decrease with windspeed (no matter the temperature)."
+    "text": "Exercise 9: follow-up\nRidership tends to increase with temperature (no matter the windspeed) and decrease with windspeed (no matter the temperature).",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-10-2-quantitative-predictors-modeling-1",
     "href": "activities/L09-mlr-principles.html#exercise-10-2-quantitative-predictors-modeling-1",
     "title": "Multiple regression principles",
     "section": "Exercise 10: 2 quantitative predictors – modeling",
-    "text": "Exercise 10: 2 quantitative predictors – modeling\n\n-24.06 = average ridership on days with 0 windspeed and a 0 degree temperature. (Note: this is a correct interpretation, even though it doesn’t make conceptual sense! The model doesn’t know that ridership can’t be negative!)\nOn average, we expect a 1mph increase in windspeed to be associated with 37 fewer riders on a given day, adjusting for temperature.\nOn average, we expect a 1 degree increase in temperature to be associated with 56 more riders on a given day, adjusting for windspeed."
+    "text": "Exercise 10: 2 quantitative predictors – modeling\n\n-24.06 = average ridership on days with 0 windspeed and a 0 degree temperature. (Note: this is a correct interpretation, even though it doesn’t make conceptual sense! The model doesn’t know that ridership can’t be negative!)\nOn average, we expect a 1mph increase in windspeed to be associated with 37 fewer riders on a given day, adjusting for temperature.\nOn average, we expect a 1 degree increase in temperature to be associated with 56 more riders on a given day, adjusting for windspeed.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-11-which-is-best-1",
     "href": "activities/L09-mlr-principles.html#exercise-11-which-is-best-1",
     "title": "Multiple regression principles",
     "section": "Exercise 11: Which is best?",
-    "text": "Exercise 11: Which is best?\n\nmodel 2\ntemperature\nR-squared increases (our model is stronger when we include another predictor)\nnope. model 1 (with windspeed and weekend) has a lower R-squared than model 5 (with only temperature)"
+    "text": "Exercise 11: Which is best?\n\nmodel 2\ntemperature\nR-squared increases (our model is stronger when we include another predictor)\nnope. model 1 (with windspeed and weekend) has a lower R-squared than model 5 (with only temperature)",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-13-practice-1-1",
     "href": "activities/L09-mlr-principles.html#exercise-13-practice-1-1",
     "title": "Multiple regression principles",
     "section": "Exercise 13: Practice 1",
-    "text": "Exercise 13: Practice 1\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = weekend, fill = weather_cat)) + \n  geom_boxplot()\n\n\n\n\n\n\n\n\nnew_model_1 &lt;- lm(rides ~ weekend + weather_cat, bikes)\ncoef(summary(new_model_1))\n##                     Estimate Std. Error   t value      Pr(&gt;|t|)\n## (Intercept)        4211.8741   75.54724 55.751529 9.461947e-265\n## weekendTRUE        -982.2106  117.24719 -8.377264  2.786301e-16\n## weather_catcateg2  -608.8640  113.00211 -5.388077  9.628947e-08\n## weather_catcateg3 -2360.2049  319.71640 -7.382183  4.270163e-13\n\n\nThe average ridership on a weekday with nice weather (categ1) is 4212 rides.\nOn days with the same weather, we expect on average 982 rides less on a weekend than on a weekday.\nOn average, we expect ridership to be 609 rides less on dreary days than when the weather is nice, controlling for day of the week."
+    "text": "Exercise 13: Practice 1\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = weekend, fill = weather_cat)) + \n  geom_boxplot()\n\n\n\n\n\n\n\n\nnew_model_1 &lt;- lm(rides ~ weekend + weather_cat, bikes)\ncoef(summary(new_model_1))\n##                     Estimate Std. Error   t value      Pr(&gt;|t|)\n## (Intercept)        4211.8741   75.54724 55.751529 9.461947e-265\n## weekendTRUE        -982.2106  117.24719 -8.377264  2.786301e-16\n## weather_catcateg2  -608.8640  113.00211 -5.388077  9.628947e-08\n## weather_catcateg3 -2360.2049  319.71640 -7.382183  4.270163e-13\n\n\nThe average ridership on a weekday with nice weather (categ1) is 4212 rides.\nOn days with the same weather, we expect on average 982 rides less on a weekend than on a weekday.\nOn average, we expect ridership to be 609 rides less on dreary days than when the weather is nice, controlling for day of the week.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-14-practice-2-1",
     "href": "activities/L09-mlr-principles.html#exercise-14-practice-2-1",
     "title": "Multiple regression principles",
     "section": "Exercise 14: Practice 2",
-    "text": "Exercise 14: Practice 2\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = humidity)) + \n    geom_point()\n\n\n\n\n\n\n\n\nnew_model_2 &lt;- lm(rides ~ temp_feel + humidity, bikes)\ncoef(summary(new_model_2))\n##                Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)   315.83704 303.777334  1.039699 2.988249e-01\n## temp_feel      60.43316   3.272315 18.468015 9.451345e-63\n## humidity    -1868.99356 336.963661 -5.546573 4.078901e-08\n\n\nOn average, we expect 316 riders on days that feel like 0 degrees with no humidity.\nOn average, we expect a 1 degree increase in ridership to be associated with a 60 ride increase in ridership, for days with the same humidity.\nOn average, we expect a 0.1 increase in humidity levels to be associated with a decrease in ridership by 187 rides, for days with the same temperature."
+    "text": "Exercise 14: Practice 2\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = humidity)) + \n    geom_point()\n\n\n\n\n\n\n\n\nnew_model_2 &lt;- lm(rides ~ temp_feel + humidity, bikes)\ncoef(summary(new_model_2))\n##                Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)   315.83704 303.777334  1.039699 2.988249e-01\n## temp_feel      60.43316   3.272315 18.468015 9.451345e-63\n## humidity    -1868.99356 336.963661 -5.546573 4.078901e-08\n\n\nOn average, we expect 316 riders on days that feel like 0 degrees with no humidity.\nOn average, we expect a 1 degree increase in ridership to be associated with a 60 ride increase in ridership, for days with the same humidity.\nOn average, we expect a 0.1 increase in humidity levels to be associated with a decrease in ridership by 187 rides, for days with the same temperature.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-15-practice-3-1",
     "href": "activities/L09-mlr-principles.html#exercise-15-practice-3-1",
     "title": "Multiple regression principles",
     "section": "Exercise 15: Practice 3",
-    "text": "Exercise 15: Practice 3\n\nnew_model_3 &lt;- lm(rides ~ temp_feel + weather_cat, bikes)\ncoef(summary(new_model_3))\n##                      Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)        -288.68840 251.264383 -1.148943 2.509574e-01\n## temp_feel            55.30133   3.215495 17.198387 7.082670e-56\n## weather_catcateg2  -386.42241 100.187725 -3.856984 1.249775e-04\n## weather_catcateg3 -1919.01375 283.022420 -6.780430 2.481218e-11\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = weather_cat)) + \n  geom_point() + \n  geom_line(aes(y = new_model_3$fitted.values), size = 1.5)\n\n\n\n\n\n\n\n\n\nWe expect an average of -289 riders on nice weather days that feel like 0 degrees. (Note: this is a correct interpretation, even though it doesn’t make conceptual sense!)\nOn average, we expect a 1 degree increase in temperature to be associated with a 55 ride increase, for days with the same weather.\nOn average, we expect the number of rides to be 386 rides lower on a dreary weather day compared to a nice weather day, for days with the same temperature."
+    "text": "Exercise 15: Practice 3\n\nnew_model_3 &lt;- lm(rides ~ temp_feel + weather_cat, bikes)\ncoef(summary(new_model_3))\n##                      Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)        -288.68840 251.264383 -1.148943 2.509574e-01\n## temp_feel            55.30133   3.215495 17.198387 7.082670e-56\n## weather_catcateg2  -386.42241 100.187725 -3.856984 1.249775e-04\n## weather_catcateg3 -1919.01375 283.022420 -6.780430 2.481218e-11\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = weather_cat)) + \n  geom_point() + \n  geom_line(aes(y = new_model_3$fitted.values), size = 1.5)\n\n\n\n\n\n\n\n\n\nWe expect an average of -289 riders on nice weather days that feel like 0 degrees. (Note: this is a correct interpretation, even though it doesn’t make conceptual sense!)\nOn average, we expect a 1 degree increase in temperature to be associated with a 55 ride increase, for days with the same weather.\nOn average, we expect the number of rides to be 386 rides lower on a dreary weather day compared to a nice weather day, for days with the same temperature.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L09-mlr-principles.html#exercise-16-challenge-1",
     "href": "activities/L09-mlr-principles.html#exercise-16-challenge-1",
     "title": "Multiple regression principles",
     "section": "Exercise 16: CHALLENGE",
-    "text": "Exercise 16: CHALLENGE\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = humidity, size = weekend)) + \n  geom_point()\n\n\n\n\n\n\n\n\nnew_model_4 &lt;- lm(rides ~ temp_feel + humidity + weekend, bikes)\ncoef(summary(new_model_4))\n##                Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)   668.60236 292.181063  2.288315 2.240530e-02\n## temp_feel      59.36751   3.119256 19.032585 7.626695e-66\n## humidity    -1906.43437 320.982938 -5.939364 4.433789e-09\n## weekendTRUE  -869.05771 100.057822 -8.685555 2.471050e-17\n\n\nWe expect an average of 669 riders on weekdays that feel like 0 degrees, and have no humidity.\nOn average, we expect a 1 degree increase in temperature to be associated with a 59 ride increase in ridership, for days with the same humidity levels and time of the week.\nOn average, we expect a 0.1 point increase in humidity levels to be associated with a 190.6 ride decrease in ridership, for days with the same temperature and time of the week.\nOn average, we expect ridership to be 869 rides lower on weekends compared to weekdays, controlling for temperature and humidity."
+    "text": "Exercise 16: CHALLENGE\n\nbikes %&gt;% \n  ggplot(aes(y = rides, x = temp_feel, color = humidity, size = weekend)) + \n  geom_point()\n\n\n\n\n\n\n\n\nnew_model_4 &lt;- lm(rides ~ temp_feel + humidity + weekend, bikes)\ncoef(summary(new_model_4))\n##                Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)   668.60236 292.181063  2.288315 2.240530e-02\n## temp_feel      59.36751   3.119256 19.032585 7.626695e-66\n## humidity    -1906.43437 320.982938 -5.939364 4.433789e-09\n## weekendTRUE  -869.05771 100.057822 -8.685555 2.471050e-17\n\n\nWe expect an average of 669 riders on weekdays that feel like 0 degrees, and have no humidity.\nOn average, we expect a 1 degree increase in temperature to be associated with a 59 ride increase in ridership, for days with the same humidity levels and time of the week.\nOn average, we expect a 0.1 point increase in humidity levels to be associated with a 190.6 ride decrease in ridership, for days with the same temperature and time of the week.\nOn average, we expect ridership to be 869 rides lower on weekends compared to weekdays, controlling for temperature and humidity.",
+    "crumbs": [
+      "Multiple regression principles"
+    ]
   },
   {
     "objectID": "activities/L12-mlr-interaction-practice.html#learning-goals",
@@ -3421,196 +3520,280 @@
     "href": "activities/L10-mlr-confounding.html#learning-goals",
     "title": "Confounding variables",
     "section": "Learning goals",
-    "text": "Learning goals\nBy the end of this lesson, you should be familiar with:\n\nconfounding variables\nhow to control for confounding variables in our models\nhow to represent the role of confounding variables using causal diagrams"
+    "text": "Learning goals\nBy the end of this lesson, you should be familiar with:\n\nconfounding variables\nhow to control for confounding variables in our models\nhow to represent the role of confounding variables using causal diagrams",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#readings-and-videos",
     "href": "activities/L10-mlr-confounding.html#readings-and-videos",
     "title": "Confounding variables",
     "section": "Readings and videos",
-    "text": "Readings and videos\nBefore class you should have read and watched:\n\nSections 3.9.2 in the STAT 155 Notes\nConfounding (and other causal diagrams)\n\nWatch from 0:00 - 6:54"
+    "text": "Readings and videos\nBefore class you should have read and watched:\n\nSections 3.9.2 in the STAT 155 Notes\nConfounding (and other causal diagrams)\n\nWatch from 0:00 - 6:54",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-1-review",
     "href": "activities/L10-mlr-confounding.html#exercise-1-review",
     "title": "Confounding variables",
     "section": "Exercise 1: Review",
-    "text": "Exercise 1: Review\nThe peaks data includes information on hiking trails in the 46 “high peaks” in the Adirondack mountains of northern New York state:\n\n# Load useful packages and data\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(dplyr)\npeaks &lt;- read_csv(\"https://mac-stat.github.io/data/high_peaks.csv\") %&gt;%\n    mutate(ascent = ascent / 1000)\n\n# Check it out \nhead(peaks)\n\nBelow is a model of the time (in hours) that it takes to complete a hike by the hike’s length (in miles), vertical ascent(in 1000s of feet), and rating (easy, moderate, or difficult):\n\npeaks_model &lt;- lm(time ~ length + ascent + rating, data = peaks)\ncoef(summary(peaks_model))\n\nInterpret the length and ratingeasy coefficients in the model formula below by using our strategy:\n\nStrategy: When interpreting a coefficient for a variable x, compare two units whose values of x differ by 1 but who are identical for all other variables.\n\nE[time | length, ascent, rating] = 6.511 + 0.459 length + 0.187 ascent - 3.169 ratingeasy - 2.477 ratingmoderate\n\nSynthesis:\n\nInterpreting the coefficient \\(\\beta_Q\\) for a quantitative variable Q:\n\nHolding all other variables constant, each unit increase in Q is associated with \\(\\beta_Q\\) change (note if it’s an increase or decrease) in Y on average.\n\nInterpreting the coefficient \\(\\beta_C\\) for an indicator variable:\n\nHolding all other variables constant, the average outcome for the group referenced by this indicator (group for whom indicator = 1), is \\(\\beta_C\\) higher/lower than that of the reference group."
+    "text": "Exercise 1: Review\nThe peaks data includes information on hiking trails in the 46 “high peaks” in the Adirondack mountains of northern New York state:\n\n# Load useful packages and data\nlibrary(readr)\nlibrary(ggplot2)\nlibrary(dplyr)\npeaks &lt;- read_csv(\"https://mac-stat.github.io/data/high_peaks.csv\") %&gt;%\n    mutate(ascent = ascent / 1000)\n\n# Check it out \nhead(peaks)\n\nBelow is a model of the time (in hours) that it takes to complete a hike by the hike’s length (in miles), vertical ascent(in 1000s of feet), and rating (easy, moderate, or difficult):\n\npeaks_model &lt;- lm(time ~ length + ascent + rating, data = peaks)\ncoef(summary(peaks_model))\n\nInterpret the length and ratingeasy coefficients in the model formula below by using our strategy:\n\nStrategy: When interpreting a coefficient for a variable x, compare two units whose values of x differ by 1 but who are identical for all other variables.\n\nE[time | length, ascent, rating] = 6.511 + 0.459 length + 0.187 ascent - 3.169 ratingeasy - 2.477 ratingmoderate\n\nSynthesis:\n\nInterpreting the coefficient \\(\\beta_Q\\) for a quantitative variable Q:\n\nHolding all other variables constant, each unit increase in Q is associated with \\(\\beta_Q\\) change (note if it’s an increase or decrease) in Y on average.\n\nInterpreting the coefficient \\(\\beta_C\\) for an indicator variable:\n\nHolding all other variables constant, the average outcome for the group referenced by this indicator (group for whom indicator = 1), is \\(\\beta_C\\) higher/lower than that of the reference group.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-2-confounders",
     "href": "activities/L10-mlr-confounding.html#exercise-2-confounders",
     "title": "Confounding variables",
     "section": "Exercise 2: Confounders",
-    "text": "Exercise 2: Confounders\n\nResearch question: Is there a wage gap, hence possibly discrimination, by marital status among 18-34 year olds?\n\nTo explore, we can revisit the cps data with employment information collected by the U.S. Current Population Survey (CPS) in 2018. View the codebook here.\n\n# Import data\ncps &lt;- read_csv(\"https://mac-stat.github.io/data/cps_2018.csv\") %&gt;% \n    filter(age &gt;= 18, age &lt;= 34) %&gt;% \n    filter(wage &lt; 250000)\n\n# Check it out\nhead(cps)\n\nRecall that a simple linear regression model of wage by marital suggests that single workers make $17,052 less than married workers:\n\nwage_model_1 &lt;- lm(wage ~ marital, data = cps)\ncoef(summary(wage_model_1))\n\nThat’s a big gap!!\nBUT this model ignores important confounding variables that might help explain this gap.\nA confounding variable is a cause of both the predictor of interest (marital) and of the response variable (wage).\nWe can represent this idea with a causal diagram:\nAnother definition of a confounding variable is one that\n\nis a cause of the outcome (wage)\nis associated with the main variable of interest (marital status)\nNOT caused by the variable of interest\n\nWe can represent this on the causal diagram with a line from the confounder to the variable of interest (instead of an arrow):\nName at least 2 potential confounders."
+    "text": "Exercise 2: Confounders\n\nResearch question: Is there a wage gap, hence possibly discrimination, by marital status among 18-34 year olds?\n\nTo explore, we can revisit the cps data with employment information collected by the U.S. Current Population Survey (CPS) in 2018. View the codebook here.\n\n# Import data\ncps &lt;- read_csv(\"https://mac-stat.github.io/data/cps_2018.csv\") %&gt;% \n    filter(age &gt;= 18, age &lt;= 34) %&gt;% \n    filter(wage &lt; 250000)\n\n# Check it out\nhead(cps)\n\nRecall that a simple linear regression model of wage by marital suggests that single workers make $17,052 less than married workers:\n\nwage_model_1 &lt;- lm(wage ~ marital, data = cps)\ncoef(summary(wage_model_1))\n\nThat’s a big gap!!\nBUT this model ignores important confounding variables that might help explain this gap.\nA confounding variable is a cause of both the predictor of interest (marital) and of the response variable (wage).\nWe can represent this idea with a causal diagram:\nAnother definition of a confounding variable is one that\n\nis a cause of the outcome (wage)\nis associated with the main variable of interest (marital status)\nNOT caused by the variable of interest\n\nWe can represent this on the causal diagram with a line from the confounder to the variable of interest (instead of an arrow):\nName at least 2 potential confounders.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-2b-how-why-do-confounders-bias-results",
     "href": "activities/L10-mlr-confounding.html#exercise-2b-how-why-do-confounders-bias-results",
     "title": "Confounding variables",
     "section": "Exercise 2b: How & why do confounders bias results?",
-    "text": "Exercise 2b: How & why do confounders bias results?\nUnaccounted-for confounders are often a source of bias in our models, meaning that when we ignore them, we often over- or under-estimate the true underlying relationship between a predictor and response variable. To explore why this is important, let’s first look at how our focal predictor marital is associated with our response variable, wage:\n\ncps %&gt;%\n  ggplot(aes(x=marital, y=wage))+\n  geom_boxplot()+\n  theme_classic()\n\nNow, let’s consider age as a potential confounder. The following plot shows how age is associated with marital status:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=marital))+\n  geom_boxplot()+\n  theme_classic()\n\n…this should make sense, because the older a person is, the more likely they are to be married. Similarly, we can show how age is associated with wage:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=wage))+\n  geom_point()+\n  geom_smooth(method=\"lm\", se=F)+\n  theme_classic()\n\nHere we see that there is a positive correlation between age and wages (which again makes sense, because people who have been in the workforce longer typically earn more).\nLet’s revisit our initial plot showing the relationship between marital status and wages:\n\ncps %&gt;%\n  ggplot(aes(x=marital, y=wage))+\n  geom_boxplot()+\n  theme_classic()\n\nSince we now know that age is associated with both being married and higher wages, this plot doesn’t tell the full story–people who are married could simply be earning higher wages because they tend to be older, not necessarily because they are married! Age is therefore a confounder in the relationship between marital status and wages."
+    "text": "Exercise 2b: How & why do confounders bias results?\nUnaccounted-for confounders are often a source of bias in our models, meaning that when we ignore them, we often over- or under-estimate the true underlying relationship between a predictor and response variable. To explore why this is important, let’s first look at how our focal predictor marital is associated with our response variable, wage:\n\ncps %&gt;%\n  ggplot(aes(x=marital, y=wage))+\n  geom_boxplot()+\n  theme_classic()\n\nNow, let’s consider age as a potential confounder. The following plot shows how age is associated with marital status:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=marital))+\n  geom_boxplot()+\n  theme_classic()\n\n…this should make sense, because the older a person is, the more likely they are to be married. Similarly, we can show how age is associated with wage:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=wage))+\n  geom_point()+\n  geom_smooth(method=\"lm\", se=F)+\n  theme_classic()\n\nHere we see that there is a positive correlation between age and wages (which again makes sense, because people who have been in the workforce longer typically earn more).\nLet’s revisit our initial plot showing the relationship between marital status and wages:\n\ncps %&gt;%\n  ggplot(aes(x=marital, y=wage))+\n  geom_boxplot()+\n  theme_classic()\n\nSince we now know that age is associated with both being married and higher wages, this plot doesn’t tell the full story–people who are married could simply be earning higher wages because they tend to be older, not necessarily because they are married! Age is therefore a confounder in the relationship between marital status and wages.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-3-controlling-for-confounders",
     "href": "activities/L10-mlr-confounding.html#exercise-3-controlling-for-confounders",
     "title": "Confounding variables",
     "section": "Exercise 3: Controlling for confounders",
-    "text": "Exercise 3: Controlling for confounders\nThe exercise above illustrates that it is important to control or adjust for confounding variables when trying to understand the actual causal relationship between a predictor (e.g. marital) and response (e.g. wage).\n\nSometimes, we can control (adjust) for confounding variables through a carefully designed experiment. For example, in comparing the effectiveness (y) of 2 different cold remedies (x), we might want to control for the age, general health, and severity of symptoms among the participants. How might we do that?\nBUT we’re often working with observational, not experimental, data. Why? Well, explain what an experiment might look like if we wanted to explore the relationship between wage (y) and marital status (x) while controlling for age."
+    "text": "Exercise 3: Controlling for confounders\nThe exercise above illustrates that it is important to control or adjust for confounding variables when trying to understand the actual causal relationship between a predictor (e.g. marital) and response (e.g. wage).\n\nSometimes, we can control (adjust) for confounding variables through a carefully designed experiment. For example, in comparing the effectiveness (y) of 2 different cold remedies (x), we might want to control for the age, general health, and severity of symptoms among the participants. How might we do that?\nBUT we’re often working with observational, not experimental, data. Why? Well, explain what an experiment might look like if we wanted to explore the relationship between wage (y) and marital status (x) while controlling for age.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-4-age",
     "href": "activities/L10-mlr-confounding.html#exercise-4-age",
     "title": "Confounding variables",
     "section": "Exercise 4: Age",
-    "text": "Exercise 4: Age\nWe’re in luck.\nWe can control (adjust) for confounding variables by including them in our model!\nThat’s one of the superpowers of multiple linear regression.\nLet’s start simple, by controlling for age in our model of wages by marital status:\n\n# Construct the model\nwage_model_2 &lt;- lm(wage ~ marital + age, cps)\ncoef(summary(wage_model_2))\n\n\nVisualize this model by modifying the code below.\n\n(Note: The last line where we add a geom_line layer adds in trendlines similar to what we might obtain using geom_smooth, but it uses the exact fitted values from our model. geom_smooth, on the other hand, adds in trendlines based on fitting two separate models to the married and single subsets of the data. Tray adding geom_smooth(method=\"lm\", se=F, linetype=\"dashed\") to the plot to see how they compare).\n\nggplot(cps, aes(y = ___, x = ___, color = ___)) +\n    geom____(size = 0.1, alpha = 0.5) +\n    geom_line(aes(y = wage_model_2$fitted.values), linewidth = 0.5)\n\n\nSuppose 2 workers are the same age, but one is married and one is single. By how much do we expect the single worker’s wage to differ from the married worker’s wage? (How does this compare to the $17,052 marital gap among all workers?)\nHow can we interpret the maritalsingle coefficient?"
+    "text": "Exercise 4: Age\nWe’re in luck.\nWe can control (adjust) for confounding variables by including them in our model!\nThat’s one of the superpowers of multiple linear regression.\nLet’s start simple, by controlling for age in our model of wages by marital status:\n\n# Construct the model\nwage_model_2 &lt;- lm(wage ~ marital + age, cps)\ncoef(summary(wage_model_2))\n\n\nVisualize this model by modifying the code below.\n\n(Note: The last line where we add a geom_line layer adds in trendlines similar to what we might obtain using geom_smooth, but it uses the exact fitted values from our model. geom_smooth, on the other hand, adds in trendlines based on fitting two separate models to the married and single subsets of the data. Tray adding geom_smooth(method=\"lm\", se=F, linetype=\"dashed\") to the plot to see how they compare).\n\nggplot(cps, aes(y = ___, x = ___, color = ___)) +\n    geom____(size = 0.1, alpha = 0.5) +\n    geom_line(aes(y = wage_model_2$fitted.values), linewidth = 0.5)\n\n\nSuppose 2 workers are the same age, but one is married and one is single. By how much do we expect the single worker’s wage to differ from the married worker’s wage? (How does this compare to the $17,052 marital gap among all workers?)\nHow can we interpret the maritalsingle coefficient?",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-5-more-confounders",
     "href": "activities/L10-mlr-confounding.html#exercise-5-more-confounders",
     "title": "Confounding variables",
     "section": "Exercise 5: More confounders",
-    "text": "Exercise 5: More confounders\nLet’s control for even more potential confounders!\nModel wages by marital status while controlling for age and years of education:\n\nwage_model_3 &lt;- lm(wage ~ marital + age + education, cps)\ncoef(summary(wage_model_3))\n\n\nWith so many variables, this is a tough model to visualize. If you had to draw it, how would the model trend appear: 1 point, 2 points, 2 lines, 1 plane, or 2 planes? Explain your rationale. Hint: pay attention to whether your predictors are quantitative or categorical.\nGiven our research question, which coefficient is of primary interest? Interpret this coefficient.\nInterpret the two other coefficients in this model."
+    "text": "Exercise 5: More confounders\nLet’s control for even more potential confounders!\nModel wages by marital status while controlling for age and years of education:\n\nwage_model_3 &lt;- lm(wage ~ marital + age + education, cps)\ncoef(summary(wage_model_3))\n\n\nWith so many variables, this is a tough model to visualize. If you had to draw it, how would the model trend appear: 1 point, 2 points, 2 lines, 1 plane, or 2 planes? Explain your rationale. Hint: pay attention to whether your predictors are quantitative or categorical.\nGiven our research question, which coefficient is of primary interest? Interpret this coefficient.\nInterpret the two other coefficients in this model.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-6-even-more",
     "href": "activities/L10-mlr-confounding.html#exercise-6-even-more",
     "title": "Confounding variables",
     "section": "Exercise 6: Even more",
-    "text": "Exercise 6: Even more\nLet’s control for another potential confounder, the job industry in which one works (categorical):\n\nwage_model_4 &lt;- lm(wage ~ marital + age + education + industry, cps)\ncoef(summary(wage_model_4))\n\nIf we had to draw it, this model would appear as 12 planes.\nThe original plane explains the relationship between wage and the 2 quantitative predictors, age and education.\nThen this plane is split into 12 (2*6) individual planes, 1 for each possible combination of marital status (2 possibilities) and industry (6 possibilities).\n\nInterpret the main coefficient of interest for our research question.\nWhen controlling for a worker’s age, marital status, and education level, which industry tends to have the highest wages? The lowest? Note: the following table shows the 6 industries:\n\n\ncps %&gt;% count(industry)"
+    "text": "Exercise 6: Even more\nLet’s control for another potential confounder, the job industry in which one works (categorical):\n\nwage_model_4 &lt;- lm(wage ~ marital + age + education + industry, cps)\ncoef(summary(wage_model_4))\n\nIf we had to draw it, this model would appear as 12 planes.\nThe original plane explains the relationship between wage and the 2 quantitative predictors, age and education.\nThen this plane is split into 12 (2*6) individual planes, 1 for each possible combination of marital status (2 possibilities) and industry (6 possibilities).\n\nInterpret the main coefficient of interest for our research question.\nWhen controlling for a worker’s age, marital status, and education level, which industry tends to have the highest wages? The lowest? Note: the following table shows the 6 industries:\n\n\ncps %&gt;% count(industry)",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-7-biggest-model-yet",
     "href": "activities/L10-mlr-confounding.html#exercise-7-biggest-model-yet",
     "title": "Confounding variables",
     "section": "Exercise 7: Biggest model yet",
-    "text": "Exercise 7: Biggest model yet\nBuild a model that helps us explore wage by marital status while controlling for: age, education, job industry, typical number of work hours, and health status.\nStore this model as wage_model_5."
+    "text": "Exercise 7: Biggest model yet\nBuild a model that helps us explore wage by marital status while controlling for: age, education, job industry, typical number of work hours, and health status.\nStore this model as wage_model_5.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-8-reflection",
     "href": "activities/L10-mlr-confounding.html#exercise-8-reflection",
     "title": "Confounding variables",
     "section": "Exercise 8: Reflection",
-    "text": "Exercise 8: Reflection\nTake two workers – one is married and the other is single.\nThe models above provided the following insights into the typical difference in wages for these two groups:\n\n\n\nModel\nAssume the two people have the same…\nWage difference\n\n\n\n\nwage_model_1\nNA\n-$17,052\n\n\nwage_model_2\nage\n-$7,500\n\n\nwage_model_3\nage, education\n-$6,478\n\n\nwage_model_4\nage, education, industry\n-$5,893\n\n\nwage_model_5\nage, education, industry, hours, health\n-$4,993\n\n\n\n\nThough not the case in every analysis, the marital coefficient got closer and closer to 0 as we controlled for more confounders. Explain the significance of this phenomenon, in context - what does it mean?\nDo you still find the wage gap for single vs married people to be meaningfully “large”? Can you think of any remaining factors that might explain part of this remaining gap? Or do you think we’ve found evidence of inequitable wage practices for single vs married workers?"
+    "text": "Exercise 8: Reflection\nTake two workers – one is married and the other is single.\nThe models above provided the following insights into the typical difference in wages for these two groups:\n\n\n\nModel\nAssume the two people have the same…\nWage difference\n\n\n\n\nwage_model_1\nNA\n-$17,052\n\n\nwage_model_2\nage\n-$7,500\n\n\nwage_model_3\nage, education\n-$6,478\n\n\nwage_model_4\nage, education, industry\n-$5,893\n\n\nwage_model_5\nage, education, industry, hours, health\n-$4,993\n\n\n\n\nThough not the case in every analysis, the marital coefficient got closer and closer to 0 as we controlled for more confounders. Explain the significance of this phenomenon, in context - what does it mean?\nDo you still find the wage gap for single vs married people to be meaningfully “large”? Can you think of any remaining factors that might explain part of this remaining gap? Or do you think we’ve found evidence of inequitable wage practices for single vs married workers?",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-9-a-new-extreme-example",
     "href": "activities/L10-mlr-confounding.html#exercise-9-a-new-extreme-example",
     "title": "Confounding variables",
     "section": "Exercise 9: A new (extreme) example",
-    "text": "Exercise 9: A new (extreme) example\nFor a more extreme example of why it’s important to control for confounding variables, let’s return to the diamonds data:\n\n# Import and wrangle the data\ndata(diamonds)\ndiamonds &lt;- diamonds %&gt;% \n    mutate(\n        cut = factor(cut, ordered = FALSE),\n        color = factor(color, ordered = FALSE),\n        clarity = factor(clarity, ordered = FALSE)\n    ) %&gt;% \n    select(price, clarity, cut, color, carat)\n\nOur goal is to explore how the price of a diamond depends upon its clarity (a measure of quality).\nClarity is classified as follows, in order from best to worst:\n\n\n\nclarity\ndescription\n\n\n\n\nIF\nflawless (no internal imperfections)\n\n\nVVS1\nvery very slightly imperfect\n\n\nVVS2\n” ”\n\n\nVS1\nvery slightly imperfect\n\n\nVS2\n” ”\n\n\nSI1\nslightly imperfect\n\n\nSI2\n” ”\n\n\nI1\nimperfect\n\n\n\n\nCheck out a model of price by clarity. What clarity has the highest average price? The lowest? (This is surprising!)\n\n\ndiamond_model_1 &lt;- lm(price ~ clarity, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_1))\n\n\nWhat confounding variable might explain these results? What’s your rationale?"
+    "text": "Exercise 9: A new (extreme) example\nFor a more extreme example of why it’s important to control for confounding variables, let’s return to the diamonds data:\n\n# Import and wrangle the data\ndata(diamonds)\ndiamonds &lt;- diamonds %&gt;% \n    mutate(\n        cut = factor(cut, ordered = FALSE),\n        color = factor(color, ordered = FALSE),\n        clarity = factor(clarity, ordered = FALSE)\n    ) %&gt;% \n    select(price, clarity, cut, color, carat)\n\nOur goal is to explore how the price of a diamond depends upon its clarity (a measure of quality).\nClarity is classified as follows, in order from best to worst:\n\n\n\nclarity\ndescription\n\n\n\n\nIF\nflawless (no internal imperfections)\n\n\nVVS1\nvery very slightly imperfect\n\n\nVVS2\n” ”\n\n\nVS1\nvery slightly imperfect\n\n\nVS2\n” ”\n\n\nSI1\nslightly imperfect\n\n\nSI2\n” ”\n\n\nI1\nimperfect\n\n\n\n\nCheck out a model of price by clarity. What clarity has the highest average price? The lowest? (This is surprising!)\n\n\ndiamond_model_1 &lt;- lm(price ~ clarity, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_1))\n\n\nWhat confounding variable might explain these results? What’s your rationale?",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-10-size",
     "href": "activities/L10-mlr-confounding.html#exercise-10-size",
     "title": "Confounding variables",
     "section": "Exercise 10: Size",
-    "text": "Exercise 10: Size\nIt turns out that carat, the size of a diamond, is an important confounding variable.\nLet’s explore what happens when we control for this in our model:\n\ndiamond_model_2 &lt;- lm(price ~ clarity + carat, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_2))\n\n# Plot the model\ndiamonds %&gt;% \n    ggplot(aes(y = price, x = carat, color = clarity)) + \n    geom_line(aes(y = diamond_model_2$fitted.values))\n\nWhat do you think now?\nWhich clarity has the highest expected price?\nThe lowest?\nProvide numerical evidence from the model."
+    "text": "Exercise 10: Size\nIt turns out that carat, the size of a diamond, is an important confounding variable.\nLet’s explore what happens when we control for this in our model:\n\ndiamond_model_2 &lt;- lm(price ~ clarity + carat, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_2))\n\n# Plot the model\ndiamonds %&gt;% \n    ggplot(aes(y = price, x = carat, color = clarity)) + \n    geom_line(aes(y = diamond_model_2$fitted.values))\n\nWhat do you think now?\nWhich clarity has the highest expected price?\nThe lowest?\nProvide numerical evidence from the model.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-11-simpsons-paradox",
     "href": "activities/L10-mlr-confounding.html#exercise-11-simpsons-paradox",
     "title": "Confounding variables",
     "section": "Exercise 11: Simpson’s Paradox",
-    "text": "Exercise 11: Simpson’s Paradox\nControlling for carat didn’t just change the clarity coefficients, hence our understanding of the relationship between price and clarity… It flipped the signs of many of these coefficients.\nThis extreme scenario has a name: Simpson’s paradox.\nCHALLENGE: Explain why this happened and support your argument with graphical evidence.\nHINTS: Think about the causal diagram below. How do you think carat influences clarity? How do you think carat influences price? Make 2 ggplot() that support your answers."
+    "text": "Exercise 11: Simpson’s Paradox\nControlling for carat didn’t just change the clarity coefficients, hence our understanding of the relationship between price and clarity… It flipped the signs of many of these coefficients.\nThis extreme scenario has a name: Simpson’s paradox.\nCHALLENGE: Explain why this happened and support your argument with graphical evidence.\nHINTS: Think about the causal diagram below. How do you think carat influences clarity? How do you think carat influences price? Make 2 ggplot() that support your answers.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-12-final-conclusion",
     "href": "activities/L10-mlr-confounding.html#exercise-12-final-conclusion",
     "title": "Confounding variables",
     "section": "Exercise 12: Final conclusion",
-    "text": "Exercise 12: Final conclusion\nWhat’s your final conclusion about diamond prices?\nWhich diamonds are more expensive: flawed ones or flawless ones?"
+    "text": "Exercise 12: Final conclusion\nWhat’s your final conclusion about diamond prices?\nWhich diamonds are more expensive: flawed ones or flawless ones?",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#reflection",
     "href": "activities/L10-mlr-confounding.html#reflection",
     "title": "Confounding variables",
     "section": "Reflection",
-    "text": "Reflection\nWrite a one-sentence warning label for what might happen if we do not control for confounding variables in our model.\n\nResponse: Put your response here."
+    "text": "Reflection\nWrite a one-sentence warning label for what might happen if we do not control for confounding variables in our model.\n\nResponse: Put your response here.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-1-review-1",
     "href": "activities/L10-mlr-confounding.html#exercise-1-review-1",
     "title": "Confounding variables",
     "section": "Exercise 1: Review",
-    "text": "Exercise 1: Review\n\npeaks_model &lt;- lm(time ~ length + ascent + rating, data = peaks)\ncoef(summary(peaks_model))\n##                  Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)     6.5106514 1.62983740  3.994663 2.627176e-04\n## length          0.4590819 0.08158314  5.627166 1.465288e-06\n## ascent          0.1874830 0.34215350  0.547950 5.866973e-01\n## ratingeasy     -3.1685224 0.86219113 -3.674965 6.827232e-04\n## ratingmoderate -2.4767827 0.61058560 -4.056405 2.177589e-04\n\n\nlength coefficient:\n\nAmong hikes with the same vertical ascent and challenge rating, each additional mile of the hike is associated with a 0.46 hour increase in completion time on average.\nHolding vertical ascent and challenge rating constant (fixed), each additional mile of the hike is associated with a 0.46 hour increase in completion time on average.\n\nratingeasy coefficient:\n\nAmong hikes with the same length and vertical ascent, the average completion time of easy hikes is 3.2 hours less than that of difficult hikes (reference category).\nHolding constant hike length and vertical ascent, the average completion time of easy hikes is 3.2 hours less than that of difficult hikes."
+    "text": "Exercise 1: Review\n\npeaks_model &lt;- lm(time ~ length + ascent + rating, data = peaks)\ncoef(summary(peaks_model))\n##                  Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)     6.5106514 1.62983740  3.994663 2.627176e-04\n## length          0.4590819 0.08158314  5.627166 1.465288e-06\n## ascent          0.1874830 0.34215350  0.547950 5.866973e-01\n## ratingeasy     -3.1685224 0.86219113 -3.674965 6.827232e-04\n## ratingmoderate -2.4767827 0.61058560 -4.056405 2.177589e-04\n\n\nlength coefficient:\n\nAmong hikes with the same vertical ascent and challenge rating, each additional mile of the hike is associated with a 0.46 hour increase in completion time on average.\nHolding vertical ascent and challenge rating constant (fixed), each additional mile of the hike is associated with a 0.46 hour increase in completion time on average.\n\nratingeasy coefficient:\n\nAmong hikes with the same length and vertical ascent, the average completion time of easy hikes is 3.2 hours less than that of difficult hikes (reference category).\nHolding constant hike length and vertical ascent, the average completion time of easy hikes is 3.2 hours less than that of difficult hikes.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-2-confounders-1",
     "href": "activities/L10-mlr-confounding.html#exercise-2-confounders-1",
     "title": "Confounding variables",
     "section": "Exercise 2: Confounders",
-    "text": "Exercise 2: Confounders\nage, education, job industry, …\nmarital vs wage:\n\ncps %&gt;%\n  ggplot(aes(x=marital, y=wage))+\n  geom_boxplot()+\n  theme_classic()\n\n\n\n\n\n\n\n\nage vs marital:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=marital))+\n  geom_boxplot()+\n  theme_classic()\n\n\n\n\n\n\n\n\nage vs wage:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=wage))+\n  geom_point()+\n  geom_smooth(method=\"lm\", se=F)+\n  theme_classic()"
+    "text": "Exercise 2: Confounders\nage, education, job industry, …\nmarital vs wage:\n\ncps %&gt;%\n  ggplot(aes(x=marital, y=wage))+\n  geom_boxplot()+\n  theme_classic()\n\n\n\n\n\n\n\n\nage vs marital:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=marital))+\n  geom_boxplot()+\n  theme_classic()\n\n\n\n\n\n\n\n\nage vs wage:\n\ncps %&gt;%\n  ggplot(aes(x=age, y=wage))+\n  geom_point()+\n  geom_smooth(method=\"lm\", se=F)+\n  theme_classic()",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-3-controlling-for-confounders-1",
     "href": "activities/L10-mlr-confounding.html#exercise-3-controlling-for-confounders-1",
     "title": "Confounding variables",
     "section": "Exercise 3: Controlling for confounders",
-    "text": "Exercise 3: Controlling for confounders\n\ncreate 2 separate groups that are as similar as possible with respect to these variables. give the groups different remedies.\nwe’d have to get 2 groups that are similar with respect to age, and assign 1 group to get married and 1 group to be single. that would be weird (and unethical)."
+    "text": "Exercise 3: Controlling for confounders\n\ncreate 2 separate groups that are as similar as possible with respect to these variables. give the groups different remedies.\nwe’d have to get 2 groups that are similar with respect to age, and assign 1 group to get married and 1 group to be single. that would be weird (and unethical).",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-4-age-1",
     "href": "activities/L10-mlr-confounding.html#exercise-4-age-1",
     "title": "Confounding variables",
     "section": "Exercise 4: Age",
-    "text": "Exercise 4: Age\n\n# Construct the model\nwage_model_2 &lt;- lm(wage ~ marital + age, cps)\ncoef(summary(wage_model_2))\n##                 Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)   -19595.948  3691.6998 -5.308110 1.184066e-07\n## maritalsingle  -7500.146  1191.8526 -6.292847 3.545964e-10\n## age             2213.869   120.7701 18.331265 2.035782e-71\n\n\n.\n\n\ncps %&gt;%\nggplot(aes(y = wage, x = age, color = marital)) +\n    geom_point(size = 0.1, alpha = 0.5) +\n    geom_line(aes(y = wage_model_2$fitted.values), size = 0.5)\n\n\n\n\n\n\n\n\nbonus! adding in the geom_smooth layer:\n\ncps %&gt;%\nggplot(aes(y = wage, x = age, color = marital)) +\n  geom_point(size = 0.1, alpha = 0.5) +\n  geom_line(aes(y = wage_model_2$fitted.values), size = 0.5)+\n  geom_smooth(method=\"lm\", se=F, linetype=\"dashed\")\n\n\n\n\n\n\n\n\n\n-$7500\n\nWhen controlling for (“holding constant”) age, single workers make $7500 less than married workers on average.\nAmong workers of the same age, single workers make $7500 less than married workers on average."
+    "text": "Exercise 4: Age\n\n# Construct the model\nwage_model_2 &lt;- lm(wage ~ marital + age, cps)\ncoef(summary(wage_model_2))\n##                 Estimate Std. Error   t value     Pr(&gt;|t|)\n## (Intercept)   -19595.948  3691.6998 -5.308110 1.184066e-07\n## maritalsingle  -7500.146  1191.8526 -6.292847 3.545964e-10\n## age             2213.869   120.7701 18.331265 2.035782e-71\n\n\n.\n\n\ncps %&gt;%\nggplot(aes(y = wage, x = age, color = marital)) +\n    geom_point(size = 0.1, alpha = 0.5) +\n    geom_line(aes(y = wage_model_2$fitted.values), size = 0.5)\n\n\n\n\n\n\n\n\nbonus! adding in the geom_smooth layer:\n\ncps %&gt;%\nggplot(aes(y = wage, x = age, color = marital)) +\n  geom_point(size = 0.1, alpha = 0.5) +\n  geom_line(aes(y = wage_model_2$fitted.values), size = 0.5)+\n  geom_smooth(method=\"lm\", se=F, linetype=\"dashed\")\n\n\n\n\n\n\n\n\n\n-$7500\n\nWhen controlling for (“holding constant”) age, single workers make $7500 less than married workers on average.\nAmong workers of the same age, single workers make $7500 less than married workers on average.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-5-more-confounders-1",
     "href": "activities/L10-mlr-confounding.html#exercise-5-more-confounders-1",
     "title": "Confounding variables",
     "section": "Exercise 5: More confounders",
-    "text": "Exercise 5: More confounders\n\nwage_model_3 &lt;- lm(wage ~ marital + age + education, cps)\ncoef(summary(wage_model_3))\n##                 Estimate Std. Error    t value     Pr(&gt;|t|)\n## (Intercept)   -64898.607  4099.8737 -15.829416 2.254709e-54\n## maritalsingle  -6478.094  1119.9345  -5.784351 7.988760e-09\n## age             1676.796   116.3086  14.416777 1.102113e-45\n## education       4285.259   207.2158  20.680173 3.209448e-89\n\n\n2 planes: There are 2 quantitative predictors which form the dimensions of the plane. The marital status categorical predictor creates 2 planes.\nThe maritalsingle coefficient is of main interest:\n\nAmong workers of the same age and years of education, single workers earn $6478 less than married workers.\n\n\nage coefficient: Among workers of the same marital status and years of education, each additional year of age is associated with a $1677 increase in salary on average.\neducation coefficient: Among workers of the same marital status and age, each additional year of education is associated with a $4285 increase in salary on average."
+    "text": "Exercise 5: More confounders\n\nwage_model_3 &lt;- lm(wage ~ marital + age + education, cps)\ncoef(summary(wage_model_3))\n##                 Estimate Std. Error    t value     Pr(&gt;|t|)\n## (Intercept)   -64898.607  4099.8737 -15.829416 2.254709e-54\n## maritalsingle  -6478.094  1119.9345  -5.784351 7.988760e-09\n## age             1676.796   116.3086  14.416777 1.102113e-45\n## education       4285.259   207.2158  20.680173 3.209448e-89\n\n\n2 planes: There are 2 quantitative predictors which form the dimensions of the plane. The marital status categorical predictor creates 2 planes.\nThe maritalsingle coefficient is of main interest:\n\nAmong workers of the same age and years of education, single workers earn $6478 less than married workers.\n\n\nage coefficient: Among workers of the same marital status and years of education, each additional year of age is associated with a $1677 increase in salary on average.\neducation coefficient: Among workers of the same marital status and age, each additional year of education is associated with a $4285 increase in salary on average.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-6-even-more-1",
     "href": "activities/L10-mlr-confounding.html#exercise-6-even-more-1",
     "title": "Confounding variables",
     "section": "Exercise 6: Even more",
-    "text": "Exercise 6: Even more\n\nwage_model_4 &lt;- lm(wage ~ marital + age + education + industry, cps)\ncoef(summary(wage_model_4))\n##                                   Estimate Std. Error    t value     Pr(&gt;|t|)\n## (Intercept)                     -52498.857  7143.8481 -7.3488206 2.533275e-13\n## maritalsingle                    -5892.842  1105.6898 -5.3295615 1.053631e-07\n## age                               1493.360   116.1673 12.8552586 6.651441e-37\n## education                         3911.117   243.0192 16.0938565 4.500408e-56\n## industryconstruction              5659.082  6218.5649  0.9100302 3.628760e-01\n## industryinstallation_production   1865.650  6109.2613  0.3053806 7.600964e-01\n## industrymanagement                1476.884  6031.2901  0.2448704 8.065727e-01\n## industryservice                  -7930.403  5945.6509 -1.3338158 1.823603e-01\n## industrytransportation           -1084.176  6197.2462 -0.1749448 8.611342e-01\n\n\nAmong workers of the same job industry, education, and age, single workers make $5893 less than a married worker on average.\nhighest = construction (because it has the highest positive coefficient), lowest = service (because it has the most negative coefficient)"
+    "text": "Exercise 6: Even more\n\nwage_model_4 &lt;- lm(wage ~ marital + age + education + industry, cps)\ncoef(summary(wage_model_4))\n##                                   Estimate Std. Error    t value     Pr(&gt;|t|)\n## (Intercept)                     -52498.857  7143.8481 -7.3488206 2.533275e-13\n## maritalsingle                    -5892.842  1105.6898 -5.3295615 1.053631e-07\n## age                               1493.360   116.1673 12.8552586 6.651441e-37\n## education                         3911.117   243.0192 16.0938565 4.500408e-56\n## industryconstruction              5659.082  6218.5649  0.9100302 3.628760e-01\n## industryinstallation_production   1865.650  6109.2613  0.3053806 7.600964e-01\n## industrymanagement                1476.884  6031.2901  0.2448704 8.065727e-01\n## industryservice                  -7930.403  5945.6509 -1.3338158 1.823603e-01\n## industrytransportation           -1084.176  6197.2462 -0.1749448 8.611342e-01\n\n\nAmong workers of the same job industry, education, and age, single workers make $5893 less than a married worker on average.\nhighest = construction (because it has the highest positive coefficient), lowest = service (because it has the most negative coefficient)",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-7-biggest-model-yet-1",
     "href": "activities/L10-mlr-confounding.html#exercise-7-biggest-model-yet-1",
     "title": "Confounding variables",
     "section": "Exercise 7: Biggest model yet",
-    "text": "Exercise 7: Biggest model yet\n\nwage_model_5 &lt;- lm(wage ~ marital + age + education + industry + hours + health, cps)\ncoef(summary(wage_model_5))\n##                                    Estimate Std. Error     t value     Pr(&gt;|t|)\n## (Intercept)                     -64886.5747 6914.18198 -9.38456275 1.171028e-20\n## maritalsingle                    -4992.7685 1061.84882 -4.70195794 2.687274e-06\n## age                               1061.1410  115.83503  9.16079518 9.031462e-20\n## education                         3443.7625  236.12723 14.58435151 1.128646e-46\n## industryconstruction              5381.3857 5959.05620  0.90306007 3.665630e-01\n## industryinstallation_production   2951.0372 5854.23981  0.50408547 6.142365e-01\n## industrymanagement                5107.6364 5782.95334  0.88322283 3.771832e-01\n## industryservice                  -3074.5127 5705.56537 -0.53886207 5.900201e-01\n## industrytransportation            -207.3439 5940.02074 -0.03490626 9.721567e-01\n## hours                              732.1340   43.72488 16.74410733 2.340115e-60\n## healthfair                       -7407.7981 2901.71339 -2.55290483 1.072955e-02\n## healthgood                       -2470.8096 1259.44276 -1.96182766 4.987035e-02\n## healthpoor                       -9086.9110 7657.43781 -1.18667774 2.354441e-01\n## healthvery_good                    292.5278 1020.89213  0.28654136 7.744823e-01"
+    "text": "Exercise 7: Biggest model yet\n\nwage_model_5 &lt;- lm(wage ~ marital + age + education + industry + hours + health, cps)\ncoef(summary(wage_model_5))\n##                                    Estimate Std. Error     t value     Pr(&gt;|t|)\n## (Intercept)                     -64886.5747 6914.18198 -9.38456275 1.171028e-20\n## maritalsingle                    -4992.7685 1061.84882 -4.70195794 2.687274e-06\n## age                               1061.1410  115.83503  9.16079518 9.031462e-20\n## education                         3443.7625  236.12723 14.58435151 1.128646e-46\n## industryconstruction              5381.3857 5959.05620  0.90306007 3.665630e-01\n## industryinstallation_production   2951.0372 5854.23981  0.50408547 6.142365e-01\n## industrymanagement                5107.6364 5782.95334  0.88322283 3.771832e-01\n## industryservice                  -3074.5127 5705.56537 -0.53886207 5.900201e-01\n## industrytransportation            -207.3439 5940.02074 -0.03490626 9.721567e-01\n## hours                              732.1340   43.72488 16.74410733 2.340115e-60\n## healthfair                       -7407.7981 2901.71339 -2.55290483 1.072955e-02\n## healthgood                       -2470.8096 1259.44276 -1.96182766 4.987035e-02\n## healthpoor                       -9086.9110 7657.43781 -1.18667774 2.354441e-01\n## healthvery_good                    292.5278 1020.89213  0.28654136 7.744823e-01",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-8-reflection-1",
     "href": "activities/L10-mlr-confounding.html#exercise-8-reflection-1",
     "title": "Confounding variables",
     "section": "Exercise 8: Reflection",
-    "text": "Exercise 8: Reflection\n\nThese confounders explained away more and more of the wage gap between single and married workers.\nAnswers will vary. A potential factor that we haven’t considered is a worker’s role within a given industry."
+    "text": "Exercise 8: Reflection\n\nThese confounders explained away more and more of the wage gap between single and married workers.\nAnswers will vary. A potential factor that we haven’t considered is a worker’s role within a given industry.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-9-a-new-extreme-example-1",
     "href": "activities/L10-mlr-confounding.html#exercise-9-a-new-extreme-example-1",
     "title": "Confounding variables",
     "section": "Exercise 9: A new (extreme) example",
-    "text": "Exercise 9: A new (extreme) example\n\n\n\nclarity\ndescription\n\n\n\n\nIF\nflawless (no internal imperfections)\n\n\nVVS1\nvery very slightly imperfect\n\n\nVVS2\n” ”\n\n\nVS1\nvery slightly imperfect\n\n\nVS2\n” ”\n\n\nSI1\nslightly imperfect\n\n\nSI2\n” ”\n\n\nI1\nimperfect\n\n\n\n\ndiamond_model_1 &lt;- lm(price ~ clarity, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_1))\n##                Estimate Std. Error    t value     Pr(&gt;|t|)\n## (Intercept)  3677.41676   25.88161 142.086092 0.000000e+00\n## clarity.L   -1723.35264   98.72036 -17.456913 4.696367e-68\n## clarity.Q    -428.36467   96.70081  -4.429794 9.450847e-06\n## clarity.C     647.87442   83.30820   7.776838 7.567234e-15\n## clarity^4    -123.13052   66.72533  -1.845334 6.499443e-02\n## clarity^5     804.80570   54.62487  14.733320 4.907171e-49\n## clarity^6    -273.65013   47.67881  -5.739449 9.549240e-09\n## clarity^7      81.18721   42.01910   1.932150 5.334619e-02\n\n\nhighest = SI2, lowest = VVS1\nwill vary."
+    "text": "Exercise 9: A new (extreme) example\n\n\n\nclarity\ndescription\n\n\n\n\nIF\nflawless (no internal imperfections)\n\n\nVVS1\nvery very slightly imperfect\n\n\nVVS2\n” ”\n\n\nVS1\nvery slightly imperfect\n\n\nVS2\n” ”\n\n\nSI1\nslightly imperfect\n\n\nSI2\n” ”\n\n\nI1\nimperfect\n\n\n\n\ndiamond_model_1 &lt;- lm(price ~ clarity, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_1))\n##                Estimate Std. Error    t value     Pr(&gt;|t|)\n## (Intercept)  3677.41676   25.88161 142.086092 0.000000e+00\n## clarity.L   -1723.35264   98.72036 -17.456913 4.696367e-68\n## clarity.Q    -428.36467   96.70081  -4.429794 9.450847e-06\n## clarity.C     647.87442   83.30820   7.776838 7.567234e-15\n## clarity^4    -123.13052   66.72533  -1.845334 6.499443e-02\n## clarity^5     804.80570   54.62487  14.733320 4.907171e-49\n## clarity^6    -273.65013   47.67881  -5.739449 9.549240e-09\n## clarity^7      81.18721   42.01910   1.932150 5.334619e-02\n\n\nhighest = SI2, lowest = VVS1\nwill vary.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-10-size-1",
     "href": "activities/L10-mlr-confounding.html#exercise-10-size-1",
     "title": "Confounding variables",
     "section": "Exercise 10: Size",
-    "text": "Exercise 10: Size\n\ndiamond_model_2 &lt;- lm(price ~ clarity + carat, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_2))\n##                Estimate Std. Error      t value      Pr(&gt;|t|)\n## (Intercept) -2977.26896   13.11110 -227.0799509  0.000000e+00\n## clarity.L    4216.77507   33.65424  125.2969766  0.000000e+00\n## clarity.Q   -1931.40632   31.87080  -60.6011296  0.000000e+00\n## clarity.C    1005.84704   27.39341   36.7185805 1.486332e-291\n## clarity^4    -480.17830   21.94294  -21.8830399 1.089041e-105\n## clarity^5     283.94435   17.97527   15.7963882  4.403172e-56\n## clarity^6      12.66308   15.68062    0.8075624  4.193461e-01\n## clarity^7     198.04828   13.81518   14.3355543  1.597902e-46\n## carat        8440.05729   12.65126  667.1315412  0.000000e+00\n\n# Plot the model\ndiamonds %&gt;% \n    ggplot(aes(y = price, x = carat, color = clarity)) + \n    geom_line(aes(y = diamond_model_2$fitted.values))\n\n\n\n\n\n\n\n\nhighest = IF, lowest = I1 (reference category)\nThis is what we would have expected!"
+    "text": "Exercise 10: Size\n\ndiamond_model_2 &lt;- lm(price ~ clarity + carat, data = diamonds)\n\n# Get a model summary\ncoef(summary(diamond_model_2))\n##                Estimate Std. Error      t value      Pr(&gt;|t|)\n## (Intercept) -2977.26896   13.11110 -227.0799509  0.000000e+00\n## clarity.L    4216.77507   33.65424  125.2969766  0.000000e+00\n## clarity.Q   -1931.40632   31.87080  -60.6011296  0.000000e+00\n## clarity.C    1005.84704   27.39341   36.7185805 1.486332e-291\n## clarity^4    -480.17830   21.94294  -21.8830399 1.089041e-105\n## clarity^5     283.94435   17.97527   15.7963882  4.403172e-56\n## clarity^6      12.66308   15.68062    0.8075624  4.193461e-01\n## clarity^7     198.04828   13.81518   14.3355543  1.597902e-46\n## carat        8440.05729   12.65126  667.1315412  0.000000e+00\n\n# Plot the model\ndiamonds %&gt;% \n    ggplot(aes(y = price, x = carat, color = clarity)) + \n    geom_line(aes(y = diamond_model_2$fitted.values))\n\n\n\n\n\n\n\n\nhighest = IF, lowest = I1 (reference category)\nThis is what we would have expected!",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-11-simpsons-paradox-1",
     "href": "activities/L10-mlr-confounding.html#exercise-11-simpsons-paradox-1",
     "title": "Confounding variables",
     "section": "Exercise 11: Simpson’s Paradox",
-    "text": "Exercise 11: Simpson’s Paradox\nThe bigger the diamond the bigger the price:\n\ndiamonds %&gt;% \n    ggplot(aes(y = price, x = carat)) + \n    geom_point()\n\n\n\n\n\n\n\n\nBUT the bigger the diamond, the more flawed it tends to be:\n\ndiamonds %&gt;% \n    ggplot(aes(y = carat, x = clarity)) + \n    geom_boxplot()\n\n\n\n\n\n\n\n\nThus flawed diamonds looked more expensive, but only because they also tend to be bigger (and size is a bigger driver of price)."
+    "text": "Exercise 11: Simpson’s Paradox\nThe bigger the diamond the bigger the price:\n\ndiamonds %&gt;% \n    ggplot(aes(y = price, x = carat)) + \n    geom_point()\n\n\n\n\n\n\n\n\nBUT the bigger the diamond, the more flawed it tends to be:\n\ndiamonds %&gt;% \n    ggplot(aes(y = carat, x = clarity)) + \n    geom_boxplot()\n\n\n\n\n\n\n\n\nThus flawed diamonds looked more expensive, but only because they also tend to be bigger (and size is a bigger driver of price).",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L10-mlr-confounding.html#exercise-12-final-conclusion-1",
     "href": "activities/L10-mlr-confounding.html#exercise-12-final-conclusion-1",
     "title": "Confounding variables",
     "section": "Exercise 12: Final conclusion",
-    "text": "Exercise 12: Final conclusion\nFlawless diamonds are more expensive."
+    "text": "Exercise 12: Final conclusion\nFlawless diamonds are more expensive.",
+    "crumbs": [
+      "Confounding variables"
+    ]
   },
   {
     "objectID": "activities/L06-slr-transformations.html#learning-goals",

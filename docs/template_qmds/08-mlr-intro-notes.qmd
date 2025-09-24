@@ -7,10 +7,8 @@ format:
     toc: true
     toc-depth: 2
     embed-resources: true
-editor: 
-  markdown: 
-    wrap: sentence
 ---
+
 
 ```{r setup}
 #| include: false
@@ -26,56 +24,6 @@ knitr::opts_chunk$set(
   fig.align = 'center')
 ```
 
-# Announcements, etc.
-
-### If you're early(ish): Find your nametag at the front, and if it's there, bring the rest of the nametags in the stack to a table
-
-### If your nametag isn't at the front, find the table where it is
-
--   PP1 scores/feedback have been posted on Moodle; PP2 will be up soon
-
--   **Quiz 1 on Thursday!**
-
-    -   studying
-
-        -   Form a study group!
-
-        -   Review in-class activities + solutions, checkpoints, and homework feedback
-
-        -   Review slides from Ryan's review session (sent via email)
-
-        -   Visit office hours to clarify concepts
-
-            -   Extra office hours added today after class
-
-        -   check out [Professor Johnson's study tips](https://ajohns24.github.io/155_Fall_2025/activities/99-appendix.html)
-
-    -   structure
-
-        -   60 minutes, in class
-
-        -   taken individually using pen/pencil + paper
-
-        -   students with extra time accommodations CAN take the quiz in class if you want, and use the extra 30 minutes
-
-    -   content
-
-        -   Everything we have covered up through last Thursday (Categorical predictors).
-
-        -   It will not include questions about transformations (which was covered in an optional checkpoint/activity) or multiple linear regression (today!)
-
-        -   you will not need to write R code, but will need to read & interpret R output
-
-    -   Materials
-
-        -   you can use a 3x5 index card with writing on both sides.
-            These can be handwritten or typed, but you may *not* include screenshots or share note cards – making your own card is important to the review process.
-            You are required to hand this in with your quiz.
-
-        -   you cannot use and will not need to use a calculator
-
-    -   there will be limited opportunities for revision (you can earn up to 50% of missed points back).
-        Review syllabus for details.
 
 # Notes
 
@@ -111,28 +59,30 @@ You can find a **codebook** for these data by typing `?penguins` in your *consol
 
 ```{r}
 # Load packages
-library(tidyverse)
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+# Load data
+library(palmerpenguins)
 data(penguins)
 penguins <- penguins %>% 
-  filter(species != "Adelie", bill_len < 57)
+  filter(species != "Adelie", bill_length_mm < 57)
 
 # Check it out
 head(penguins)
 ```
 
 Our goal is to build a model that we can use to get good predictions of penguins' flipper ("arm") lengths.
-Consider 2 simple linear regression models of `flipper_len` by penguin `sex` and `species`: 
+Consider 2 simple linear regression models of `flipper_length_mm` by penguin `sex` and `species`: 
 
 ```{r}
-# Model 1: R-squared = 0.1205
-summary(lm(flipper_len ~ sex, penguins))
-
-# Model 2: R-squared = 0.7014
-summary(lm(flipper_len ~ species, penguins))
+summary(lm(flipper_length_mm ~ sex, penguins))$r.squared
+summary(lm(flipper_length_mm ~ species, penguins))$r.squared
 ```
 
-How might we improve our predictions of `flipper_len` using only these 2 predictors?
-What do you think is a reasonable range of possible values for the new R-squared?
+How might we improve our predictions of `flipper_length_mm` using only these 2 predictors?
+What do you think is a reasonable range of possible values for the new R-squqared?
 
 
 
@@ -141,11 +91,11 @@ What do you think is a reasonable range of possible values for the new R-squared
 
 **EXAMPLE 2**
 
-Consider a simple linear regression model of `flipper_len` by `bill_len`:
+Consider a simple linear regression model of `flipper_length_mm` by `bill_length_mm`:
 
 ```{r}
 penguins %>% 
-  ggplot(aes(y = flipper_len, x = bill_len)) + 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + 
   geom_point() + 
   geom_smooth(method = "lm", se = FALSE)
 ```
@@ -235,16 +185,16 @@ $$E[Y \mid X_1, X_2, ..., X_p] = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \be
 # Exercises
 
 In the coming weeks, we'll explore how to visualize, interpret, build, and evaluate multiple linear regression models.
-First, we'll explore some foundations using a model of penguin `flipper_len` by just 2 predictors: `bill_len` (quantitative) and `species` (categorical).
+First, we'll explore some foundations using a model of penguin `flipper_length_mm` by just 2 predictors: `bill_length_mm` (quantitative) and `species` (categorical).
 
 
 ## Exercise 1: Visualizing the relationship
 
-We've learned how to visualize the relationship of `flipper_len` by `bill_len` alone:
+We've learned how to visualize the relationship of `flipper_length_mm` by `bill_length_mm` alone:
 
 ```{r}
 penguins %>% 
-  ggplot(aes(y = flipper_len, x = bill_len)) + 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + 
   geom_point()
 ```
 
@@ -254,7 +204,7 @@ b. Try out your idea by modifying the code below. If you get stuck, talk with th
 
 ```{r}
 penguins %>%
-  ggplot(aes(y = flipper_len, x = bill_len, ___ = ___)) +
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +
   geom_point()
 ```
 
@@ -269,22 +219,22 @@ penguins %>%
 
 ## Exercise 2: Visualizing the model
 
-We've also learned that a simple linear regression model of `flipper_len` by `bill_len` alone can be represented by a line:
+We've also learned that a simple linear regression model of `flipper_length_mm` by `bill_length_mm` alone can be represented by a line:
 
 ```{r}
 penguins %>% 
-  ggplot(aes(y = flipper_len, x = bill_len)) + 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm)) + 
   geom_point() + 
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-a. THINK: Reflecting on your plot of `flipper_len` by `bill_len` and `species` in Exercise 1, how do you think a *multiple* regression model of `flipper_len` using *both* of these predictors would be represented?
+a. THINK: Reflecting on your plot of `flipper_length_mm` by `bill_length_mm` and `species` in Exercise 1, how do you think a *multiple* regression model of `flipper_length_mm` using *both* of these predictors would be represented?
 
 b. Check your intuition below by modifying the code below to include `species` in this plot, as you did in Exercise 1.
 
 ```{r}
 penguins %>%
-  ggplot(aes(y = flipper_len, x = bill_len, ___ = ___)) +
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, ___ = ___)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
@@ -294,18 +244,18 @@ penguins %>%
 
 ## Exercise 3: Intuition
 
-Your plot in Exercise 2 demonstrated that the **multiple linear regression model** of `flipper_len` by `bill_len` and `species` is represented by 2 lines. 
+Your plot in Exercise 2 demonstrated that the **multiple linear regression model** of `flipper_length_mm` by `bill_length_mm` and `species` is represented by 2 lines. 
 Let's interpret the punchlines!
 
 For each question, provide an answer along with evidence from the model lines that supports your answer.
 
-a. What's the relationship between `flipper_len` and `species`, no matter a penguin's `bill_len`? 
+a. What's the relationship between `flipper_length_mm` and `species`, no matter a penguin's `bill_length_mm`? 
 
 
-b. What's the relationship between `flipper_len` and `bill_len`, no matter a penguin's `species`?
+b. What's the relationship between `flipper_length_mm` and `bill_length_mm`, no matter a penguin's `species`?
 
 
-c. Does the rate of increase in `flipper_len` with `bill_len` differ between the two `species`?
+c. Does the rate of increase in `flipper_length_mm` with `bill_length_mm` differ between the two `species`?
 
 
 
@@ -322,19 +272,19 @@ We can obtain this using the usual `lm()` function.
 
 ```{r}
 # Build the model
-penguin_mod <- lm(flipper_len ~ bill_len + species, data = penguins)
+penguin_mod <- lm(flipper_length_mm ~ bill_length_mm + species, data = penguins)
 
 # Summarize the model
 coef(summary(penguin_mod))
 ```
 
 
-a. In the `lm()` function, how did we communicate that we wanted to model `flipper_len` by both `bill_len` and `species`?
+a. In the `lm()` function, how did we communicate that we wanted to model `flipper_length_mm` by both `bill_length_mm` and `species`?
 
 
 b. Complete the following model formula:    
     
-    E[flipper_len | bill_len, speciesGentoo] = ___ + ___ * bill_len + ___ * speciesGentoo
+    E[flipper_length_mm | bill_length_mm, speciesGentoo] = ___ + ___ * bill_length_mm + ___ * speciesGentoo
 
 
 
@@ -345,15 +295,15 @@ b. Complete the following model formula:
 
 Ok. We now have a single *formula* for the model.
 
-And we observed earlier that this formula is represented by two lines: one describing the relationship between `flipper_len` and `bill_len` for `Chinstrap` penguins and the other for `Gentoo` penguins.
+And we observed earlier that this formula is represented by two lines: one describing the relationship between `flipper_length_mm` and `bill_length_mm` for `Chinstrap` penguins and the other for `Gentoo` penguins.
 
 Let's bring these ideas together.
 
 Utilize the model formula to obtain the equations of these two lines, i.e. to obtain the *sub-model formulas* for the 2 species. Hint: Plug speciesGentoo = 0 and speciesGentoo = 1.        
     
-Chinstrap: flipper_len = ___ + ___ bill_len
+Chinstrap: flipper_length_mm = ___ + ___ bill_length_mm
 
-Gentoo:    flipper_len = ___ + ___ bill_len
+Gentoo:    flipper_length_mm = ___ + ___ bill_length_mm
 
 
 
@@ -366,9 +316,9 @@ Choose the correct option given in parentheses:
 
 a. The intercept coefficient, 127.75, is the intercept of the line for (Chinstrap / Gentoo) penguins.
 
-b. The `bill_len` coefficient, 1.40, is the (intercept / slope) of both lines.
+b. The `bill_length_mm` coefficient, 1.40, is the (intercept / slope) of both lines.
 
-c. The `speciesGentoo` coefficient, 22.85, indicates that the (intercept / slope) of the line for Gentoo is 22.85mm higher than the (intercept / slope) of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any `bill_len`.
+c. The `speciesGentoo` coefficient, 22.85, indicates that the (intercept / slope) of the line for Gentoo is 22.85mm higher than the (intercept / slope) of the line for Chinstrap. Similarly, since the lines are parallel, the line for Gentoo is 22.85mm higher than the line for Chinstrap at any `bill_length_mm`.
     
     
 
@@ -383,7 +333,7 @@ a. Interpret 127.75 (intercept of the Chinstrap line).
 
 b. Interpret 1.40 (slope of both lines). For both Chinstrap and Gentoo penguins, we expect...
 
-c. Interpret 22.85. At any `bill_len`, we expect...
+c. Interpret 22.85. At any `bill_length_mm`, we expect...
     
     
 
@@ -399,7 +349,7 @@ Recall the model summary and visualization:
 coef(summary(penguin_mod))
 
 penguins %>% 
-  ggplot(aes(y = flipper_len, x = bill_len, color = species)) + 
+  ggplot(aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + 
   geom_point() + 
   geom_smooth(method = "lm", se = FALSE)
 ```
@@ -422,11 +372,11 @@ c. Use the `predict()` function to confirm your predictions in parts a and b.
 ```{r}
 # Confirm the calculation in part a
 predict(penguin_mod,
-        newdata = data.frame(bill_len = ___, species = "___"))
+        newdata = data.frame(bill_length_mm = ___, species = "___"))
 
 # Confirm the calculation in part b
 predict(penguin_mod,
-        newdata = data.frame(bill_len = ___, species = "___"))
+        newdata = data.frame(bill_length_mm = ___, species = "___"))
 ```
 
 
@@ -440,15 +390,15 @@ Finally, recall that improving our predictions was one motivation for multiple l
 To this end, consider the R-squared values of the simple linear regression models that use just *one* predictor at a time:
 
 ```{r}
-mod_bill <- lm(flipper_len ~ bill_len, data = penguins)
+mod_bill <- lm(flipper_length_mm ~ bill_length_mm, data = penguins)
 summary(mod_bill)
 
-mod_species <- lm(flipper_len ~ species, data = penguins)
+mod_species <- lm(flipper_length_mm ~ species, data = penguins)
 summary(mod_species)
 ```
 
 
-a. If you had to use only *1* of our 2 predictors, which would give the better predictions of `flipper_len`?
+a. If you had to use only *1* of our 2 predictors, which would give the better predictions of `flipper_length_mm`?
 
 
 
@@ -481,9 +431,12 @@ What are they?
 
 
 
+
 ## Done!
 
--   Finalize your notes: (1) Render your notes to an HTML file; (2) Inspect this HTML in your Viewer -- check that your work translated correctly; and (3) Outside RStudio, navigate to your 'Activities' subfolder within your 'STAT155' folder and locate the HTML file -- you can open it again in your browser.
--   Clean up your RStudio session: End the rendering process by clicking the 'Stop' button in the 'Background Jobs' pane.
--   Check the solutions in the course website, at the bottom of the corresponding chapter.
--   Work on homework!
+- Finalize your notes: (1) Render your notes to an HTML file; (2) Inspect this HTML in your Viewer -- check that your work translated correctly; and (3) Outside RStudio, navigate to your 'Activities' subfolder within your 'STAT155' folder and locate the HTML file -- you can open it again in your browser.
+- Clean up your RStudio session: End the rendering process by clicking the 'Stop' button in the 'Background Jobs' pane.
+- Check the solutions in the course website, at the bottom of the corresponding chapter.
+- Work on homework!
+
+
