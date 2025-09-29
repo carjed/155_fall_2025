@@ -1,0 +1,95 @@
+# Multiple linear regression: exploring interaction
+
+
+```{r include = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE)
+```
+
+
+<!-- create student notes from activity in core-->
+
+{{< include _create_student_notes.qmd >}}
+
+```{r}
+#| echo: false
+#| eval: true
+make_student_notes('Multiple linear regression: exploring interaction', '_L11-mlr-interaction-explore.qmd')
+```
+
+<!-- pull activity from core -->
+
+```{r knitr-opts}
+#| echo: false
+#| cache: false
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
+
+{{< include core/_L11-mlr-interaction-explore.qmd >}}
+
+
+
+\
+\
+\
+\
+
+
+# Solutions
+
+```{r eval = TRUE, echo = FALSE}
+# Load packages and data
+library(readr)
+library(ggplot2)
+library(dplyr)
+cps <- read_csv("https://mac-stat.github.io/data/cps_2018.csv")
+
+# Get data on just the management and transportation sectors
+cps_sub <- cps %>% 
+    filter(industry %in% c("management", "transportation"))
+```
+
+## Exercise 1: Wages across all industries
+
+The plot below illustrates the relationship between wage and education for all of the industries in our `cps` dataset.
+
+```{r eval = TRUE}
+# Plot
+ggplot(cps, aes(y = wage, x = education, color = industry)) + 
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+a. The industry-specific lines all have different slopes.
+
+b. ag (first in alphabetical order)
+
+c. This is a challenge! Compare your prediction to what you see when fitting the model in part d.
+
+d. 
+
+```{r eval = TRUE}
+# Fit an interaction model called wage_model
+wage_model <- lm(wage ~ education*industry, data = cps)
+
+# Display summarized model output
+coef(summary(wage_model))
+```
+
+e. In the **management** industry, wages increase the *most* per year of education. The increase is 61.95396 + 8616.31984 = \$8678.274 per year. That is, every additional year of education is associated with an average increase of \$8678.27 in yearly wages in the management industry.
+
+f. In the **ag**riculture industry, wages increase the *least* per year of education. The increase is \$61.95 per year.  That is, every additional year of education is associated with an average increase of \$61.95 in yearly wages in the ag industry.
+
+
+## Exercise 2: Thinking beyond
+
+If a variable `x` has an interaction with the `industry` variable in affecting wages, then the relationship between `x` and wages must be different by industry. We might suspect that this could be the case for `hours` worked per week. We can make a plot to verify that this is actually the case:
+
+```{r eval = TRUE}
+ggplot(cps, aes(y = wage, x = hours, color = industry)) + 
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+

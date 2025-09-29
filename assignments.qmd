@@ -8,6 +8,7 @@ Please review the [Practice Problems Policies](https://docs.google.com/document/
 - [Practice Problems 1](assignments/pp1.qmd), due 9/12
 - [Practice Problems 2](assignments/pp2.qmd), due 9/18
 - [Practice Problems 3](assignments/pp3.qmd), due 10/7
+
 ::: content-hidden
 - [Practice Problems 4](assignments/pp4.qmd), due 10/14
 - [Practice Problems 5](assignments/pp5.qmd), due 3/26
