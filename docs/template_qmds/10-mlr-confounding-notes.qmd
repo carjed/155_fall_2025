@@ -9,6 +9,7 @@ format:
     embed-resources: true
 ---
 
+
 ```{r setup}
 #| include: false
 knitr::opts_chunk$set(
@@ -23,99 +24,39 @@ knitr::opts_chunk$set(
   fig.align = 'center')
 ```
 
-# Annoucements, etc.
-
--   [**Put away cell phones (like in your backpack, not face down on your table).**]{.underline}
-
--   Download [10-mlr-confounding-notes.qmd](template_qmds/10-mlr-confounding-notes.qmd), open it in RStudio, and save it in the “Activities” sub-folder of the “STAT 155” folder.
-
-#### If you're early
-
--   Pick up your nametag and the others in the stack you'll be sitting with, choose a table! (please don't scatter them 🥺)
-
-#### If you're less early
-
--   Find your nametag at one of the tables and sit there :)
-
-### Upcoming due dates
-
--   Tuesday: Checkpoint 8 on Moodle (before class); PP3 due end of day
-
--   Thursday: Quiz 1 revisions due at the beginning of class
 
 # Notes
 
--   You can download a template file to work with [here](../activity_templates/10_mlr_confounding.qmd).
--   **File organization:** Save this file in the "Activities" subfolder of your "STAT155" folder.
+- [Slides](https://docs.google.com/presentation/d/1ZCcWJaumyh_BohkXlsYZwHvPGpfQF8RrH5sc2sgwUf4/edit?usp=sharing) with comments on Quiz 1
+- You can download a template file to work with [here](../activity_templates/10_mlr_confounding.qmd).
+- **File organization:** Save this file in the "Activities" subfolder of your "STAT155" folder.
 
 ## Learning goals
 
 By the end of this lesson, you should be familiar with:
 
--   confounding variables
--   how to control for confounding variables in our models
--   how to represent the role of confounding variables using causal diagrams
+- confounding variables
+- how to control for confounding variables in our models
+- how to represent the role of confounding variables using causal diagrams
 
 ## Readings and videos
 
 Before class you should have read and watched:
 
--   Sections 3.9.2 in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
--   [Confounding (and other causal diagrams)](https://voicethread.com/myvoice/thread/15362352/96009456/96009456)
-    -   Watch from 0:00 - 6:54
+- Sections 3.9.2 in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+- [Confounding (and other causal diagrams)](https://voicethread.com/myvoice/thread/15362352/96009456/96009456)
+  - Watch from 0:00 - 6:54
 
-# **Background**
 
-In many statistical models (especially those we're learning in this course), we are often just interested in two variables:
 
--   Y = the response variable or outcome of interest
 
--   X = the predictor of interest
 
-In these models, we are often trying to establish evidence that there is a **causal** relationship between X and Y
-
--   NOTE THAT REGRESSION MODELS CANNOT "PROVE" CAUSALITY, ONLY PROVIDE EVIDENCE TO SUGGEST THAT THERE MIGHT BE A CAUSAL PATHWAY FROM X TO Y
-
-When exploring the relationship of Y with X, we almost always want to consider other variables (Z) that also have a causal or correlative relationship with Y and/or X. The nature of those relationships helps us determine whether to include or exclude Z as a predictor in the model.
-
-The first type of variable we will introduce is called a **confounder**, which we **always** want to include in our model.
-
--   Z is a **confounder** if…
-
-    -   it is *causally* associated with both Y and X; **or**
-
-    -   it is *causally* associated with Y, and just *associated* (not causally) with X
-
--   **Why do we want to include Z in our model?**
-
-    -   because failing to "adjust for" (or "control for") Z leads to an incorrect conclusion about the relationship between Y and X.
-
-# Warm-up
-
-## Exercise 0
-
-Think back to the model we looked at on Tuesday, where we were interested in the effect of wind speed (X) on number of rides (Y). Compare the output from a model without the temp_feel (Z) variable (`bike_model_a`), and one with the temp_feel variable as a predictor (`bike_model_b`).
-
-**What happens to the coefficient for the `windspeed`** **variable when we include `temp_feel`**? Why?
-
-**What happens to the** $R^2$ value when we include `temp_feel`? Why?
-
-```{r}
-library(tidyverse) 
-bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv") %>% rename(rides = riders_registered)  
-
-bike_model_a <- lm(rides ~ windspeed, data = bikes)
-summary(bike_model_a)
-```
-
-```{r}
-bike_model_b <- lm(rides ~ windspeed + temp_feel, data = bikes)
-summary(bike_model_b)
-```
+# Exercises
 
 ## Exercise 1: Review
 
 The `peaks` data includes information on hiking trails in the 46 "high peaks" in the Adirondack mountains of northern New York state:
+
 
 ```{r}
 # Load useful packages and data
@@ -129,6 +70,7 @@ peaks <- read_csv("https://mac-stat.github.io/data/high_peaks.csv") %>%
 head(peaks)
 ```
 
+
 Below is a model of the `time` (in hours) that it takes to complete a hike by the hike's `length` (in miles), vertical `ascent`(in 1000s of feet), and `rating` (easy, moderate, or difficult):
 
 ```{r eval=FALSE}
@@ -140,16 +82,27 @@ Interpret the `length` and `ratingeasy` coefficients in the model formula below 
 
 > **Strategy:** When interpreting a coefficient for a variable x, compare two units whose values of x differ by 1 but who are identical for all other variables.
 
-E\[time \| length, ascent, rating\] = 6.511 + 0.459 length + 0.187 ascent - 3.169 ratingeasy - 2.477 ratingmoderate
+E[time | length, ascent, rating] = 6.511 + 0.459 length + 0.187 ascent - 3.169 ratingeasy - 2.477 ratingmoderate
 
-------------------------------------------------------------------------
+---
 
 Synthesis:
 
--   Interpreting the coefficient $\beta_Q$ for a quantitative variable Q:
-    -   Holding all other variables constant, each unit increase in Q is associated with $\beta_Q$ change (note if it's an increase or decrease) in Y on average.
--   Interpreting the coefficient $\beta_C$ for an indicator variable:
-    -   Holding all other variables constant, the average outcome for the group referenced by this indicator (group for whom indicator = 1), is $\beta_C$ higher/lower than that of the reference group.
+- Interpreting the coefficient $\beta_Q$ for a quantitative variable Q:
+    - Holding all other variables constant, each unit increase in Q is associated with $\beta_Q$ change (note if it's an increase or decrease) in Y on average.
+
+- Interpreting the coefficient $\beta_C$ for an indicator variable:
+    - Holding all other variables constant, the average outcome for the group referenced by this indicator (group for whom indicator = 1), is $\beta_C$ higher/lower than that of the reference group.
+
+
+
+
+
+
+
+
+
+
 
 ## Exercise 2: Confounders
 
@@ -167,12 +120,13 @@ cps <- read_csv("https://mac-stat.github.io/data/cps_2018.csv") %>%
 head(cps)
 ```
 
-Recall that a **simple linear regression model** of `wage` by `marital` suggests that single workers make \$17,052 *less* than married workers:
+Recall that a **simple linear regression model** of `wage` by `marital` suggests that single workers make $17,052 *less* than married workers:
 
 ```{r eval=FALSE}
 wage_model_1 <- lm(wage ~ marital, data = cps)
 coef(summary(wage_model_1))
 ```
+
 
 That's a big gap!!
 
@@ -192,9 +146,9 @@ arrows(x0 = 1.7, y0 = 1, x1 = 4.5, y1 = 1, angle = 25, lwd = 4)
 
 Another definition of a confounding variable is one that
 
--   is a cause of the outcome (wage)
--   is associated with the main variable of interest (marital status)
--   NOT caused by the variable of interest
+- is a cause of the outcome (wage)
+- is associated with the main variable of interest (marital status)
+- NOT caused by the variable of interest
 
 We can represent this on the causal diagram with a line from the confounder to the variable of interest (instead of an arrow):
 
@@ -208,6 +162,7 @@ arrows(x0 = 1.7, y0 = 1, x1 = 4.5, y1 = 1, angle = 25, lwd = 4)
 ```
 
 Name at least 2 potential confounders.
+
 
 ## Exercise 2b: How & why do confounders bias results?
 
@@ -238,7 +193,6 @@ cps %>%
   geom_smooth(method="lm", se=F)+
   theme_classic()
 ```
-
 Here we see that there is a positive correlation between age and wages (which again makes sense, because people who have been in the workforce longer typically earn more).
 
 Let's revisit our initial plot showing the relationship between marital status and wages:
@@ -252,15 +206,20 @@ cps %>%
 
 Since we now know that age is associated with both being married *and* higher wages, this plot doesn't tell the full story--people who are married could simply be earning higher wages because they tend to be older, *not necessarily because they are married!* Age is therefore a **confounder** in the relationship between marital status and wages.
 
-# Exercises
 
 ## Exercise 3: Controlling for confounders
 
-The exercise above illustrates that it is important to *control* or *adjust* for confounding variables when trying to understand the *actual* causal relationship between a predictor (e.g. `marital`) and response (e.g. `wage`).
+The exercise above illustrates that it is important to *control* or *adjust* for confounding variables when trying to understand the *actual* causal relationship between a predictor (e.g. `marital`) and response (e.g. `wage`). 
 
-a.  Sometimes, we can control (adjust) for confounding variables through a carefully designed **experiment**. For example, in comparing the effectiveness (y) of 2 different cold remedies (x), we might want to control for the age, general health, and severity of symptoms among the participants. How might we do that?
+a. Sometimes, we can control (adjust) for confounding variables through a carefully designed **experiment**. For example, in comparing the effectiveness (y) of 2 different cold remedies (x), we might want to control for the age, general health, and severity of symptoms among the participants. How might we do that?
 
-b.  BUT we're often working with **observational**, not experimental, data. Why? Well, explain what an experiment might look like if we wanted to explore the relationship between `wage` (y) and `marital` status (x) while controlling for `age`.
+b. BUT we're often working with **observational**, not experimental, data. Why? Well, explain what an experiment might look like if we wanted to explore the relationship between `wage` (y) and `marital` status (x) while controlling for `age`.
+
+
+
+
+
+
 
 ## Exercise 4: Age
 
@@ -278,7 +237,8 @@ wage_model_2 <- lm(wage ~ marital + age, cps)
 coef(summary(wage_model_2))
 ```
 
-a.  Visualize this model by modifying the code below.
+
+a. Visualize this model by modifying the code below. 
 
 (Note: The last line where we add a `geom_line` layer adds in trendlines similar to what we might obtain using `geom_smooth`, but it uses the exact fitted values from our model. `geom_smooth`, on the other hand, adds in trendlines based on fitting two separate models to the `married` and `single` subsets of the data. Tray adding `geom_smooth(method="lm", se=F, linetype="dashed")` to the plot to see how they compare).
 
@@ -288,26 +248,35 @@ ggplot(cps, aes(y = ___, x = ___, color = ___)) +
     geom_line(aes(y = wage_model_2$fitted.values), linewidth = 0.5)
 ```
 
-b.  Suppose 2 workers are the *same age*, but one is married and one is single. By how much do we expect the single worker's wage to differ from the married worker's wage? (How does this compare to the \$17,052 marital gap among all workers?)
+b. Suppose 2 workers are the *same age*, but one is married and one is single. By how much do we expect the single worker's wage to differ from the married worker's wage? (How does this compare to the $17,052 marital gap among all workers?)
 
-c.  How can we interpret the `maritalsingle` coefficient?
+c. How can we interpret the `maritalsingle` coefficient?
+    
+
+    
+    
+
+
 
 ## Exercise 5: More confounders
 
 Let's control for even more potential confounders!
 
-Model wages by marital status while controlling for `age` *and* years of `education`:
+Model wages by marital status while controlling for `age` *and* years of `education`:   
 
 ```{r eval=FALSE}
 wage_model_3 <- lm(wage ~ marital + age + education, cps)
 coef(summary(wage_model_3))
 ```
 
-a.  With so many variables, this is a tough model to visualize. If you *had* to draw it, how would the model trend appear: 1 point, 2 points, 2 lines, 1 plane, or 2 planes? Explain your rationale. Hint: pay attention to whether your predictors are quantitative or categorical.
+a. With so many variables, this is a tough model to visualize. If you *had* to draw it, how would the model trend appear: 1 point, 2 points, 2 lines, 1 plane, or 2 planes? Explain your rationale. Hint: pay attention to whether your predictors are quantitative or categorical.
 
-b.  Given our research question, which coefficient is of primary interest? Interpret this coefficient.
+b. Given our research question, which coefficient is of primary interest? Interpret this coefficient.
 
-c.  Interpret the two other coefficients in this model.
+c. Interpret the two other coefficients in this model.
+
+
+
 
 ## Exercise 6: Even more
 
@@ -317,20 +286,27 @@ Let's control for *another* potential confounder, the job `industry` in which on
 wage_model_4 <- lm(wage ~ marital + age + education + industry, cps)
 coef(summary(wage_model_4))
 ```
-
+    
 If we *had* to draw it, this model would appear as 12 planes.
 
 The original plane explains the relationship between wage and the 2 quantitative predictors, age and education.
 
-Then this plane is split into 12 (2\*6) individual planes, 1 for each possible combination of marital status (2 possibilities) and industry (6 possibilities).
+Then this plane is split into 12 (2*6) individual planes, 1 for each possible combination of marital status (2 possibilities) and industry (6 possibilities).
 
-a.  Interpret the main coefficient of interest for our research question.
+a. Interpret the main coefficient of interest for our research question.
 
-b.  When controlling for a worker's age, marital status, and education level, which industry tends to have the highest wages? The lowest? Note: the following table shows the 6 industries:
+b. When controlling for a worker's age, marital status, and education level, which industry tends to have the highest wages? The lowest? Note: the following table shows the 6 industries:
 
 ```{r eval=FALSE}
 cps %>% count(industry)
 ```
+
+
+
+
+
+
+
 
 ## Exercise 7: Biggest model yet
 
@@ -338,23 +314,47 @@ Build a model that helps us explore `wage` by `marital` status while controlling
 
 Store this model as `wage_model_5`.
 
+
+
+
+
+
+
+
+
+
 ## Exercise 8: Reflection
 
 Take two workers -- one is married and the other is single.
 
-The models above provided the following insights into the typical difference in wages for these two groups:
+The models above provided the following insights into the typical difference in wages for these two groups:    
+    
+Model            Assume the two people have the same...    Wage difference
+---------------- --------------------------------------- -----------------
+`wage_model_1`   NA                                               -$17,052
+`wage_model_2`   age                                               -$7,500
+`wage_model_3`   age, education                                    -$6,478
+`wage_model_4`   age, education, industry                          -$5,893
+`wage_model_5`   age, education, industry, hours, health           -$4,993
 
-| Model          | Assume the two people have the same...  | Wage difference |
-|:---------------|:----------------------------------------|----------------:|
-| `wage_model_1` | NA                                      |       -\$17,052 |
-| `wage_model_2` | age                                     |        -\$7,500 |
-| `wage_model_3` | age, education                          |        -\$6,478 |
-| `wage_model_4` | age, education, industry                |        -\$5,893 |
-| `wage_model_5` | age, education, industry, hours, health |        -\$4,993 |
 
-a.  Though not the case in every analysis, the `marital` coefficient got closer and closer to 0 as we controlled for more confounders. Explain the significance of this phenomenon, in context - what does it *mean*?
 
-b.  Do you still find the wage gap for single vs married people to be meaningfully "large"? Can you think of any remaining factors that might explain part of this remaining gap? Or do you think we've found evidence of inequitable wage practices for single vs married workers?
+a. Though not the case in every analysis, the `marital` coefficient got closer and closer to 0 as we controlled for more confounders. Explain the significance of this phenomenon, in context - what does it *mean*?
+
+b. Do you still find the wage gap for single vs married people to be meaningfully "large"? Can you think of any remaining factors that might explain part of this remaining gap? Or do you think we've found evidence of inequitable wage practices for single vs married workers?
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Exercise 9: A new (extreme) example
 
@@ -376,18 +376,19 @@ Our goal is to explore how the `price` of a diamond depends upon its `clarity` (
 
 Clarity is classified as follows, in order from best to worst:
 
-| clarity | description                          |
-|:--------|:-------------------------------------|
-| IF      | flawless (no internal imperfections) |
-| VVS1    | very very slightly imperfect         |
-| VVS2    | " "                                  |
-| VS1     | very slightly imperfect              |
-| VS2     | " "                                  |
-| SI1     | slightly imperfect                   |
-| SI2     | " "                                  |
-| I1      | imperfect                            |
+clarity  description
+-------- ------------------------------------------------
+IF       flawless (no internal imperfections) 
+VVS1     very very slightly imperfect
+VVS2     " "
+VS1      very slightly imperfect
+VS2      " "
+SI1      slightly imperfect
+SI2      " "
+I1       imperfect
 
-a.  Check out a model of `price` by `clarity`. What clarity has the highest average price? The lowest? (This is surprising!)
+
+a. Check out a model of `price` by `clarity`. What clarity has the highest average price? The lowest? (This is surprising!)       
 
 ```{r eval=FALSE}
 diamond_model_1 <- lm(price ~ clarity, data = diamonds)
@@ -396,7 +397,13 @@ diamond_model_1 <- lm(price ~ clarity, data = diamonds)
 coef(summary(diamond_model_1))
 ```
 
-b.  What *confounding variable* might explain these results? What's your rationale?
+b. What *confounding variable* might explain these results? What's your rationale?
+    
+    
+
+
+
+
 
 ## Exercise 10: Size
 
@@ -424,15 +431,25 @@ The lowest?
 
 Provide numerical evidence from the model.
 
+
+
+
+
+
+
+
+
 ## Exercise 11: Simpson's Paradox
 
-Controlling for `carat` didn't just *change* the `clarity` coefficients, hence our understanding of the relationship between `price` and `clarity`... It flipped the *signs* of many of these coefficients.
+Controlling for `carat` didn't just *change* the `clarity` coefficients, hence our understanding of the relationship between `price` and `clarity`...
+It flipped the *signs* of many of these coefficients.
 
 This extreme scenario has a name: **Simpson's paradox**.
 
 CHALLENGE: Explain *why* this happened and support your argument with *graphical* evidence.
 
 HINTS: Think about the causal diagram below. *How* do you think `carat` influences `clarity`? *How* do you think `carat` influences `price`? Make 2 `ggplot()` that support your answers.
+
 
 ```{r fig.width = 6, fig.height = 2, echo = FALSE}
 par(mar = rep(0,4))
@@ -443,11 +460,20 @@ lines(x = c(3, 1), y = c(3.8, 1.2), lwd = 4)
 arrows(x0 = 1.7, y0 = 1, x1 = 4.5, y1 = 1, angle = 25, lwd = 4)
 ```
 
+
+
+
+
+
 ## Exercise 12: Final conclusion
 
-What's your final conclusion about diamond prices?
+What's your final conclusion about diamond prices?    
 
 Which diamonds are more expensive: flawed ones or flawless ones?
+    
+
+
+
 
 ## Reflection
 
@@ -455,9 +481,18 @@ Write a one-sentence warning label for what might happen if we do *not* control 
 
 > **Response:** Put your response here.
 
+
+
+
+
+
+
+
 ## Done!
 
--   Finalize your notes: (1) Render your notes to an HTML file; (2) Inspect this HTML in your Viewer -- check that your work translated correctly; and (3) Outside RStudio, navigate to your 'Activities' subfolder within your 'STAT155' folder and locate the HTML file -- you can open it again in your browser.
--   Clean up your RStudio session: End the rendering process by clicking the 'Stop' button in the 'Background Jobs' pane.
--   Check the solutions in the course website, at the bottom of the corresponding chapter.
--   Work on homework!
+- Finalize your notes: (1) Render your notes to an HTML file; (2) Inspect this HTML in your Viewer -- check that your work translated correctly; and (3) Outside RStudio, navigate to your 'Activities' subfolder within your 'STAT155' folder and locate the HTML file -- you can open it again in your browser.
+- Clean up your RStudio session: End the rendering process by clicking the 'Stop' button in the 'Background Jobs' pane.
+- Check the solutions in the course website, at the bottom of the corresponding chapter.
+- Work on homework!
+
+
