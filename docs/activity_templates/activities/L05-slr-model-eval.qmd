@@ -1,0 +1,203 @@
+# Simple linear regression: model evaluation
+
+```{r include = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE)
+```
+
+
+<!-- create student notes from activity in core-->
+
+{{< include _create_student_notes.qmd >}}
+
+```{r}
+#| echo: false
+#| eval: true
+make_student_notes('Simple linear regression: model evaluation', '_L05-slr-model-eval.qmd')
+```
+
+<!-- pull activity from core -->
+
+```{r knitr-opts}
+#| echo: false
+#| cache: false
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
+
+{{< include core/_L05-slr-model-eval.qmd >}}
+
+
+
+\
+\
+\
+\
+
+
+
+
+# Solutions
+
+
+## Exercise 1: Is the model correct?
+
+The red curved trend line shows a clear downward trend around 85 degrees, which contextually makes plenty of sense---extremely hot days would naturally see less riders. Overall the combination of the upward trend and downward trend makes for a curved relationship that is not captured well by a straight line of best fit.
+Specifically, a simple linear regression model would violate the **Linearity** assumption.
+  
+```{r eval = TRUE}
+# Load packages and import data
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv")
+
+ggplot(bikes, aes(x = temp_feel, y = riders_registered)) + 
+    geom_point() + 
+    geom_smooth(se = FALSE, color = "red") +
+    geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+
+## Exercise 2: Residual plots
+
+The residual plot shows a lingering trend in the residuals---the blue curve traces the trend in the residuals, and it does not lie flat on the y = 0 line.
+This again suggests that the **Linearity** assumption is violated.
+
+```{r eval = TRUE}
+bike_model <- lm(riders_registered ~ temp_feel, data = bikes)
+
+# Check out the residual plot for bike_model
+ggplot(bike_model, aes(x = .fitted, y = .resid)) + 
+    geom_point() + 
+    geom_hline(yintercept = 0) +
+    geom_smooth(se = FALSE)
+```
+
+## Exercise 3: What's incorrect about this model?
+
+```{r eval = TRUE}
+# Import the data
+mammals <- read_csv("https://mac-stat.github.io/data/mammals.csv")
+
+# Check it out
+head(mammals)
+
+# Construct the model
+mammal_model <- lm(brain ~ body, mammals)
+
+# Check it out
+summary(mammal_model)
+```
+
+
+a. 
+
+```{r eval = TRUE}
+# Scatterplot of brain weight (y) vs body weight (x)
+# Include a model trend line (i.e. a representation of mammal_model)
+ggplot(mammals, aes(y = brain, x = body)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+# Residual plot for mammal_model
+ggplot(mammal_model, aes(x = .fitted, y = .resid)) + 
+    geom_point() + 
+    geom_hline(yintercept = 0) +
+    geom_smooth(se = FALSE)
+```
+
+b. The biggest issue here is that the assumption of **equal variance** is violated. There's much greater variability in the residuals as the predictions increase. This is because there's much greater variability in the brain weights (y) as body weights (x) increase.
+
+
+
+
+## Exercise 4: Exploring mammals
+
+Answers will vary.
+
+
+
+## Exercise 5: Is the model strong? Developing R-squared intuition
+
+The R-squared metric is a way to quantify the strength of a model. It measures how much variation in the outcome/response variable can be explained by the model.
+
+Where does R-squared come from? Well, it turns out that we can **partition the variance** of the observed response values into the variability that's explained by the model (the variance of the predictions) and the variability that's left unexplained by the model (the variance of the residuals):
+
+$$\text{Var(observed) = Var(predicted) + Var(residuals)}$$
+
+"Good" models have residuals that don't deviate far from 0.  So the smaller the variance in the residuals (thus larger the variance in the predictions), the stronger the model. Take a look at the picture below and write a few sentences addressing the following:
+
+- The first row corresponds to the weaker model. We can tell because the points are much more dispersed from the trend line than in the second row. Recall that the correlation metric measures how closely clustered points are about a straight line of best fit, so we would expect the correlation to be lower for the first row than the second row.
+- The variance of the residuals is much lower for the second row---the residuals are *all* quite small. This indicates a stronger model.
+
+![](https://mac-stat.github.io/images/155/rsquared.png)
+
+## Exercise 6: R-squared Interpretations
+
+```{r eval = TRUE}
+summary(bike_model)
+```
+
+Multiple R-squared: 0.2961
+
+Interpretation: 29.61% of the variation in number of registered riders on any given day can be explained by the variation in temperature (specifically, what temperature it "feels" like it is).
+
+## Exercise 7: Further exploring R-squared
+
+In this exercise, we'll look at data from a synthetic dataset called Anscombe's quartet. Load the data in as follows, and look at the first few rows:
+
+```{r eval = TRUE}
+data(anscombe)
+
+# Look at the first few rows
+head(anscombe)
+```
+
+All of these models have close to the same intercept, slope, and R-squared!
+
+```{r eval = TRUE}
+anscombe_mod1 <- lm(y1 ~ x1, data = anscombe)
+anscombe_mod2 <- lm(y2 ~ x2, data = anscombe)
+anscombe_mod3 <- lm(y3 ~ x3, data = anscombe)
+anscombe_mod4 <- lm(y4 ~ x4, data = anscombe)
+
+summary(anscombe_mod1)
+summary(anscombe_mod2)
+summary(anscombe_mod3)
+summary(anscombe_mod4)
+```
+
+But when we look at the scatterplots, they all look substantially different, and we would want to approach our modeling differently for each one:
+
+- `x1` and `y1`: A linear model seems appropriate for this data.
+- `x2` and `y2`: The scatterplot is clearly curved---a "linear" regression model with squared terms, for example, would be more appropriate for this data. (We'll talk more about ways to handle nonlinear relationships soon!)
+- `x3` and `y3`: There is a very clear outlier at about `x3 = 13` that we would want to dig into to better understand the context. After that investigation, we might consider removing this outlier and refitting the model.
+- `x4` and `y4`: There is clearly something strange going on with most of the cases having an `x4` value of exactly 8. We would not want to jump straight into modeling. Instead, we should dig deeper to find out more about this data.
+
+```{r eval = TRUE}
+ggplot(anscombe, aes(x = x1, y = y1)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+
+ggplot(anscombe, aes(x = x2, y = y2)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+
+ggplot(anscombe, aes(x = x3, y = y3)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+
+ggplot(anscombe, aes(x = x4, y = y4)) +
+    geom_point() + 
+    geom_smooth(method = "lm", color = "red", se = FALSE)
+```
+
+## Exercises 8 - 11
+
+No solutions for these exercises. These require longer discussions, not discrete answers.

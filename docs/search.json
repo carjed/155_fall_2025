@@ -1351,7 +1351,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-4-random-sampling-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                   userscore_rt criticscore_rt\n##   &lt;chr&gt;                         &lt;int&gt;          &lt;int&gt;\n## 1 Escobar: Paradise Lost           52             52\n## 2 About Elly                       86             97\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film        userscore_rt criticscore_rt\n##   &lt;chr&gt;              &lt;int&gt;          &lt;int&gt;\n## 1 Hot Pursuit           37              8\n## 2 Leviathan             79             99\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34"
   },
   {
     "objectID": "activities/L18-sampling-normal.html#exercise-5-take-your-own-sample-1",
@@ -2333,7 +2333,7 @@
     "href": "activities/L13-mlr-model-building-1.html#learning-goals",
     "title": "Multiple linear regression: model building (part 1)",
     "section": "Learning goals",
-    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nDistinguish between descriptive, predictive, and causal research questions\nIterate on your group’s research question to make it more precise and answerable\nChoose appropriate model(s) for addressing your group’s research question",
+    "text": "Learning goals\nBy the end of this lesson, you should be able to:\n\nDistinguish between descriptive, predictive, and causal research questions\nIdentify confounders, colliders, precision variables, mediators, and effect modifiers in a causal diagram\nExplain when variables are redundant or multicollinear\nRelate redundancy and multicollinearity to coefficient estimates and \\(R^2\\)\nExplain why adjusted \\(R^2\\) is preferable to multiple \\(R^2\\) when comparing models with different numbers of predictors",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]
@@ -2343,57 +2343,137 @@
     "href": "activities/L13-mlr-model-building-1.html#readings-and-videos",
     "title": "Multiple linear regression: model building (part 1)",
     "section": "Readings and videos",
-    "text": "Readings and videos\nPlease watch the following video before class.\n\nVideo: Causal Diagrams and Confounding Variables\n\nFile organization: If you would like to take notes in this document, download the template and save it in the “Activities” subfolder of your “STAT155” folder. You are more than welcome to take notes in a separate google document, shared with your project group, if you’d find that more useful!",
+    "text": "Readings and videos\nPlease watch the following video before class.\n\nVideo: Causal Diagrams and Confounding Variables\n\nOptional:\n\nReading: Section 3.9.5 in the STAT 155 Notes\nVideo: Redundancy and Multicollinearity",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]
   },
   {
-    "objectID": "activities/L13-mlr-model-building-1.html#step-1-review",
-    "href": "activities/L13-mlr-model-building-1.html#step-1-review",
+    "objectID": "activities/L13-mlr-model-building-1.html#descriptive-research-questions",
+    "href": "activities/L13-mlr-model-building-1.html#descriptive-research-questions",
     "title": "Multiple linear regression: model building (part 1)",
-    "section": "Step 1: Review",
-    "text": "Step 1: Review\nTake a look at the first project checkpoint (your statistical analysis plan) that your group submitted. As part of this checkpoint, you should have come up with a research question. Record the research question you came up with: we’ll iterate on this question throughout the activity!\n\nRecord your research question here\n\nAnswer the following questions as a group (some of this may already be in your statistical analysis plan!):\n\nWho would be interested in the answer to this question?\nWhat variables do you need in a dataset to address this question?\nWhat data summaries (not models) would help you answer this question, and why?\nWhat plots (not models) would help you address your research question, and why?",
+    "section": "1: Descriptive Research Questions",
+    "text": "1: Descriptive Research Questions\nDescriptive research questions are questions that seek to better understand the characteristics of individual variables and/or relationships between them.\n\nunivariate numerical summaries\nunivariate/bivariate visualizations\n(simple, i.e., single-predictor) models to:\n\nformalize how we conceptualize/estimate the relationship between \\(X\\) and \\(Y\\) (e.g., write a model statement)\nmore precisely quantify the estimated effect of \\(X\\) on \\(Y\\) (e.g., what does \\(\\hat\\beta_{1}\\) tell us?)\n\nalso assess our uncertainty in that estimate (more on this later in the semester!)\n\nmeasure the strength of the estimated relationship between \\(X\\) and \\(Y\\) (e.g., \\(R^2\\))\n\n\nIf we’re only interested in associations (not causal relationships), we don’t need to adjust for potential confounding variables–usually descriptive questions are dealing with simple/bivariate analyses.\nStatistical analyses almost always start with descriptive research questions, and we iterate on these descriptive questions throughout the process!\nLet’s brainstorm some descriptive research questions!\nCheck out the codebook for a dataset of giant pumpkins:\nhttps://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-10-19/readme.md#giant-pumpkins\nRun the following code to load the data:\n\nlibrary(tidyverse)\npumpkins &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2021/2021-10-19/pumpkins.csv')\n\nWith your groups: brainstorm 4-5 descriptive research questions you could ask about this dataset. Think about the following:\n\nwhat relationships between variables might be interesting to look at\nwhat univariate numerical summaries you would calculate\nwhat univariate/bivariate visualizations you would use to explore these relationships\n\n(…and if you’re feeling ambitious, try to code up answers to these as a group!)",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]
   },
   {
-    "objectID": "activities/L13-mlr-model-building-1.html#step-2-descriptive-research-questions",
-    "href": "activities/L13-mlr-model-building-1.html#step-2-descriptive-research-questions",
+    "objectID": "activities/L13-mlr-model-building-1.html#predictive-research-questions",
+    "href": "activities/L13-mlr-model-building-1.html#predictive-research-questions",
     "title": "Multiple linear regression: model building (part 1)",
-    "section": "Step 2: Descriptive Research Questions",
-    "text": "Step 2: Descriptive Research Questions\nDescriptive research questions are questions that seek to better understand the relationships between variables, without interest in causality. In practice, nearly every research question asked is ultimately interested in causality, but practical constraints (such as unmeasured confounding) lead us to ask descriptive questions instead.\nIf we’re only interested in associations (not causality), we don’t need to adjust for potential confounding variables in our model.\n\nFor your group’s chosen research question, write a model statement that would address a descriptive version of your research question below:\n\nModel statement for a descriptive question here",
+    "section": "2: Predictive Research Questions",
+    "text": "2: Predictive Research Questions\nPredictive research questions seek to determine if (and how well) we can predict outcomes for new / future events, using the information we already have. We’ve seen a bit of prediction in this course when we talked about fitted values!\nSuppose we are a tech startup looking to financially exploit revolutionize the pumpkin-growing community by selling a model that can accurately predict a pumpkin’s eventual weight (weight_lbs) based on a constellation of other variables (location, genetics, variety, etc.). We have a meeting with potential investors in two weeks and want to prove to them that our linear regression “artificial intelligence” model, which we trained on the pumpkins dataset.\nWith your groups, discuss the following questions:\n\nFirst, discuss which of the available predictor(s) you would you include in the model. Why these variables? If you excluded any variables, why not those?\nHow do you think you would go about proving that your model’s predictions are “good”?\nAre there any variables that are not available to you in the pumpkins dataset that you would include in your predictive model if you could? Why or why not?\nHow could the results from your predictive model be used in practice?",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]
   },
   {
-    "objectID": "activities/L13-mlr-model-building-1.html#step-3-predictive-research-questions",
-    "href": "activities/L13-mlr-model-building-1.html#step-3-predictive-research-questions",
+    "objectID": "activities/L13-mlr-model-building-1.html#causal-research-questions",
+    "href": "activities/L13-mlr-model-building-1.html#causal-research-questions",
     "title": "Multiple linear regression: model building (part 1)",
-    "section": "Step 3: Predictive Research Questions",
-    "text": "Step 3: Predictive Research Questions\nPredictive research questions seek to determine if (and how well) we can predict outcomes for new / future events, using the information we already have. We’ve seen a bit of prediction in this course when we talked about fitted values!\n\nWith your groups, discuss the following:\n\nIs your research question predictive, or inferential? Inferential questions seek to understand the relationships between variables.\nIf your question were predictive, who would be interested/invested in the results from your project? How could the results from your project be used in practice?\nAre there any variables that are not available to you in your data that you would include in your predictive model if you could? Why or why not?",
+    "section": "3: Causal Research Questions",
+    "text": "3: Causal Research Questions\nCausal research questions are ultimately what most inferential statistics is interested in, regardless of whether or not we end up being able to make causal conclusions. From the videos for today, you learned about different types of variables, and whether or not they should be included or excluded from a model, depending on your causal research question.\nSuppose we are botanists who are interested in studying the causal effect of a pumpkin’s variety on its weight_lbs.\nWith your groups\n\nmake a causal diagram (DAG) on the whiteboard, including relevant variables that are available in the pumpkins data.\n\nI recommend talking through each of the variables in the dataset one by one and decide if they should be incorporated into the DAG (draw these as nodes, but don’t draw arrows yet!)\nConsider including all variables you wish you had access to, even if they aren’t available in your data (this is important when thinking about the limitations of your analysis!) (draw these as nodes, but don’t draw arrows yet!)\n\nDraw lines/arrows representing what you think are the relationships among these variables\nLabel each node with the type of variable it is (predictor of interest, response, confounder, collider, mediator, precision variable, effect modifier)\nTranslate your DAG into a linear regression model statement in the form \\(E[Y | X_1, X_2, ...] = ...\\)",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]
   },
   {
-    "objectID": "activities/L13-mlr-model-building-1.html#step-3-causal-research-questions",
-    "href": "activities/L13-mlr-model-building-1.html#step-3-causal-research-questions",
+    "objectID": "activities/L13-mlr-model-building-1.html#reflection",
+    "href": "activities/L13-mlr-model-building-1.html#reflection",
     "title": "Multiple linear regression: model building (part 1)",
-    "section": "Step 3: Causal Research Questions",
-    "text": "Step 3: Causal Research Questions\nCausal research questions are ultimately what most inferential statistics is interested in, regardless of whether or not we end up being able to make causal conclusions. From the videos for today, you learned about different types of variables, and whether or not they should be included or excluded from a model, depending on your causal research question.\nWith your groups, make a causal diagram (DAG) on the whiteboard for your research question. Consider including all variables you wish you had access to, even if they aren’t available in your data (this will help you later when talking about limitations of your analysis in your final paper), but certainly include relevant variables that are available in your data.\nFor each variable in your DAG that is available in your dataset, determine whether it should be included or excluded from your model. Use this to update your descriptive model statement from Step 2.\n\nModel statement for a causal question here\n\nNow look back at your DAG, and note if any of the variables that are not available in your data are potential confounders. If so, record them here (this means you likely won’t be able to draw causal conclusions):\n\nList of “unmeasured” confounding variables here",
+    "section": "Reflection",
+    "text": "Reflection\nThis section is all about iterating on a research question, and using those questions to guide the way we explore data and fit statistical models. How confident do you feel in distinguishing between descriptive, predictive, and causal research questions? How confident do you feel in knowing which components of a model matter more or less, in each specific case? What might help you feel more confident?\n\nResponse: Put your response here.",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]
   },
   {
-    "objectID": "activities/L13-mlr-model-building-1.html#step-4-reflection",
-    "href": "activities/L13-mlr-model-building-1.html#step-4-reflection",
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-1-modeling-weight-by-over-the-top-measurement",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-1-modeling-weight-by-over-the-top-measurement",
     "title": "Multiple linear regression: model building (part 1)",
-    "section": "Step 4: Reflection",
-    "text": "Step 4: Reflection\nToday was all about iterating on a research question, and using those questions to guide the way we explore data and fit statistical models. How confident do you feel in distinguishing between descriptive, predictive, and causal research questions? How confident do you feel in knowing which components of a model matter more or less, in each specific case? What might help you feel more confident?\n\nResponse: Put your response here.",
+    "section": "Exercise 1: Modeling weight by over-the-top measurement",
+    "text": "Exercise 1: Modeling weight by over-the-top measurement\nWhat can a pumpkin’s OTT measurement tell us about its weight? To answer this question, we’ll consider 3 of our models:\n\n\n\nmodel\npredictors\n\n\n\n\npumpkin_model_1\nott\n\n\npumpkin_model_2\nott_cm\n\n\npumpkin_model_3\nott + ott_cm\n\n\n\nPlots of the first two models are below:\n\nggplot(pumpkins, aes(y = weight_lbs, x = ott)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\nggplot(pumpkins, aes(y = weight_lbs, x = ott_cm)) + \n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE)\n\n\nBefore examining the model summaries, check your intuition. Do you think the pumpkin_model_2 R-squared will be less than, equal to, or more than that of pumpkin_model_1? Similarly, how do you think the pumpkin_model_3 R-squared will compare to that of pumpkin_model_1?\nCheck your intuition: Examine the R-squared values for the three pumpkin models and summarize how these compare.\n\n\nsummary(pumpkin_model_1)$r.squared\nsummary(pumpkin_model_2)$r.squared\nsummary(pumpkin_model_3)$r.squared\n\n\nExplain why your observation in part b makes sense. Support your reasoning with a plot of just the 2 predictors: ott vs ott_cm.\n\n\nOPTIONAL challenge: In summary(pumpkin_model_3), the ott_cm coefficient is NA. Explain why this makes sense. HINT: Thinking about what you learned about controlling for covariates, why wouldn’t it make sense to interpret this coefficient? BONUS: For those of you that have taken MATH 236, this has to do with matrices that are not of full rank!",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-2-incorporating-est_weight",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-2-incorporating-est_weight",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 2: Incorporating est_weight",
+    "text": "Exercise 2: Incorporating est_weight\nThere are established guidelines for estimating a pumpkin’s weight based on its OTT measurement.\nThe most recent guidelines give the following estimation formula:\nWeight_lbs =(((12.81/(1+6.87*2(-OTT_inches/97)))3+(OTT_inches/45.9)^3.014)-10)\nIn this exercise you’ll consider 3 models of weight_lbs:\n\n\n\nmodel\npredictors\n\n\n\n\npumpkin_model_1\nott\n\n\npumpkin_model_4\nest_weight\n\n\npumpkin_model_5\nott + est_weight\n\n\n\n\nWhich is the better predictor of weight_lbs: ott or est_weight? Provide some numerical evidence.\npumpkin_model_5 incorporates both ott and est_weight as predictors. Before examining a model summary, ask your gut: Will the pumpkin_model_5 R-squared be:\n\nless than 0.91?\nbetween 0.91 and 0.96?\na little more than 0.96?\nclose to 1?\n\nCheck your intuition. Report the pumpkin_model_5 R-squared and summarize how this compares to that of pumpkin_model_1 and pumpkin_model_4.\nExplain why your observation in part c makes sense. Support your reasoning with a plot of the 2 predictors: ott vs est_weight.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-3-redundancy-and-multicollinearity",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-3-redundancy-and-multicollinearity",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 3: Redundancy and Multicollinearity",
+    "text": "Exercise 3: Redundancy and Multicollinearity\nThe exercises above have illustrated special phenomena in multivariate modeling:\n\ntwo predictors are redundant if they contain the same exact information\ntwo predictors are multicollinear if they are strongly associated (they contain very similar information) but are not completely redundant.\n\nRecall that we examined 5 models:\n\n\n\nmodel\npredictors\n\n\n\n\npumpkin_model_1\nott\n\n\npumpkin_model_2\nott_cm\n\n\npumpkin_model_3\nott + ott_cm\n\n\npumpkin_model_4\nest_weight\n\n\npumpkin_model_5\nott + est_weight\n\n\n\n\nWhich model had redundant predictors and which predictors were these?\nWhich model had multicollinear predictors and which predictors were these?\nIn general, what happens to the R-squared value if we add a redundant predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?\nSimilarly, what happens to the R-squared value if we add a multicollinear predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-4-considerations-for-strong-models",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-4-considerations-for-strong-models",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 4: Considerations for strong models",
+    "text": "Exercise 4: Considerations for strong models\nLet’s dive deeper into important considerations when building a strong model. We’ll use a subset of the pumpkins data for exploring these ideas.\n\n# For illustration purposes only, take a sample of 10 pumpkins.\n# We'll discuss this code later in the course!\nset.seed(155)\npumpkins_small &lt;- sample_n(pumpkins %&gt;% filter(weight_lbs &gt; 400, weight_lbs&lt;700, ott&gt;300, !is.na(weight_lbs), !is.na(ott)), size = 10) %&gt;%\n  mutate(ott = jitter(ott))\n\nConsider 3 models of bill length:\n\n# A model with one predictor (ott)\npoly_mod_1 &lt;- lm(weight_lbs ~ ott, pumpkins_small)\n\n# A model with two predictors (ott and ott^2)\npoly_mod_2 &lt;- lm(weight_lbs ~ poly(ott, 2), pumpkins_small)\n\n# A model with nine predictors (ott, ott^2, ... on up to ott^9)\npoly_mod_9 &lt;- lm(weight_lbs ~ poly(ott, 9), pumpkins_small)\n\n\nBefore doing any analysis, which of the three models do you think will be best?\nCalculate the R-squared values of these 3 models. Which model do you think is best?\n\n\nsummary(poly_mod_1)$r.squared\nsummary(poly_mod_2)$r.squared\nsummary(poly_mod_9)$r.squared\n\n\nCheck out plots depicting the relationship estimated by these 3 models. Which model do you think is best?\n\n\n# A plot of model 1\nggplot(pumpkins_small, aes(y = weight_lbs, x = ott)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", se = FALSE)\n\n\n# A plot of model 2\nggplot(pumpkins_small, aes(y = weight_lbs, x = ott)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", formula = y ~ poly(x, 2), se = FALSE)\n\n\n# A plot of model 9\nggplot(pumpkins_small, aes(y = weight_lbs, x = ott)) + \n    geom_point() + \n    geom_smooth(method = \"lm\", formula = y ~ poly(x, 9), se = FALSE)",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-5-reflecting-on-these-investigations",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-5-reflecting-on-these-investigations",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 5: Reflecting on these investigations",
+    "text": "Exercise 5: Reflecting on these investigations\n\nList 3 of your favorite foods. Now imagine making a dish that combines all of these foods. Do you think it would taste good?\nToo many good things doesn’t make necessarily make a better thing. Model 9 demonstrates that it’s always possible to get a perfect R-squared of 1, but there are drawbacks to putting more and more predictors into our model. Answer the following about model 9:\n\nHow easy would it be to interpret this model?\nWould you say that this model captures the general trend of the relationship between weight_lbs and ott?\nHow well do you think this model would generalize to pumpkins that were not included in the pumpkins_small sample? For example, would you expect these new pumpkins to fall on the wiggly model 9 curve?",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-6-overfitting",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-6-overfitting",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 6: Overfitting",
+    "text": "Exercise 6: Overfitting\nModel 9 provides an example of a model that is overfit to our sample data. That is, it picks up the tiny details of our data at the cost of losing the more general trends of the relationship of interest. Check out the following xkcd comic. Which plot pokes fun at overfitting?\n\nSome other goodies:",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-7-questioning-r-squared",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-7-questioning-r-squared",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 7: Questioning R-squared",
+    "text": "Exercise 7: Questioning R-squared\nZooming out, explain some limitations of relying on R-squared to measure the strength / usefulness of a model.",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#exercise-8-adjusted-r-squared",
+    "href": "activities/L13-mlr-model-building-1.html#exercise-8-adjusted-r-squared",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Exercise 8: Adjusted R-squared",
+    "text": "Exercise 8: Adjusted R-squared\nWe’ve seen that, unless a predictor is redundant with another, R-squared will increase. Even if that predictor is strongly multicollinear with another. Even if that predictor isn’t a good predictor! Thus if we only look at R-squared we might get overly greedy. We can check our greedy impulses a few ways. We take a more in depth approach in STAT 253, but one quick alternative is reported right in our model summary() tables. Adjusted R-squared includes a penalty for incorporating more and more predictors. Mathematically (where \\(n\\) is the sample size and \\(p\\) is the number of non-intercept coefficients):\n\\[\n\\text{Adjusted } R^2 = 1 - (1 - R^2) \\left( \\frac{n-1}{n-p-1} \\right)\n\\]\nThus unlike R-squared, Adjusted R-squared can decrease when the information that a predictor contributes to a model isn’t enough to offset the complexity it adds to that model. Consider two models:\n\n# get a subset of pumpkins from a single german competition, for illustrative purposes\npumpkins_de &lt;- pumpkins %&gt;%\n  filter(gpc_site==\"XXL-Kuerbis-Wiegemeisterschaft auf dem Krewelshof\", !(city %in% c(\"Deurle\", \"Lindlar\")), ott &gt; 0)\n\nexample_1 &lt;- lm(weight_lbs ~ city, pumpkins_de)\nexample_2 &lt;- lm(weight_lbs ~ city + pct_chart, pumpkins_de)\n\n\nCheck out the summaries for the 2 example models. In general, how does a model’s Adjusted R-squared compare to the R-squared? Is it greater, less than, or equal to the R-squared?\n\n\nsummary(example_1)\nsummary(example_2)\n\n\nHow did the R-squared change from example model 1 to model 2? How did the Adjusted R-squared change?\nExplain what it is about pct_chart that resulted in a decreased Adjusted R-squared. Note: it’s not necessarily the case that pct_chart is a bad predictor on its own!",
+    "crumbs": [
+      "Multiple linear regression: model building (part 1)"
+    ]
+  },
+  {
+    "objectID": "activities/L13-mlr-model-building-1.html#reflection-1",
+    "href": "activities/L13-mlr-model-building-1.html#reflection-1",
+    "title": "Multiple linear regression: model building (part 1)",
+    "section": "Reflection",
+    "text": "Reflection\nToday we looked at some cautions surrounding indiscriminately adding variables to a model. Summarize key takeaways.\n\nResponse: Put your response here.",
     "crumbs": [
       "Multiple linear regression: model building (part 1)"
     ]

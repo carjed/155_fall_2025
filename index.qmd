@@ -26,11 +26,9 @@ Learn the fundamentals of summarizing, visualizing, and modeling data to answer 
 
 # Essential Links
 
-+---------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| [Syllabus](syllabus.qmd)                                            | [Homework Policies](https://docs.google.com/document/d/1r8URNncf5zv33Bcis-XNjdf2LK9OiMngukgpnpDqcq0/edit?usp=sharing) |
-+=====================================================================+=======================================================================================================================+
-| [**Moodle**](https://moodle.macalester.edu/course/view.php?id=6316) | [**Installing R/RStudio**](tech_setup.qmd)                                                                            |
-+---------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| [Syllabus](syllabus.qmd) | [Homework Policies](https://docs.google.com/document/d/1r8URNncf5zv33Bcis-XNjdf2LK9OiMngukgpnpDqcq0/edit?usp=sharing) |
+|----|----|
+| [**Moodle**](https://moodle.macalester.edu/course/view.php?id=6316) | [**Installing R/RStudio**](tech_setup.qmd) |
 
 ------------------------------------------------------------------------
 

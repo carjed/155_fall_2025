@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -287,13 +350,24 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
   <li><a href="#readings-and-videos" id="toc-readings-and-videos" class="nav-link" data-scroll-target="#readings-and-videos">Readings and videos</a></li>
   </ul></li>
-  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a>
+  <li><a href="#part-1-the-3-types-of-research-questions-we-can-investigate-using-statistical-models" id="toc-part-1-the-3-types-of-research-questions-we-can-investigate-using-statistical-models" class="nav-link" data-scroll-target="#part-1-the-3-types-of-research-questions-we-can-investigate-using-statistical-models">Part 1: The 3 types of research questions we can investigate using statistical models</a>
   <ul class="collapse">
-  <li><a href="#step-1-review" id="toc-step-1-review" class="nav-link" data-scroll-target="#step-1-review">Step 1: Review</a></li>
-  <li><a href="#step-2-descriptive-research-questions" id="toc-step-2-descriptive-research-questions" class="nav-link" data-scroll-target="#step-2-descriptive-research-questions">Step 2: Descriptive Research Questions</a></li>
-  <li><a href="#step-3-predictive-research-questions" id="toc-step-3-predictive-research-questions" class="nav-link" data-scroll-target="#step-3-predictive-research-questions">Step 3: Predictive Research Questions</a></li>
-  <li><a href="#step-3-causal-research-questions" id="toc-step-3-causal-research-questions" class="nav-link" data-scroll-target="#step-3-causal-research-questions">Step 3: Causal Research Questions</a></li>
-  <li><a href="#step-4-reflection" id="toc-step-4-reflection" class="nav-link" data-scroll-target="#step-4-reflection">Step 4: Reflection</a></li>
+  <li><a href="#descriptive-research-questions" id="toc-descriptive-research-questions" class="nav-link" data-scroll-target="#descriptive-research-questions">1: Descriptive Research Questions</a></li>
+  <li><a href="#predictive-research-questions" id="toc-predictive-research-questions" class="nav-link" data-scroll-target="#predictive-research-questions">2: Predictive Research Questions</a></li>
+  <li><a href="#causal-research-questions" id="toc-causal-research-questions" class="nav-link" data-scroll-target="#causal-research-questions">3: Causal Research Questions</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  </ul></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-modeling-weight-by-over-the-top-measurement" id="toc-exercise-1-modeling-weight-by-over-the-top-measurement" class="nav-link" data-scroll-target="#exercise-1-modeling-weight-by-over-the-top-measurement">Exercise 1: Modeling weight by over-the-top measurement</a></li>
+  <li><a href="#exercise-2-incorporating-est_weight" id="toc-exercise-2-incorporating-est_weight" class="nav-link" data-scroll-target="#exercise-2-incorporating-est_weight">Exercise 2: Incorporating <code>est_weight</code></a></li>
+  <li><a href="#exercise-3-redundancy-and-multicollinearity" id="toc-exercise-3-redundancy-and-multicollinearity" class="nav-link" data-scroll-target="#exercise-3-redundancy-and-multicollinearity">Exercise 3: Redundancy and Multicollinearity</a></li>
+  <li><a href="#exercise-4-considerations-for-strong-models" id="toc-exercise-4-considerations-for-strong-models" class="nav-link" data-scroll-target="#exercise-4-considerations-for-strong-models">Exercise 4: Considerations for strong models</a></li>
+  <li><a href="#exercise-5-reflecting-on-these-investigations" id="toc-exercise-5-reflecting-on-these-investigations" class="nav-link" data-scroll-target="#exercise-5-reflecting-on-these-investigations">Exercise 5: Reflecting on these investigations</a></li>
+  <li><a href="#exercise-6-overfitting" id="toc-exercise-6-overfitting" class="nav-link" data-scroll-target="#exercise-6-overfitting">Exercise 6: Overfitting</a></li>
+  <li><a href="#exercise-7-questioning-r-squared" id="toc-exercise-7-questioning-r-squared" class="nav-link" data-scroll-target="#exercise-7-questioning-r-squared">Exercise 7: Questioning R-squared</a></li>
+  <li><a href="#exercise-8-adjusted-r-squared" id="toc-exercise-8-adjusted-r-squared" class="nav-link" data-scroll-target="#exercise-8-adjusted-r-squared">Exercise 8: Adjusted R-squared</a></li>
+  <li><a href="#reflection-1" id="toc-reflection-1" class="nav-link" data-scroll-target="#reflection-1">Reflection</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -316,8 +390,10 @@ ul.task-list li input[type="checkbox"] {
 <p>By the end of this lesson, you should be able to:</p>
 <ul>
 <li><p>Distinguish between descriptive, predictive, and causal research questions</p></li>
-<li><p>Iterate on your group’s research question to make it more precise and answerable</p></li>
-<li><p>Choose appropriate model(s) for addressing your group’s research question</p></li>
+<li><p>Identify confounders, colliders, precision variables, mediators, and effect modifiers in a causal diagram</p></li>
+<li><p>Explain when variables are redundant or multicollinear</p></li>
+<li><p>Relate redundancy and multicollinearity to coefficient estimates and <span class="math inline">\(R^2\)</span></p></li>
+<li><p>Explain why adjusted <span class="math inline">\(R^2\)</span> is preferable to multiple <span class="math inline">\(R^2\)</span> when comparing models with different numbers of predictors</p></li>
 </ul>
 </section>
 <section id="readings-and-videos" class="level2">
@@ -326,62 +402,349 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Video: <a href="https://voicethread.com/share/15362352/">Causal Diagrams and Confounding Variables</a></li>
 </ul>
-<p><strong>File organization:</strong> If you would like to take notes <em>in this document</em>, download the template and save it in the “Activities” subfolder of your “STAT155” folder. You are more than welcome to take notes in a separate google document, shared with your project group, if you’d find that more useful!</p>
-</section>
-</section>
-<section id="steps" class="level1">
-<h1>Steps</h1>
-<section id="step-1-review" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-review">Step 1: Review</h2>
-<p>Take a look at the first project checkpoint (your statistical analysis plan) that your group submitted. As part of this checkpoint, you should have come up with a research question. Record the research question you came up with: we’ll iterate on this question throughout the activity!</p>
-<blockquote class="blockquote">
-<p>Record your research question here</p>
-</blockquote>
-<p>Answer the following questions as a group (some of this may already be in your statistical analysis plan!):</p>
+<p>Optional:</p>
 <ul>
-<li>Who would be interested in the answer to this question?</li>
-<li>What variables do you need in a dataset to address this question?</li>
-<li>What data summaries (<strong>not</strong> models) would help you answer this question, and why?</li>
-<li>What plots (<strong>not</strong> models) would help you address your research question, and why?</li>
+<li>Reading: Section 3.9.5 in the <a href="https://mac-stat.github.io/Stat155Notes/">STAT 155 Notes</a></li>
+<li>Video: <a href="https://voicethread.com/share/15177737/">Redundancy and Multicollinearity</a></li>
 </ul>
 </section>
-<section id="step-2-descriptive-research-questions" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-descriptive-research-questions">Step 2: Descriptive Research Questions</h2>
-<p>Descriptive research questions are questions that seek to better understand the relationships between variables, <em>without</em> interest in causality. In practice, nearly every research question asked is ultimately interested in causality, but practical constraints (such as unmeasured confounding) lead us to ask descriptive questions instead.</p>
-<p>If we’re only interested in <em>associations</em> (not causality), we don’t need to adjust for potential confounding variables in our model.</p>
-<!-- This section is to input (or pause to talk about) a descriptive research question your professor has encountered in their career -->
-<p>For your group’s chosen research question, write a model statement that would address a <strong>descriptive</strong> version of your research question below:</p>
-<blockquote class="blockquote">
-<p>Model statement for a descriptive question here</p>
-</blockquote>
 </section>
-<section id="step-3-predictive-research-questions" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-predictive-research-questions">Step 3: Predictive Research Questions</h2>
+<section id="part-1-the-3-types-of-research-questions-we-can-investigate-using-statistical-models" class="level1">
+<h1>Part 1: The 3 types of research questions we can investigate using statistical models</h1>
+<section id="descriptive-research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-research-questions">1: Descriptive Research Questions</h2>
+<p>Descriptive research questions are questions that seek to better understand the characteristics of individual variables and/or relationships between them.</p>
+<ul>
+<li><p>univariate numerical summaries</p></li>
+<li><p>univariate/bivariate visualizations</p></li>
+<li><p>(simple, i.e., single-predictor) models to:</p>
+<ul>
+<li><p>formalize how we conceptualize/estimate the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (e.g., write a model statement)</p></li>
+<li><p>more precisely quantify the estimated effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> (e.g., what does <span class="math inline">\(\hat\beta_{1}\)</span> tell us?)</p>
+<ul>
+<li>also assess our uncertainty in that estimate (more on this later in the semester!)</li>
+</ul></li>
+<li><p>measure the strength of the estimated relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (e.g., <span class="math inline">\(R^2\)</span>)</p></li>
+</ul></li>
+</ul>
+<p>If we’re only interested in <em>associations</em> (not causal relationships), we don’t need to adjust for potential confounding variables–usually descriptive questions are dealing with simple/bivariate analyses.</p>
+<p><strong>Statistical analyses almost always start with descriptive research questions, and we iterate on these descriptive questions throughout the process!</strong></p>
+<p><strong>Let’s brainstorm some descriptive research questions!</strong></p>
+<p>Check out the codebook for a dataset of giant pumpkins:</p>
+<p><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-10-19/readme.md#giant-pumpkins" class="uri">https://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-10-19/readme.md#giant-pumpkins</a></p>
+<p>Run the following code to load the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pumpkins <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2021/2021-10-19/pumpkins.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>With your groups:</strong> brainstorm 4-5 <strong>descriptive</strong> research questions you could ask about this dataset. Think about the following:</p>
+<ul>
+<li><p>what relationships between variables might be interesting to look at</p></li>
+<li><p>what univariate numerical summaries you would calculate</p></li>
+<li><p>what univariate/bivariate visualizations you would use to explore these relationships</p></li>
+</ul>
+<p>(…and if you’re feeling ambitious, try to code up answers to these as a group!)</p>
+</section>
+<section id="predictive-research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="predictive-research-questions">2: Predictive Research Questions</h2>
 <p>Predictive research questions seek to determine if (and how well) we can predict outcomes for new / future events, using the information we already have. We’ve seen a bit of prediction in this course when we talked about fitted values!</p>
-<!-- This section is to input (or pause to talk about) a predictive research question your professor has encountered in their career -->
-<p>With your groups, discuss the following:</p>
+<p>Suppose we are a tech startup looking to <del>financially exploit</del> revolutionize the pumpkin-growing community by selling a model that can accurately predict a pumpkin’s eventual weight (<code>weight_lbs</code>) based on a constellation of other variables (location, genetics, variety, etc.). We have a meeting with potential investors in two weeks and want to prove to them that our <del>linear regression</del> “artificial intelligence” model, which we trained on the <code>pumpkins</code> dataset.</p>
+<p>With your groups, discuss the following questions:</p>
 <ul>
-<li>Is your research question <em>predictive</em>, or <em>inferential</em>? Inferential questions seek to understand the relationships between variables.</li>
-<li>If your question <em>were</em> predictive, who would be interested/invested in the results from your project? How could the results from your project be used in practice?</li>
-<li>Are there any variables that are <em>not</em> available to you in your data that you would include in your predictive model if you could? Why or why not?</li>
+<li>First, discuss which of the available predictor(s) you would you include in the model. Why these variables? If you excluded any variables, why not those?</li>
+<li>How do you think you would go about proving that your model’s predictions are “good”?</li>
+<li>Are there any variables that are <em>not</em> available to you in the <code>pumpkins</code> dataset that you would include in your predictive model if you could? Why or why not?</li>
+<li>How could the results from your predictive model be used in practice?</li>
 </ul>
 </section>
-<section id="step-3-causal-research-questions" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-causal-research-questions">Step 3: Causal Research Questions</h2>
+<section id="causal-research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="causal-research-questions">3: Causal Research Questions</h2>
 <p>Causal research questions are ultimately what most inferential statistics is interested in, regardless of whether or not we end up being able to make causal conclusions. From the videos for today, you learned about different types of variables, and whether or not they should be included or excluded from a model, depending on your causal research question.</p>
-<p>With your groups, make a causal diagram (DAG) on the whiteboard for your research question. Consider including all variables you <em>wish</em> you had access to, even if they aren’t available in your data (this will help you later when talking about limitations of your analysis in your final paper), but certainly include relevant variables that <em>are</em> available in your data.</p>
-<p>For each variable in your DAG <em>that is available in your dataset</em>, determine whether it should be <em>included</em> or <em>excluded</em> from your model. Use this to update your descriptive model statement from Step 2.</p>
+<p>Suppose we are botanists who are interested in studying the causal effect of a pumpkin’s <code>variety</code> on its <code>weight_lbs</code>.</p>
+<p>With your groups</p>
+<ul>
+<li><p>make a causal diagram (DAG) on the whiteboard, including relevant variables that are available in the <code>pumpkins</code> data.</p>
+<ul>
+<li><p>I recommend talking through each of the variables in the dataset one by one and decide if they should be incorporated into the DAG (draw these as nodes, but don’t draw arrows yet!)</p></li>
+<li><p>Consider including all variables you <em>wish</em> you had access to, even if they aren’t available in your data (this is important when thinking about the limitations of your analysis!) (draw these as nodes, but don’t draw arrows yet!)</p></li>
+</ul></li>
+<li><p>Draw lines/arrows representing what you think are the relationships among these variables</p></li>
+<li><p>Label each node with the type of variable it is (predictor of interest, response, confounder, collider, mediator, precision variable, effect modifier)</p></li>
+<li><p>Translate your DAG into a linear regression model statement in the form <span class="math inline">\(E[Y | X_1, X_2, ...] = ...\)</span></p></li>
+</ul>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>This section is all about iterating on a research question, and using those questions to guide the way we explore data and fit statistical models. How confident do you feel in distinguishing between descriptive, predictive, and causal research questions? How confident do you feel in knowing which components of a model matter more or less, in each specific case? What might help you feel more confident?</p>
 <blockquote class="blockquote">
-<p>Model statement for a causal question here</p>
-</blockquote>
-<p>Now look back at your DAG, and note if any of the variables that are <em>not</em> available in your data are <em>potential confounders</em>. If so, record them here (this means you likely won’t be able to draw causal conclusions):</p>
-<blockquote class="blockquote">
-<p>List of “unmeasured” confounding variables here</p>
+<p><strong>Response:</strong> Put your response here.</p>
 </blockquote>
 </section>
-<section id="step-4-reflection" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-reflection">Step 4: Reflection</h2>
-<p>Today was all about iterating on a research question, and using those questions to guide the way we explore data and fit statistical models. How confident do you feel in distinguishing between descriptive, predictive, and causal research questions? How confident do you feel in knowing which components of a model matter more or less, in each specific case? What might help you feel more confident?</p>
+</section>
+<section id="part-2" class="level1">
+<h1>Part 2</h1>
+<p><strong>Context:</strong> Recall that when we talked about model evaluation previously, we asked if the model was correct, strong, and fair (<em>primarily in the context of descriptive/predictive research questions–evaluating the accuracy/strength/fairness of a causal research question can be extremely difficult!</em>)</p>
+<p>Today we’ll revisit predictive research questions and some considerations when trying to build <em>strong</em> models. In particular, we’ll consider nuances and limitations to indiscriminately adding more predictors to our model.</p>
+<p>First, let’s do a little data cleaning and add a variable <code>ott_cm</code> that is the “over-the-top” measurement of the pumpkin in centimeters (in addition to the <code>ott</code> variable we already have, in inches):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pumpkins <span class="ot">&lt;-</span> pumpkins <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">weight_lbs =</span> <span class="fu">as.numeric</span>(weight_lbs), </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">est_weight =</span> <span class="fu">as.numeric</span>(est_weight), </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">ott =</span> <span class="fu">as.numeric</span>(ott), </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ott_cm =</span> ott <span class="sc">*</span> <span class="fl">2.54</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ott <span class="sc">&gt;</span> <span class="dv">10</span>, ott <span class="sc">&lt;</span> <span class="dv">450</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run the code chunk below to build a bunch of models that you’ll be exploring in the exercises:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pumpkin_model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> ott, pumpkins)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pumpkin_model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> ott_cm, pumpkins)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pumpkin_model_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> ott <span class="sc">+</span> ott_cm, pumpkins)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>pumpkin_model_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> est_weight, pumpkins)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pumpkin_model_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> ott <span class="sc">+</span> est_weight, pumpkins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-1-modeling-weight-by-over-the-top-measurement" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-modeling-weight-by-over-the-top-measurement">Exercise 1: Modeling weight by over-the-top measurement</h2>
+<p>What can a pumpkin’s OTT measurement tell us about its weight? To answer this question, we’ll consider 3 of our models:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: left;">predictors</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_1</code></td>
+<td style="text-align: left;"><code>ott</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pumpkin_model_2</code></td>
+<td style="text-align: left;"><code>ott_cm</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_3</code></td>
+<td style="text-align: left;"><code>ott + ott_cm</code></td>
+</tr>
+</tbody>
+</table>
+<p>Plots of the first two models are below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pumpkins, <span class="fu">aes</span>(<span class="at">y =</span> weight_lbs, <span class="at">x =</span> ott)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pumpkins, <span class="fu">aes</span>(<span class="at">y =</span> weight_lbs, <span class="at">x =</span> ott_cm)) <span class="sc">+</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p><em>Before</em> examining the model summaries, check your intuition. Do you think the <code>pumpkin_model_2</code> R-squared will be less than, equal to, or more than that of <code>pumpkin_model_1</code>? Similarly, how do you think the <code>pumpkin_model_3</code> R-squared will compare to that of <code>pumpkin_model_1</code>?</p></li>
+<li><p>Check your intuition: Examine the R-squared values for the three pumpkin models and summarize how these compare.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pumpkin_model_1)<span class="sc">$</span>r.squared</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pumpkin_model_2)<span class="sc">$</span>r.squared</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pumpkin_model_3)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>Explain why your observation in part b makes sense. Support your reasoning with a plot of just the 2 <em>predictors</em>: <code>ott</code> vs <code>ott_cm</code>.</li>
+</ol>
+<ol start="4" type="a">
+<li><em>OPTIONAL challenge:</em> In <code>summary(pumpkin_model_3)</code>, the <code>ott_cm</code> coefficient is <code>NA</code>. Explain why this makes sense. HINT: Thinking about what you learned about controlling for covariates, why wouldn’t it make sense to interpret this coefficient? BONUS: For those of you that have taken MATH 236, this has to do with matrices that are not of full rank!</li>
+</ol>
+</section>
+<section id="exercise-2-incorporating-est_weight" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-incorporating-est_weight">Exercise 2: Incorporating <code>est_weight</code></h2>
+<p>There are established guidelines for estimating a pumpkin’s weight based on its OTT measurement.</p>
+<p>The <a href="https://www.bigpumpkins.com/Attachments/2025%20GPC%20AG%20OTT%20Chart.pdf">most recent guidelines</a> give the following estimation formula:</p>
+<p>Weight_lbs =(((12.81/(1+6.87*2<sup>(-OTT_inches/97)))</sup>3+(OTT_inches/45.9)^3.014)-10)</p>
+<p>In this exercise you’ll consider 3 models of <code>weight_lbs</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: left;">predictors</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_1</code></td>
+<td style="text-align: left;"><code>ott</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pumpkin_model_4</code></td>
+<td style="text-align: left;"><code>est_weight</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_5</code></td>
+<td style="text-align: left;"><code>ott + est_weight</code></td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li><p>Which is the better predictor of <code>weight_lbs</code>: <code>ott</code> or <code>est_weight</code>? Provide some numerical evidence.</p></li>
+<li><p><code>pumpkin_model_5</code> incorporates both <code>ott</code> and <code>est_weight</code> as predictors. <em>Before</em> examining a model summary, ask your gut: Will the <code>pumpkin_model_5</code> R-squared be:</p>
+<ol type="a">
+<li><p>less than 0.91?</p></li>
+<li><p>between 0.91 and 0.96?</p></li>
+<li><p>a little more than 0.96?</p></li>
+<li><p>close to 1?</p></li>
+</ol></li>
+<li><p>Check your intuition. Report the <code>pumpkin_model_5</code> R-squared and summarize how this compares to that of <code>pumpkin_model_1</code> and <code>pumpkin_model_4</code>.</p></li>
+<li><p>Explain why your observation in part c makes sense. Support your reasoning with a plot of the 2 <em>predictors</em>: <code>ott</code> vs <code>est_weight</code>.</p></li>
+</ol>
+</section>
+<section id="exercise-3-redundancy-and-multicollinearity" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-redundancy-and-multicollinearity">Exercise 3: Redundancy and Multicollinearity</h2>
+<p>The exercises above have illustrated special phenomena in multivariate modeling:</p>
+<ul>
+<li>two predictors are <strong>redundant</strong> if they contain the same exact information</li>
+<li>two predictors are <strong>multicollinear</strong> if they are strongly associated (they contain very similar information) but are not completely redundant.</li>
+</ul>
+<p>Recall that we examined 5 models:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: left;">predictors</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_1</code></td>
+<td style="text-align: left;"><code>ott</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pumpkin_model_2</code></td>
+<td style="text-align: left;"><code>ott_cm</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_3</code></td>
+<td style="text-align: left;"><code>ott + ott_cm</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pumpkin_model_4</code></td>
+<td style="text-align: left;"><code>est_weight</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>pumpkin_model_5</code></td>
+<td style="text-align: left;"><code>ott + est_weight</code></td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>Which model had <em>redundant</em> predictors and which predictors were these?</li>
+<li>Which model had <em>multicollinear</em> predictors and which predictors were these?</li>
+<li>In general, what happens to the R-squared value if we add a <em>redundant</em> predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?</li>
+<li>Similarly, what happens to the R-squared value if we add a <em>multicollinear</em> predictor to a model: will it decrease, stay the same, increase by a small amount, or increase by a significant amount?</li>
+</ol>
+</section>
+<section id="exercise-4-considerations-for-strong-models" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-considerations-for-strong-models">Exercise 4: Considerations for strong models</h2>
+<p>Let’s dive deeper into important considerations when building a <em>strong</em> model. We’ll use a subset of the pumpkins data for exploring these ideas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For illustration purposes only, take a sample of 10 pumpkins.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll discuss this code later in the course!</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">155</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>pumpkins_small <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(pumpkins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(weight_lbs <span class="sc">&gt;</span> <span class="dv">400</span>, weight_lbs<span class="sc">&lt;</span><span class="dv">700</span>, ott<span class="sc">&gt;</span><span class="dv">300</span>, <span class="sc">!</span><span class="fu">is.na</span>(weight_lbs), <span class="sc">!</span><span class="fu">is.na</span>(ott)), <span class="at">size =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ott =</span> <span class="fu">jitter</span>(ott))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Consider 3 models of bill length:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A model with one predictor (ott)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>poly_mod_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> ott, pumpkins_small)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A model with two predictors (ott and ott^2)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>poly_mod_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> <span class="fu">poly</span>(ott, <span class="dv">2</span>), pumpkins_small)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A model with nine predictors (ott, ott^2, ... on up to ott^9)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>poly_mod_9 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> <span class="fu">poly</span>(ott, <span class="dv">9</span>), pumpkins_small)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>Before doing any analysis, which of the three models do you think will be best?</li>
+<li>Calculate the R-squared values of these 3 models. Which model do you think is best?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poly_mod_1)<span class="sc">$</span>r.squared</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poly_mod_2)<span class="sc">$</span>r.squared</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poly_mod_9)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="a">
+<li>Check out plots depicting the relationship estimated by these 3 models. Which model do you think is best?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A plot of model 1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pumpkins_small, <span class="fu">aes</span>(<span class="at">y =</span> weight_lbs, <span class="at">x =</span> ott)) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A plot of model 2</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pumpkins_small, <span class="fu">aes</span>(<span class="at">y =</span> weight_lbs, <span class="at">x =</span> ott)) <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A plot of model 9</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pumpkins_small, <span class="fu">aes</span>(<span class="at">y =</span> weight_lbs, <span class="at">x =</span> ott)) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">9</span>), <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-5-reflecting-on-these-investigations" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5-reflecting-on-these-investigations">Exercise 5: Reflecting on these investigations</h2>
+<ol type="a">
+<li>List 3 of your favorite foods. Now imagine making a dish that combines all of these foods. Do you think it would taste good?</li>
+<li>Too many good things doesn’t make necessarily make a better thing. Model 9 demonstrates that it’s always <em>possible</em> to get a perfect R-squared of 1, but there are drawbacks to putting more and more predictors into our model. Answer the following about model 9:
+<ul>
+<li>How easy would it be to interpret this model?</li>
+<li>Would you say that this model captures the general trend of the relationship between <code>weight_lbs</code> and <code>ott</code>?</li>
+<li>How well do you think this model would generalize to pumpkins that were not included in the <code>pumpkins_small</code> sample? For example, would you expect these new pumpkins to fall on the wiggly model 9 curve?</li>
+</ul></li>
+</ol>
+</section>
+<section id="exercise-6-overfitting" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6-overfitting">Exercise 6: Overfitting</h2>
+<p>Model 9 provides an example of a model that is <strong>overfit</strong> to our sample data. That is, it picks up the tiny details of our data at the cost of losing the more general trends of the relationship of interest. Check out the following <a href="https://xkcd.com/2048/">xkcd comic</a>. Which plot pokes fun at overfitting?</p>
+<p><img src="https://imgs.xkcd.com/comics/curve_fitting_2x.png" class="img-fluid"></p>
+<p>Some other goodies:</p>
+<p><img src="https://pbs.twimg.com/media/EbI7FNxX0AU_gIR.jpg" class="img-fluid"></p>
+<p><img src="https://miro.medium.com/max/800/1*cT-z5lx-c0phjaw-iVUxvA.jpeg" class="img-fluid"></p>
+</section>
+<section id="exercise-7-questioning-r-squared" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-7-questioning-r-squared">Exercise 7: Questioning R-squared</h2>
+<p>Zooming out, explain some limitations of relying on R-squared to measure the strength / usefulness of a model.</p>
+</section>
+<section id="exercise-8-adjusted-r-squared" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-8-adjusted-r-squared">Exercise 8: Adjusted R-squared</h2>
+<p>We’ve seen that, unless a predictor is redundant with another, R-squared will increase. Even if that predictor is strongly multicollinear with another. Even if that predictor isn’t a good predictor! Thus if we only look at R-squared we might get overly greedy. We can check our greedy impulses a few ways. We take a more in depth approach in STAT 253, but one quick alternative is reported right in our model <code>summary()</code> tables. <strong>Adjusted R-squared</strong> includes a <em>penalty</em> for incorporating more and more predictors. Mathematically (where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(p\)</span> is the number of non-intercept coefficients):</p>
+<p><span class="math display">\[
+\text{Adjusted } R^2 = 1 - (1 - R^2) \left( \frac{n-1}{n-p-1} \right)
+\]</span></p>
+<p>Thus unlike R-squared, Adjusted R-squared can <em>decrease</em> when the information that a predictor contributes to a model isn’t enough to offset the complexity it adds to that model. Consider two models:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a subset of pumpkins from a single german competition, for illustrative purposes</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pumpkins_de <span class="ot">&lt;-</span> pumpkins <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gpc_site<span class="sc">==</span><span class="st">"XXL-Kuerbis-Wiegemeisterschaft auf dem Krewelshof"</span>, <span class="sc">!</span>(city <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Deurle"</span>, <span class="st">"Lindlar"</span>)), ott <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>example_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> city, pumpkins_de)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>example_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight_lbs <span class="sc">~</span> city <span class="sc">+</span> pct_chart, pumpkins_de)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li>Check out the summaries for the 2 example models. In general, how does a model’s Adjusted R-squared compare to the R-squared? Is it greater, less than, or equal to the R-squared?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(example_1)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(example_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li><p>How did the R-squared change from example model 1 to model 2? How did the Adjusted R-squared change?</p></li>
+<li><p>Explain what it is about <code>pct_chart</code> that resulted in a decreased Adjusted R-squared. Note: it’s not necessarily the case that <code>pct_chart</code> is a bad predictor on its own!</p></li>
+</ol>
+</section>
+<section id="reflection-1" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-1">Reflection</h2>
+<p>Today we looked at some cautions surrounding indiscriminately adding variables to a model. Summarize key takeaways.</p>
 <blockquote class="blockquote">
 <p><strong>Response:</strong> Put your response here.</p>
 </blockquote>
