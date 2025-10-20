@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```{r}
 #| echo: false
 #| eval: true
-make_student_notes('Multiple logistic regression', '_L17-logistic-multivariate-evaluation.qmd')
+make_student_notes('Multiple logistic regression', '_L17-logistic-multiple-evaluation.qmd')
 ```
 
 <!-- pull activity from core -->
@@ -30,7 +30,7 @@ make_student_notes('Multiple logistic regression', '_L17-logistic-multivariate-e
 knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
 ```
 
-{{< include core/_L17-logistic-multivariate-evaluation.qmd >}}
+{{< include core/_L17-logistic-multiple-evaluation.qmd >}}
 
 \
 \
