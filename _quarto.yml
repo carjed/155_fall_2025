@@ -50,7 +50,7 @@ website:
         # # - "activities/L20-bootstrapping.qmd"
         # - "activities/L19-20-sampling-dist-clt-bootstrap.qmd"
         # - "activities/L18-sampling-normal.qmd"
-        # - "activities/L17-logistic-multiple-evaluation.qmd"
+        - "activities/L17-logistic-multiple-evaluation.qmd"
         - "activities/L16-logistic-univariate.qmd"
         # - "activities/L15-prob-odds.qmd"
         # - "activities/L14-mlr-model-building-2.qmd"
