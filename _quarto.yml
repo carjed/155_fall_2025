@@ -49,7 +49,7 @@ website:
         # - "activities/L21-confidence-intervals.qmd" 
         # # - "activities/L20-bootstrapping.qmd"
         # - "activities/L19-20-sampling-dist-clt-bootstrap.qmd"
-        # - "activities/L18-sampling-normal.qmd"
+        - "activities/L18-sampling-normal.qmd"
         - "activities/L17-logistic-multiple-evaluation.qmd"
         - "activities/L16-logistic-univariate.qmd"
         # - "activities/L15-prob-odds.qmd"

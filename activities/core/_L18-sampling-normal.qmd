@@ -12,6 +12,26 @@ knitr::opts_chunk$set(
   fig.align = 'center')
 ```
 
+# Annoucements, etc.
+
+- Sit with your project group!
+
+-   Download [17-logistic-multiple-evaluation-notes.qmd](template_qmds/17-logistic-multiple-evaluation-notes.qmd), open it in RStudio, and save it in the “Activities” sub-folder of the “STAT 155” folder.
+
+### Upcoming dates
+
+**This Week:**
+
+-   Thursday: Quiz 2!
+  -   Covering all material up through multiple logistic regression
+
+------------------------------------------------------------------------
+
+**On the horizon:**
+
+- Tuesday, November 4: Checkpoint 14 due
+- Thursday, November 6: Project Milestone 1 due
+- Thursday, November 13: PP6 due
 
 # Notes
 
