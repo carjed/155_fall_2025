@@ -1,0 +1,294 @@
+---
+format: live-html
+engine: knitr
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{r include = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE)
+```
+
+# Data Collection Activity and Intro to R
+
+<!-- create student notes from activity in core-->
+
+{{< include _create_student_notes.qmd >}}
+
+```{r}
+#| echo: false
+#| eval: true
+make_student_notes('Collecting and Summarizing Data', '_L01-foundations-welcome.qmd')
+```
+
+<!-- pull activity from core -->
+
+```{r knitr-opts}
+#| echo: false
+#| cache: false
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
+
+{{< include core/_L01-foundations-welcome.qmd >}}
+
+/
+/
+
+## A brief introduction to R
+
+For the next section of today's activity, we'll get a taste of working with R code. For this activity, you can do everything interactively within this browser window, but going forward, you'll do all of your coding using either the RStudio desktop app or the Macalester RStudio Server.
+
+
+### Exercise 1: R as a calculator
+
+We can do simple calculations in R! Place your cursor in the area below, and hit Ctrl+Enter or click the "Run Code" button. It should output `[1] 6` underneath. Take some time to play around with some other simple arithmetic operations and see what happens!
+
+```{webr}
+4+2
+```
+
+What if we try using `4(2+3)` as shorthand for `4*(2+3)`? 
+
+```{webr}
+4(2+3)
+```
+
+...you should get an error that says `Error: attempt to apply non-function`. Errors like this are important to learning how R code does and doesn't work. In this case, we've encountered the concept of a function in R. 
+
+### Exercise 2: Introduction to Functions
+
+Functions are modular units of code designed to perform specific tasks. In R, a function is denoted by a name of the function, followed by parentheses. The name of a function is usually (but not always!) intuitive about what it does.
+
+Inside the parentheses goes some sort of "input", called `arguments`, and the function produces some sort of output.
+
+In each of the examples below, identify:
+
+1. the name of the function
+2. the argument(s) given to the function,
+3. the output, and 
+4. based on the name, arguments, and output, describe what the function does
+
+```{webr}
+sqrt(9)
+sqrt(25)
+nchar("snow")
+nchar("macalester")
+sqrt(nchar("snow"))
+```
+
+You may have noticed (and been confused by) the `[1]` at the beginning of each output, when we're expecting just a single number. Think of this like the row numbers in an Excel spreadsheet--while it may seem like a nuisance at first, these indices can be super helpful when we need to visually parse output consisting of longer lists. The `print()` function below gives us a useful example:
+
+```{webr}
+print(letters)
+```
+
+...here, the bracketed indices can help us quickly identify the 20th letter of the alphabet, for instance. Now try the `print()` function with a second argument, `quote=FALSE`:
+
+```{webr}
+print(letters, quote=FALSE)
+```
+
+What do you notice is different?
+
+### Exercise 3: Documentation
+
+What else can the `print()` function do? Are there other arguments we can play with?
+
+If you want to know how a function works and what arguments it takes, you can use the `?` command followed by the name of a function to pull its built-in documentation! For example, try the following to learn more about the `print` function:
+
+```{webr}
+?print
+```
+
+
+Now try pulling up the documentation for the `sqrt` function:
+
+```{webr}
+
+```
+
+### Exercise 4: Save it for later
+
+For reasons that will quickly become clear, we'll often want to store some R output for later use.
+In R this is done with the following convention:
+
+`name <- output`
+
+where
+
+-   `name` is the name under which to store a result.
+-   `output` is the result we wish to store
+-   `<-` is the **assignment operator**. I think of this as an arrow pointing the `output` into the `name`.
+
+Anything that we have stored in this way is called an `object`.
+
+NOTE: While there are technically other ways to assign results to an object with other assignment operators (e.g., `name = output` or `output -> name`), the `<-` operator is considered the standard convention in R. Many people in computer science despise R for this rather clunky syntax, but it is what it is 🙃.
+
+Try out each of the code chunks below.
+One of these will give you an error -- why?
+Another does something, but won't show any output -- why?
+
+```{webr}
+degrees_c_today < -13
+```
+
+```{webr}
+degrees_c_today <- -13
+```
+
+```{webr}
+degrees_c_today
+```
+
+
+Let's now *use* what you stored! Here you can see how objects can be incorporated into more complex operations to obtain new objects.
+
+```{webr}
+# convert degrees celsius to degrees farenheit
+degrees_c_today * (9/5) + 32
+```
+
+```{webr}
+# convert degrees celsius to degrees farenheit, and store in a new object
+degrees_f_today <- degrees_c_today * (9/5) + 32
+degrees_f_today
+```
+
+In the code chunks above, we've also introduced the concept of a `comment`. A comment is any line that starts with the `#` character, which means that line will not get evaluated, regardless of what comes after the comment. Comments are a great way to briefly document and describe what a particular line of code is doing, which is essential if someone else (or future you!) is trying to understand and run the code. 
+
+The other main use case for comments is to preserve lines of code that you've written, but you don't want R to try evaluating because they're buggy or nonessential in the moment. For example:
+
+```{webr}
+# kelvins_today <- degrees_c_today + 273.15
+degrees_f_today <- degrees_c_today * (9/5) + 32
+degrees_f_today
+```
+
+Finally, try to print `degrees_f_tomorrow`.
+Take time to read the **error message**.
+You will experience this type of error message a *lot*!
+It will happen when you either haven't yet defined the object you're trying to use, or you've misspelled its name (among other reasons we'll experience later).
+
+```{webr}
+degrees_f_tomorrow
+```
+
+
+
+### Exercise 5: Loading Packages
+
+In R, collections of related functions are often bundled together in a `package`. Many packages are loaded by default when you start R/RStudio (such as the `base` package, which includes many of the most common and basic functions needed to do anything at all in R), but often we need to load certain packages before we can use the functions we want.
+
+To load a package, it must first be installed on your computer! You typically only need to install a package once, but you'll have to load it every time you start a new session in R. We'll go through how to install packages on your own computer in the next class, but for now we'll get some exposure to the steps for loading a library. Run the code chunk below to load the `tidyverse` package, which we will use extensively in this course:
+
+```{webr}
+library(tidvyerse)
+```
+
+Oops, we got an error message! Try to figure out what happened and edit the code chunk below to try and fix it.
+
+:::: {.panel-tabset}
+
+## Exercise
+
+```{webr}
+#| exercise: ex1
+library(tidvyerse)
+```
+
+## Hints
+
+::: { .hint exercise="ex1"}
+Read closely!
+:::
+
+## Solution
+
+::: { .solution exercise="ex1" }
+
+There was a typo in the library name--using `tidyverse` instead of `tidvyerse` fixes it!
+
+```r
+library(tidyverse)                                 #<1>
+```
+:::
+
+::::
+
+Often you will see some informational output when loading a package. This output varies from package to package and can occasionally look like an error message at first. For example, loading the `tidyverse` package will give output like so:
+
+```
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+This looks like an error message, but it's not--the package still loaded successfully. Discuss with your group what you think this message means, and when it might cause issues.
+
+If you're not sure if a package was loaded correctly, there are a few ways to confirm. First, you can try pulling up the documentation for that package. Try doing so in the code chunk below, and if you're able to see the documentation, it worked!
+
+:::: {.panel-tabset}
+
+## Exercise
+
+```{webr}
+#| exercise: ex2
+
+```
+
+## Hints
+
+::: { .hint exercise="ex1"}
+Look back at exercise 3
+:::
+
+## Solution
+
+::: { .solution exercise="ex1" }
+
+```r
+?tidyverse                                 #<1>
+```
+:::
+
+::::
+
+### Exercise 6: Using functions from the package you loaded
+
+Another way to confirm if a package is loaded is to simply try using any of the functions that are contained in that package. In general, if the function works, you know the package is loaded, and if not, you need to troubleshoot how you were trying to load the package. 
+
+For example, the `%>%` in the code chunk below is a special tidyverse function known as a `pipe`, that takes the output from the *preceding* function, and passes it as an argument to the *next* function. Pipes allow you to string together output from multiple functions into a more complex sequence (a pipeline!), which helps keep your code tidy and avoid creating an object for each intermediate step of that sequence.
+
+```{webr}
+sqrt(81) %>% sqrt()
+```
+
+Compare this to the following:
+
+```{webr}
+first_output <- sqrt(81)
+sqrt(first_output)
+```
+
+or
+
+```{webr}
+sqrt(sqrt(81))
+```
+
+or 
+
+```{webr}
+81^(1/4)
+```
+
+...as you can see, there are many ways to do the same thing in R (as in any programming language). There are pros and cons to every approach, but in this class, we'll prioritize the "if it works, it works!" philosophy. Don't stress too much about doing something the "right" way, as long as you're confident that the output is what you actually want and you understand what each function is doing.
+
+If you're feeling overwhelmed by all of these coding concepts on the first day, that's ok! (my goal is to make you less overwhelmed than my students in previous semesters before I wrote this intro activity). We'll introduce RStudio next time and gradually build your proficiency with using these tools over the next few weeks.
+
+If you want some more introduction/practice with the basics before next class, check out Chapters 1-2 of [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/)
