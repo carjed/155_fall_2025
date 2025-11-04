@@ -980,189 +980,270 @@
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#learning-goals",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Learning goals",
-    "text": "Learning goals\nLet \\(\\beta\\) be some population parameter and \\(\\hat{\\beta}\\) be a sample estimate of \\(\\beta\\). Our goals for the day are to:\n\nuse simulation to solidify our understanding of sampling distributions and standard errors\nexplore and compare two approaches to approximating the sampling distribution of \\(\\hat{\\beta}\\):\n\nCentral Limit Theorem (CLT)\nbootstrapping\n\nexplore the impact of sample size on sampling distributions and standard errors"
+    "text": "Learning goals\nLet \\(\\beta\\) be some population parameter and \\(\\hat{\\beta}\\) be a sample estimate of \\(\\beta\\). Our goals for the day are to:\n\nuse simulation to solidify our understanding of sampling distributions and standard errors\nexplore and compare two approaches to approximating the sampling distribution of \\(\\hat{\\beta}\\):\n\nCentral Limit Theorem (CLT)\nbootstrapping\n\nexplore the impact of sample size on sampling distributions and standard errors",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#readings-and-videos",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#readings-and-videos",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Readings and videos",
-    "text": "Readings and videos\nPlease watch/do the following videos and readings before class:\n\nReading: Section 6.7 in the STAT 155 Notes\nVideo 1: sampling distributions\nVideo 2: Central Limit Theorem\nVideo 3: bootstrapping"
+    "text": "Readings and videos\nPlease watch/do the following videos and readings before class:\n\nReading: Section 6.7 in the STAT 155 Notes\nVideo 1: sampling distributions\nVideo 2: Central Limit Theorem\nVideo 3: bootstrapping",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#reflect",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#reflect",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "REFLECT",
-    "text": "REFLECT\nGreat! We have two options. Here are some things to think about / reflect on:\n\nWe can approximate the sampling distribution and standard error using the CLT. BUT:\n\nthe quality of this approximation hinges upon the validity of the Central Limit theorem which hinges upon the validity of the theoretical model assumptions, as well as a large sample size\nthe CLT uses theoretical formulas for the standard error estimates, thus can feel a little mysterious without a solid foundation in probability theory\n\nWe can approxiate the sampling distribution and standard error using bootstrapping. BUT:\n\nit feels magical. The statistical theory behind bootstrapping is quite complicated, and there are certain obscure cases (none that we will encounter in Stat 155) where the assumptions underlying bootstrapping fail to hold\n\n\nNeither approach is perfect, but they complement one another. Bootrapping in particular, while it cannot and should not replace the CLT, gives us some nice intuition behind the idea of resampling, which is fundamental for hypothesis testing (which we’ll get to shortly!).\n\nReflect: Before testing them out, what questions do you have about either approach? What do you think would help you build more intuition for the CLT and/or bootstrapping? Does one approach resonate with you more than the other?"
+    "text": "REFLECT\nGreat! We have two options. Here are some things to think about / reflect on:\n\nWe can approximate the sampling distribution and standard error using the CLT. BUT:\n\nthe quality of this approximation hinges upon the validity of the Central Limit theorem which hinges upon the validity of the theoretical model assumptions, as well as a large sample size\nthe CLT uses theoretical formulas for the standard error estimates, thus can feel a little mysterious without a solid foundation in probability theory\n\nWe can approxiate the sampling distribution and standard error using bootstrapping. BUT:\n\nit feels magical. The statistical theory behind bootstrapping is quite complicated, and there are certain obscure cases (none that we will encounter in Stat 155) where the assumptions underlying bootstrapping fail to hold\n\n\nNeither approach is perfect, but they complement one another. Bootrapping in particular, while it cannot and should not replace the CLT, gives us some nice intuition behind the idea of resampling, which is fundamental for hypothesis testing (which we’ll get to shortly!).\n\nReflect: Before testing them out, what questions do you have about either approach? What do you think would help you build more intuition for the CLT and/or bootstrapping? Does one approach resonate with you more than the other?",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-1-500-samples-of-size-10",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-1-500-samples-of-size-10",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 1: 500 samples of size 10",
-    "text": "Exercise 1: 500 samples of size 10\nRecall that we can sample 10 observations from our dataset using sample_n():\n\n# Run this chunk a few times to explore the different samples you get\nfish %&gt;% \n  sample_n(size = 10, replace = TRUE)\n\nWe can also take a sample and then use the data to estimate the model:\n\n# Run this chunk a few times to explore the different sample models you get\nfish %&gt;% \n  sample_n(size = 10, replace = TRUE) %&gt;% \n  with(lm(Concen ~ Length))\n\nWe can also take multiple unique samples and build a sample model from each.\nThe code below obtains 500 separate samples of 10 fish, and stores the model estimates from each:\n\n# Set the seed so that we all get the same results\nset.seed(155)\n\n# Store the sample models\nsample_models_10 &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 10, replace = TRUE) %&gt;% \n    with(lm(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_10)\ndim(sample_models_10)\n\n\nWhat’s the point of the do() function?!? If you’ve taken any COMP classes, what process do you think do() is a shortcut for?\nWhat is stored in the Intercept, Length, and r.squared columns of the results?\nWe’ll obtain a bootstrapping distribution of \\(\\hat{\\beta}_1\\) by taking many (500, in this case) different samples of every fish in our dataset (171 of them) and exploring the degree to which \\(\\hat{\\beta}_1\\) varies from sample to sample.\n\nEdit the code below to obtain a bootstrapping distribution.\n\n# Set the seed so that we all get the same results\nset.seed(155)\n\n# Store the sample models\nsample_models_boot &lt;- mosaic::do(___)*(\n  fish %&gt;% \n    sample_n(size = ___, replace = TRUE) %&gt;% \n    with(lm(Concen ~ Length))\n)"
+    "text": "Exercise 1: 500 samples of size 10\nRecall that we can sample 10 observations from our dataset using sample_n():\n\n# Run this chunk a few times to explore the different samples you get\nfish %&gt;% \n  sample_n(size = 10, replace = TRUE)\n\nWe can also take a sample and then use the data to estimate the model:\n\n# Run this chunk a few times to explore the different sample models you get\nfish %&gt;% \n  sample_n(size = 10, replace = TRUE) %&gt;% \n  with(lm(Concen ~ Length))\n\nWe can also take multiple unique samples and build a sample model from each.\nThe code below obtains 500 separate samples of 10 fish, and stores the model estimates from each:\n\n# Set the seed so that we all get the same results\nset.seed(155)\n\n# Store the sample models\nsample_models_10 &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 10, replace = TRUE) %&gt;% \n    with(lm(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_10)\ndim(sample_models_10)\n\n\nWhat’s the point of the do() function?!? If you’ve taken any COMP classes, what process do you think do() is a shortcut for?\nWhat is stored in the Intercept, Length, and r.squared columns of the results?\nWe’ll obtain a bootstrapping distribution of \\(\\hat{\\beta}_1\\) by taking many (500, in this case) different samples of every fish in our dataset (171 of them) and exploring the degree to which \\(\\hat{\\beta}_1\\) varies from sample to sample.\n\nEdit the code below to obtain a bootstrapping distribution.\n\n# Set the seed so that we all get the same results\nset.seed(155)\n\n# Store the sample models\nsample_models_boot &lt;- mosaic::do(___)*(\n  fish %&gt;% \n    sample_n(size = ___, replace = TRUE) %&gt;% \n    with(lm(Concen ~ Length))\n)",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-2-why-resampling-replace-true",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-2-why-resampling-replace-true",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 2: Why “resampling” (replace = TRUE)?",
-    "text": "Exercise 2: Why “resampling” (replace = TRUE)?\nLet’s wrap our minds around the idea of resampling, before coming back to our boostrapping distribution, using a small example of 5 fish:\n\n# Define data\nsmall_sample &lt;- data.frame(\n  id = 1:5,\n  Length = c(44, 43, 54, 52, 40))\n\nsmall_sample\n\nThis sample has a mean Length of 46.6 cm:\n\nsmall_sample %&gt;% \n  summarize(mean(Length))\n\n\nThe chunk below samples 5 fish without replacement from our small_sample of 5 fish, and calculates their mean length. Run it several times. How do the sample and resulting mean change?\n\n\nsample_1 &lt;- sample_n(small_sample, size = 5, replace = FALSE)\nsample_1\n\nsample_1 %&gt;% \n  summarize(mean(Length))\n\n\nSampling our sample without replacement merely returns our original sample. Instead, resample 5 fish from our small_sample with replacement. Run it several times. What do you notice about the samples? About their mean lengths?\n\n\nsample_2 &lt;- sample_n(small_sample, size = 5, replace = TRUE)\nsample_2\n\nsample_2 %&gt;% \n  summarize(mean(Length))\n\nResampling our sample provides insight into the variability, hence potential error, in our sample estimates. (This works better when we have a sample bigger than 5!) As you observed in part b, each resample might include some fish from the original sample several times and others not at all.\nBonus Fact: Sampling with replacement also ensures that our resampled observations are independent, which we need in order for bootstrapping to “work”!"
+    "text": "Exercise 2: Why “resampling” (replace = TRUE)?\nLet’s wrap our minds around the idea of resampling, before coming back to our boostrapping distribution, using a small example of 5 fish:\n\n# Define data\nsmall_sample &lt;- data.frame(\n  id = 1:5,\n  Length = c(44, 43, 54, 52, 40))\n\nsmall_sample\n\nThis sample has a mean Length of 46.6 cm:\n\nsmall_sample %&gt;% \n  summarize(mean(Length))\n\n\nThe chunk below samples 5 fish without replacement from our small_sample of 5 fish, and calculates their mean length. Run it several times. How do the sample and resulting mean change?\n\n\nsample_1 &lt;- sample_n(small_sample, size = 5, replace = FALSE)\nsample_1\n\nsample_1 %&gt;% \n  summarize(mean(Length))\n\n\nSampling our sample without replacement merely returns our original sample. Instead, resample 5 fish from our small_sample with replacement. Run it several times. What do you notice about the samples? About their mean lengths?\n\n\nsample_2 &lt;- sample_n(small_sample, size = 5, replace = TRUE)\nsample_2\n\nsample_2 %&gt;% \n  summarize(mean(Length))\n\nResampling our sample provides insight into the variability, hence potential error, in our sample estimates. (This works better when we have a sample bigger than 5!) As you observed in part b, each resample might include some fish from the original sample several times and others not at all.\nBonus Fact: Sampling with replacement also ensures that our resampled observations are independent, which we need in order for bootstrapping to “work”!",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-3-sampling-distribution",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-3-sampling-distribution",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 3: Sampling distribution",
-    "text": "Exercise 3: Sampling distribution\nCheck out the resulting 500 bootstrapped sample models:\n\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) +\n  geom_abline(data = sample_models_boot, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\nLet’s focus on the slopes of these 500 sample models.\nA plot of the 500 slopes approximates the sampling distribution of the sample slopes.\n\nsample_models_boot %&gt;% \n  ggplot(aes(x = Length)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\") \n\nDescribe the sampling distribution:\n\nWhat’s its general shape?\nWhere is it roughly centered?\nRoughly what’s its spread / i.e. what’s the range of estimates you observed?"
+    "text": "Exercise 3: Sampling distribution\nCheck out the resulting 500 bootstrapped sample models:\n\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) +\n  geom_abline(data = sample_models_boot, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\nLet’s focus on the slopes of these 500 sample models.\nA plot of the 500 slopes approximates the sampling distribution of the sample slopes.\n\nsample_models_boot %&gt;% \n  ggplot(aes(x = Length)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\") \n\nDescribe the sampling distribution:\n\nWhat’s its general shape?\nWhere is it roughly centered?\nRoughly what’s its spread / i.e. what’s the range of estimates you observed?",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-4-standard-error",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-4-standard-error",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 4: Standard error",
-    "text": "Exercise 4: Standard error\nFor a more rigorous assessment of the spread among the sample slopes, let’s calculate their standard deviation:\n\nsample_models_boot %&gt;% \n  summarize(sd(Length))\n\nRecall: The standard deviation of sample estimates is called a “standard error”.\nIt measures the typical distance of a sample estimate from the actual population value.\nCompare the bootstrapped standard error to the standard error reported from our regression model (see the Std. Error column):\n\ncoef(summary(fish_model))\n\nAre they roughly equivalent?\n\nYour response here"
+    "text": "Exercise 4: Standard error\nFor a more rigorous assessment of the spread among the sample slopes, let’s calculate their standard deviation:\n\nsample_models_boot %&gt;% \n  summarize(sd(Length))\n\nRecall: The standard deviation of sample estimates is called a “standard error”.\nIt measures the typical distance of a sample estimate from the actual population value.\nCompare the bootstrapped standard error to the standard error reported from our regression model (see the Std. Error column):\n\ncoef(summary(fish_model))\n\nAre they roughly equivalent?\n\nYour response here",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-5-central-limit-theorem-clt",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-5-central-limit-theorem-clt",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 5: Central Limit Theorem (CLT)",
-    "text": "Exercise 5: Central Limit Theorem (CLT)\nRecall that the CLT assumes that, so long as our sample size is “big enough”, the sampling distribution of the sample slope will be Normal.\nSpecifically, all possible sample slopes will vary Normally around the population slope.\n\nDo your simulation results support this assumption? Why or why not?\nWant more intuition into the CLT? Watch this video explanation using bunnies and dragons: https://www.youtube.com/watch?v=jvoxEYmQHNM"
+    "text": "Exercise 5: Central Limit Theorem (CLT)\nRecall that the CLT assumes that, so long as our sample size is “big enough”, the sampling distribution of the sample slope will be Normal.\nSpecifically, all possible sample slopes will vary Normally around the population slope.\n\nDo your simulation results support this assumption? Why or why not?\nWant more intuition into the CLT? Watch this video explanation using bunnies and dragons: https://www.youtube.com/watch?v=jvoxEYmQHNM",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-6-using-the-clt",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-6-using-the-clt",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 6: Using the CLT",
-    "text": "Exercise 6: Using the CLT\nLet \\(\\hat{\\beta}_1\\) be an estimate of the (super)population slope parameter \\(\\beta_1\\) calculated from a sample of 10 fish (sample_models_10).\nEstimate the standard error of the slope from these resampled estimates\n\n# Hint: Adapt the code from Exercise 5...\n\nYou should get a SE of roughly 0.026.\nThus, by the CLT, the sampling distribution of \\(\\hat{\\beta}_1\\) is:\n\\[\\hat{\\beta}_1 \\sim N(\\beta_1, 0.26^2)\\]\nUse this result with the 68-95-99.7 property of the Normal model to understand the potential error in a slope estimate.\n\nThere are many possible samples of 10 fish. What percent of these will produce an estimate \\(\\hat{\\beta}_1\\) that’s within 0.052, i.e. 2 standard errors, of the actual population slope \\(\\beta_1\\)?\nMore than 2 standard errors from \\(\\beta_1\\)?\nMore than 0.079, i.e. 3 standard errors, above \\(\\beta_1\\)?"
+    "text": "Exercise 6: Using the CLT\nLet \\(\\hat{\\beta}_1\\) be an estimate of the (super)population slope parameter \\(\\beta_1\\) calculated from a sample of 10 fish (sample_models_10).\nEstimate the standard error of the slope from these resampled estimates\n\n# Hint: Adapt the code from Exercise 5...\n\nYou should get a SE of roughly 0.026.\nThus, by the CLT, the sampling distribution of \\(\\hat{\\beta}_1\\) is:\n\\[\\hat{\\beta}_1 \\sim N(\\beta_1, 0.26^2)\\]\nUse this result with the 68-95-99.7 property of the Normal model to understand the potential error in a slope estimate.\n\nThere are many possible samples of 10 fish. What percent of these will produce an estimate \\(\\hat{\\beta}_1\\) that’s within 0.052, i.e. 2 standard errors, of the actual population slope \\(\\beta_1\\)?\nMore than 2 standard errors from \\(\\beta_1\\)?\nMore than 0.079, i.e. 3 standard errors, above \\(\\beta_1\\)?",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-7-clt-and-the-68-95-99.7-rule",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-7-clt-and-the-68-95-99.7-rule",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 7: CLT and the 68-95-99.7 Rule",
-    "text": "Exercise 7: CLT and the 68-95-99.7 Rule\nFill in the blanks below to complete some general properties assumed by the CLT:\n\n___% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 1 st. err. of \\(\\beta_1\\)\n___% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 2 st. err. of \\(\\beta_1\\)\n___% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 3 st. err. of \\(\\beta_1\\)"
+    "text": "Exercise 7: CLT and the 68-95-99.7 Rule\nFill in the blanks below to complete some general properties assumed by the CLT:\n\n___% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 1 st. err. of \\(\\beta_1\\)\n___% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 2 st. err. of \\(\\beta_1\\)\n___% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 3 st. err. of \\(\\beta_1\\)",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-8-increasing-sample-size",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-8-increasing-sample-size",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 8: Increasing sample size",
-    "text": "Exercise 8: Increasing sample size\nNow that we have a sense of the potential variability and error in sample estimates, let’s consider the impact of sample size.\nSuppose we were to increase our sample size from n = 10 to n = 50 or n = 100 fish. What impact do you anticipate this having on our sample estimates of the population parameters:\n\nDo you expect there to be more or less variability among the sample model lines?\nAround what value would you expect the sampling distribution of sample slopes to be centered?\nWhat general shape would you expect that sampling distribution to have?\nIn comparison to estimates based on the samples of size 10, do you think the estimates based on samples of size 50 will be closer to or farther from the true slope (on average)?"
+    "text": "Exercise 8: Increasing sample size\nNow that we have a sense of the potential variability and error in sample estimates, let’s consider the impact of sample size.\nSuppose we were to increase our sample size from n = 10 to n = 50 or n = 100 fish. What impact do you anticipate this having on our sample estimates of the population parameters:\n\nDo you expect there to be more or less variability among the sample model lines?\nAround what value would you expect the sampling distribution of sample slopes to be centered?\nWhat general shape would you expect that sampling distribution to have?\nIn comparison to estimates based on the samples of size 10, do you think the estimates based on samples of size 50 will be closer to or farther from the true slope (on average)?",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-9-500-samples-of-size-n",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-9-500-samples-of-size-n",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 9: 500 samples of size n",
-    "text": "Exercise 9: 500 samples of size n\nLet’s increase the sample size in our simulation.\nFill in the blanks to take 500 samples of size 50, and build a sample model from each.\n\nset.seed(155)\nsample_models_50 &lt;- mosaic::do(___)*(\n  fish %&gt;% \n    ___(size = ___, replace = FALSE) %&gt;% \n    ___(___(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_50)\n\nSimilarly, take 500 samples of size 100, and build a sample model from each.\n\nset.seed(155)\nsample_models_100 &lt;- mosaic::do(___)*(\n  fish %&gt;% \n    ___(size = ___, replace = FALSE) %&gt;% \n    ___(___(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_100)"
+    "text": "Exercise 9: 500 samples of size n\nLet’s increase the sample size in our simulation.\nFill in the blanks to take 500 samples of size 50, and build a sample model from each.\n\nset.seed(155)\nsample_models_50 &lt;- mosaic::do(___)*(\n  fish %&gt;% \n    ___(size = ___, replace = FALSE) %&gt;% \n    ___(___(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_50)\n\nSimilarly, take 500 samples of size 100, and build a sample model from each.\n\nset.seed(155)\nsample_models_100 &lt;- mosaic::do(___)*(\n  fish %&gt;% \n    ___(size = ___, replace = FALSE) %&gt;% \n    ___(___(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_100)",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-10-impact-of-sample-size-part-i",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-10-impact-of-sample-size-part-i",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 10: Impact of sample size (part I)",
-    "text": "Exercise 10: Impact of sample size (part I)\nCompare and contrast the 500 sets of sample models when using samples of size 10, 50, and 100.\n\n# 500 sample models using samples of size 10\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_10, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n# 500 sample models using samples of size 50\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_50, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n# 500 sample models using samples of size 100\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_100, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\nWhat happens to our sample models as sample size increases? Was this what you expected?"
+    "text": "Exercise 10: Impact of sample size (part I)\nCompare and contrast the 500 sets of sample models when using samples of size 10, 50, and 100.\n\n# 500 sample models using samples of size 10\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_10, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n# 500 sample models using samples of size 50\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_50, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n# 500 sample models using samples of size 100\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_100, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\nWhat happens to our sample models as sample size increases? Was this what you expected?",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-11-impact-of-sample-size-part-ii",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-11-impact-of-sample-size-part-ii",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 11: Impact of sample size (part II)",
-    "text": "Exercise 11: Impact of sample size (part II)\nLet’s focus on just the sampling distributions of our 500 slope estimates \\(\\hat{\\beta}_1\\).\nFor easy comparison, plot the estimates based on samples of size 10, 50, and 100 on the same frame:\n\n# Don't think too hard about this code!\n# Combine the estimates & sample size into a new data set\n# Then plot it\n\ndata.frame(estimates = c(sample_models_10$Length, sample_models_50$Length, sample_models_100$Length),\n           sample_size = rep(c(\"10\",\"50\",\"100\"), each = 500)) %&gt;% \n  mutate(sample_size = fct_relevel(sample_size, c(\"10\", \"50\", \"100\"))) %&gt;% \n  ggplot(aes(x = estimates, color = sample_size)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\", linetype = \"dashed\") + \n  labs(title = \"Sampling distributions of the sample slope\")\n\n\nHow do the shapes, centers, and spreads of these sampling distributions compare? Was this what you expected?"
+    "text": "Exercise 11: Impact of sample size (part II)\nLet’s focus on just the sampling distributions of our 500 slope estimates \\(\\hat{\\beta}_1\\).\nFor easy comparison, plot the estimates based on samples of size 10, 50, and 100 on the same frame:\n\n# Don't think too hard about this code!\n# Combine the estimates & sample size into a new data set\n# Then plot it\n\ndata.frame(estimates = c(sample_models_10$Length, sample_models_50$Length, sample_models_100$Length),\n           sample_size = rep(c(\"10\",\"50\",\"100\"), each = 500)) %&gt;% \n  mutate(sample_size = fct_relevel(sample_size, c(\"10\", \"50\", \"100\"))) %&gt;% \n  ggplot(aes(x = estimates, color = sample_size)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\", linetype = \"dashed\") + \n  labs(title = \"Sampling distributions of the sample slope\")\n\n\nHow do the shapes, centers, and spreads of these sampling distributions compare? Was this what you expected?",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-12-properties-of-sampling-distributions",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-12-properties-of-sampling-distributions",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 12: Properties of sampling distributions",
-    "text": "Exercise 12: Properties of sampling distributions\nIn light of your observations, complete the following statements about the sampling distribution of the sample slope.\n\nFor all sample sizes, the shape of the sampling distribution is roughly ___ and the sampling distribution is roughly centered around ___, the sample estimate from our original data.\nAs sample size increases:\nThe average sample slope estimate INCREASES / DECREASES / IS FAIRLY STABLE.\nThe standard error of the sample slopes INCREASES / DECREASES / IS FAIRLY STABLE.\nThus, as sample size increases, our sample slopes become MORE RELIABLE / LESS RELIABLE."
+    "text": "Exercise 12: Properties of sampling distributions\nIn light of your observations, complete the following statements about the sampling distribution of the sample slope.\n\nFor all sample sizes, the shape of the sampling distribution is roughly ___ and the sampling distribution is roughly centered around ___, the sample estimate from our original data.\nAs sample size increases:\nThe average sample slope estimate INCREASES / DECREASES / IS FAIRLY STABLE.\nThe standard error of the sample slopes INCREASES / DECREASES / IS FAIRLY STABLE.\nThus, as sample size increases, our sample slopes become MORE RELIABLE / LESS RELIABLE.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-1-500-samples-of-size-10-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-1-500-samples-of-size-10-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 1: 500 samples of size 10",
-    "text": "Exercise 1: 500 samples of size 10\n\ndo() repeats the code within the parentheses as many times as you tell it. do()` is a shortcut for a for loop.\n500 different sample estimates of the model\n\n\n\n# Set the seed so that we all get the same results\nset.seed(155)\n\n# Store the sample models\nsample_models_boot &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 171, replace = TRUE) %&gt;% \n    with(lm(Concen ~ Length))\n)"
+    "text": "Exercise 1: 500 samples of size 10\n\ndo() repeats the code within the parentheses as many times as you tell it. do()` is a shortcut for a for loop.\n500 different sample estimates of the model\n\n\n\n# Set the seed so that we all get the same results\nset.seed(155)\n\n# Store the sample models\nsample_models_boot &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 171, replace = TRUE) %&gt;% \n    with(lm(Concen ~ Length))\n)",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-2-why-resampling-replace-true-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-2-why-resampling-replace-true-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 2: Why “resampling” (replace = TRUE)?",
-    "text": "Exercise 2: Why “resampling” (replace = TRUE)?\n\nThe sample and the mean are the same every time!\nIf we rerun the code below multiple times, we’ll get different samples every time! Note that some of the observations are repeated (this is because of replace = TRUE), but we actually obtain variation in our samples and their mean lengths.\n\n\nsample_2 &lt;- sample_n(small_sample, size = 5, replace = TRUE)\nsample_2\n##   id Length\n## 1  2     43\n## 2  4     52\n## 3  2     43\n## 4  5     40\n## 5  2     43\n\nsample_2 %&gt;% \n  summarize(mean(Length))\n##   mean(Length)\n## 1         44.2"
+    "text": "Exercise 2: Why “resampling” (replace = TRUE)?\n\nThe sample and the mean are the same every time!\nIf we rerun the code below multiple times, we’ll get different samples every time! Note that some of the observations are repeated (this is because of replace = TRUE), but we actually obtain variation in our samples and their mean lengths.\n\n\nsample_2 &lt;- sample_n(small_sample, size = 5, replace = TRUE)\nsample_2\n##   id Length\n## 1  2     43\n## 2  4     52\n## 3  2     43\n## 4  5     40\n## 5  2     43\n\nsample_2 %&gt;% \n  summarize(mean(Length))\n##   mean(Length)\n## 1         44.2",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-3-sampling-distribution-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-3-sampling-distribution-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 3: Sampling distribution",
-    "text": "Exercise 3: Sampling distribution\n\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) +\n  geom_abline(data = sample_models_boot, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\nsample_models_boot %&gt;% \n  ggplot(aes(x = Length)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\") \n\n\n\n\n\n\n\n\n\nThe sampling distribution is symmetric, unimodal, and shaped like a bell curve!\nIt is roughly centered at the slope calculated from our entire sample!\nMost of the estimates lie within the range 0.04 to 0.075."
+    "text": "Exercise 3: Sampling distribution\n\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) +\n  geom_abline(data = sample_models_boot, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\nsample_models_boot %&gt;% \n  ggplot(aes(x = Length)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\") \n\n\n\n\n\n\n\n\n\nThe sampling distribution is symmetric, unimodal, and shaped like a bell curve!\nIt is roughly centered at the slope calculated from our entire sample!\nMost of the estimates lie within the range 0.04 to 0.075.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-5-standard-error",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-5-standard-error",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 5: Standard error",
-    "text": "Exercise 5: Standard error\n\n# boostrapped se\nsample_models_boot %&gt;% \n  summarize(sd(Length))\n##    sd(Length)\n## 1 0.005664586\n\n# CLT se\ncoef(summary(fish_model))\n##                Estimate  Std. Error   t value     Pr(&gt;|t|)\n## (Intercept) -1.13164542 0.213614796 -5.297598 3.617750e-07\n## Length       0.05812749 0.005227593 11.119359 6.641225e-22\n\nThey are basically identical! Both are about 0.005."
+    "text": "Exercise 5: Standard error\n\n# boostrapped se\nsample_models_boot %&gt;% \n  summarize(sd(Length))\n##    sd(Length)\n## 1 0.005664586\n\n# CLT se\ncoef(summary(fish_model))\n##                Estimate  Std. Error   t value     Pr(&gt;|t|)\n## (Intercept) -1.13164542 0.213614796 -5.297598 3.617750e-07\n## Length       0.05812749 0.005227593 11.119359 6.641225e-22\n\nThey are basically identical! Both are about 0.005.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-5-central-limit-theorem-clt-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-5-central-limit-theorem-clt-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 5: Central Limit Theorem (CLT)",
-    "text": "Exercise 5: Central Limit Theorem (CLT)\nRecall that the CLT assumes that, so long as our sample size is “big enough”, the sampling distribution of the sample slope will be Normal.\nSpecifically, all possible sample slopes will vary Normally around the population slope.\n\nDo your simulation results support this assumption? Why or why not?\n\n\nYes! They support this assumption because the shape of sampling distribution is roughly normal (i.e. bell-shaped)."
+    "text": "Exercise 5: Central Limit Theorem (CLT)\nRecall that the CLT assumes that, so long as our sample size is “big enough”, the sampling distribution of the sample slope will be Normal.\nSpecifically, all possible sample slopes will vary Normally around the population slope.\n\nDo your simulation results support this assumption? Why or why not?\n\n\nYes! They support this assumption because the shape of sampling distribution is roughly normal (i.e. bell-shaped).",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-6-using-the-clt-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-6-using-the-clt-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 6: Using the CLT",
-    "text": "Exercise 6: Using the CLT\n\n# Hint: Adapt the code from Exercise 5...\nsample_models_10 %&gt;% \n  summarize(sd(Length))\n##   sd(Length)\n## 1 0.02532877\n\n\n95%\n100% - 95% = 5%\n(100 - 99.7)/2 = 0.15% (Note that we divide by two here, because we only want those above 3 SEs, not either above or below!)"
+    "text": "Exercise 6: Using the CLT\n\n# Hint: Adapt the code from Exercise 5...\nsample_models_10 %&gt;% \n  summarize(sd(Length))\n##   sd(Length)\n## 1 0.02532877\n\n\n95%\n100% - 95% = 5%\n(100 - 99.7)/2 = 0.15% (Note that we divide by two here, because we only want those above 3 SEs, not either above or below!)",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-7-clt-and-the-68-95-99.7-rule-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-7-clt-and-the-68-95-99.7-rule-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 7: CLT and the 68-95-99.7 Rule",
-    "text": "Exercise 7: CLT and the 68-95-99.7 Rule\n\n68% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 1 st. err. of \\(\\beta_1\\)\n95% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 2 st. err. of \\(\\beta_1\\)\n99.7% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 3 st. err. of \\(\\beta_1\\)"
+    "text": "Exercise 7: CLT and the 68-95-99.7 Rule\n\n68% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 1 st. err. of \\(\\beta_1\\)\n95% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 2 st. err. of \\(\\beta_1\\)\n99.7% of samples will produce \\(\\hat{\\beta}_1\\) estimates within 3 st. err. of \\(\\beta_1\\)",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-8-increasing-sample-size-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-8-increasing-sample-size-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 8: Increasing sample size",
-    "text": "Exercise 8: Increasing sample size\nIntuition, no wrong answer."
+    "text": "Exercise 8: Increasing sample size\nIntuition, no wrong answer.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-9-500-samples-of-size-n-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-9-500-samples-of-size-n-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 9: 500 samples of size n",
-    "text": "Exercise 9: 500 samples of size n\n\nset.seed(155)\nsample_models_50 &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 50, replace = FALSE) %&gt;% \n    with(lm(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_50)\n##   Intercept     Length     sigma r.squared        F numdf dendf .row .index\n## 1 -1.310864 0.06393644 0.5646473 0.4846643 45.14316     1    48    1      1\n## 2 -1.503983 0.06887405 0.6112830 0.5333146 54.85302     1    48    1      2\n## 3 -1.730214 0.07140026 0.5940694 0.4561970 40.26725     1    48    1      3\n## 4 -1.213346 0.05948225 0.5561451 0.4712989 42.78853     1    48    1      4\n## 5 -1.221643 0.05925447 0.5471569 0.5190808 51.80887     1    48    1      5\n## 6 -1.384057 0.06532957 0.5610290 0.5400105 56.35021     1    48    1      6\n\nSimilarly, take 500 samples of size 100, and build a sample model from each.\n\nset.seed(155)\nsample_models_100 &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 100, replace = FALSE) %&gt;% \n    with(lm(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_100)\n##    Intercept     Length     sigma r.squared         F numdf dendf .row .index\n## 1 -0.9745758 0.05400227 0.5965267 0.3361746  49.62917     1    98    1      1\n## 2 -1.1187614 0.05655020 0.5864780 0.4173361  70.19301     1    98    1      2\n## 3 -1.3507522 0.06512980 0.5629381 0.5332227 111.95023     1    98    1      3\n## 4 -1.5201200 0.06712467 0.5220515 0.5113787 102.56432     1    98    1      4\n## 5 -1.0181036 0.05525131 0.5746367 0.4031468  66.19447     1    98    1      5\n## 6 -1.1369532 0.05868566 0.5773007 0.4378596  76.33367     1    98    1      6"
+    "text": "Exercise 9: 500 samples of size n\n\nset.seed(155)\nsample_models_50 &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 50, replace = FALSE) %&gt;% \n    with(lm(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_50)\n##   Intercept     Length     sigma r.squared        F numdf dendf .row .index\n## 1 -1.310864 0.06393644 0.5646473 0.4846643 45.14316     1    48    1      1\n## 2 -1.503983 0.06887405 0.6112830 0.5333146 54.85302     1    48    1      2\n## 3 -1.730214 0.07140026 0.5940694 0.4561970 40.26725     1    48    1      3\n## 4 -1.213346 0.05948225 0.5561451 0.4712989 42.78853     1    48    1      4\n## 5 -1.221643 0.05925447 0.5471569 0.5190808 51.80887     1    48    1      5\n## 6 -1.384057 0.06532957 0.5610290 0.5400105 56.35021     1    48    1      6\n\nSimilarly, take 500 samples of size 100, and build a sample model from each.\n\nset.seed(155)\nsample_models_100 &lt;- mosaic::do(500)*(\n  fish %&gt;% \n    sample_n(size = 100, replace = FALSE) %&gt;% \n    with(lm(Concen ~ Length))\n)\n\n# Check it out\nhead(sample_models_100)\n##    Intercept     Length     sigma r.squared         F numdf dendf .row .index\n## 1 -0.9745758 0.05400227 0.5965267 0.3361746  49.62917     1    98    1      1\n## 2 -1.1187614 0.05655020 0.5864780 0.4173361  70.19301     1    98    1      2\n## 3 -1.3507522 0.06512980 0.5629381 0.5332227 111.95023     1    98    1      3\n## 4 -1.5201200 0.06712467 0.5220515 0.5113787 102.56432     1    98    1      4\n## 5 -1.0181036 0.05525131 0.5746367 0.4031468  66.19447     1    98    1      5\n## 6 -1.1369532 0.05868566 0.5773007 0.4378596  76.33367     1    98    1      6",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-10-impact-of-sample-size-part-i-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-10-impact-of-sample-size-part-i-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 10: Impact of sample size (part I)",
-    "text": "Exercise 10: Impact of sample size (part I)\n\n# 500 sample models using samples of size 10\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_10, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\n\n# 500 sample models using samples of size 50\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_50, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\n\n# 500 sample models using samples of size 100\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_100, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\n\nThe sample model lines become less and less variable from sample to sample."
+    "text": "Exercise 10: Impact of sample size (part I)\n\n# 500 sample models using samples of size 10\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_10, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\n\n# 500 sample models using samples of size 50\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_50, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\n\n# 500 sample models using samples of size 100\nfish %&gt;% \n  ggplot(aes(x = Length, y = Concen)) + \n  geom_smooth(method = \"lm\", se = FALSE) + \n  geom_abline(data = sample_models_100, \n              aes(intercept = Intercept, slope = Length), \n              color = \"gray\", size = 0.25) + \n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n\n\n\n\n\n\n\n\n\nThe sample model lines become less and less variable from sample to sample.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-11-impact-of-sample-size-part-ii-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-11-impact-of-sample-size-part-ii-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 11: Impact of sample size (part II)",
-    "text": "Exercise 11: Impact of sample size (part II)\n\n# Don't think too hard about this code!\n# Combine the estimates & sample size into a new data set\n# Then plot it\n\ndata.frame(estimates = c(sample_models_10$Length, sample_models_50$Length, sample_models_100$Length),\n           sample_size = rep(c(\"10\",\"50\",\"100\"), each = 500)) %&gt;% \n  mutate(sample_size = fct_relevel(sample_size, c(\"10\", \"50\", \"100\"))) %&gt;% \n  ggplot(aes(x = estimates, color = sample_size)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\", linetype = \"dashed\") + \n  labs(title = \"Sampling distributions of the sample slope\")\n\n\n\n\n\n\n\n\n\nNo matter the sample size, the sample estimates are normally distributed around the population slope. But as sample size increases, the variability of the sample estimates decreases."
+    "text": "Exercise 11: Impact of sample size (part II)\n\n# Don't think too hard about this code!\n# Combine the estimates & sample size into a new data set\n# Then plot it\n\ndata.frame(estimates = c(sample_models_10$Length, sample_models_50$Length, sample_models_100$Length),\n           sample_size = rep(c(\"10\",\"50\",\"100\"), each = 500)) %&gt;% \n  mutate(sample_size = fct_relevel(sample_size, c(\"10\", \"50\", \"100\"))) %&gt;% \n  ggplot(aes(x = estimates, color = sample_size)) + \n  geom_density() + \n  geom_vline(xintercept = 0.05813, color = \"red\", linetype = \"dashed\") + \n  labs(title = \"Sampling distributions of the sample slope\")\n\n\n\n\n\n\n\n\n\nNo matter the sample size, the sample estimates are normally distributed around the population slope. But as sample size increases, the variability of the sample estimates decreases.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-12-properties-of-sampling-distributions-1",
     "href": "activities/L19-20-sampling-dist-clt-bootstrap.html#exercise-12-properties-of-sampling-distributions-1",
     "title": "Sampling distributions, the CLT, and Bootstrapping",
     "section": "Exercise 12: Properties of sampling distributions",
-    "text": "Exercise 12: Properties of sampling distributions\nIn light of your observations, complete the following statements about the sampling distribution of the sample slope.\n\nFor all sample sizes, the shape of the sampling distribution is roughly normal and the sampling distribution is roughly centered around 0.05813, the sample estimate from our original data.\nAs sample size increases:\nThe average sample slope estimate IS FAIRLY STABLE.\nThe standard error of the sample slopes DECREASES.\nThus, as sample size increases, our sample slopes become MORE RELIABLE."
+    "text": "Exercise 12: Properties of sampling distributions\nIn light of your observations, complete the following statements about the sampling distribution of the sample slope.\n\nFor all sample sizes, the shape of the sampling distribution is roughly normal and the sampling distribution is roughly centered around 0.05813, the sample estimate from our original data.\nAs sample size increases:\nThe average sample slope estimate IS FAIRLY STABLE.\nThe standard error of the sample slopes DECREASES.\nThus, as sample size increases, our sample slopes become MORE RELIABLE.",
+    "crumbs": [
+      "Sampling distributions, the CLT, and Bootstrapping"
+    ]
   },
   {
     "objectID": "activities/L15-prob-odds.html#learning-goals",
@@ -1393,7 +1474,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-4-random-sampling-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 4: Random sampling",
-    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                                  userscore_rt criticscore_rt\n##   &lt;chr&gt;                                        &lt;int&gt;          &lt;int&gt;\n## 1 Black or White                                  68             39\n## 2 The Second Best Exotic Marigold Hotel           63             62\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34",
+    "text": "Exercise 4: Random sampling\n\n# Observe that the 2 films change every time & differ from your neighbors' samples\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film                 userscore_rt criticscore_rt\n##   &lt;chr&gt;                       &lt;int&gt;          &lt;int&gt;\n## 1 Insidious: Chapter 3           56             59\n## 2 Ex Machina                     86             92\n\n\n# Observe that the 2 films are the same every time & are the same as your neighbors' samples\nset.seed(155)\nsample_n(fandango, size = 2, replace = FALSE)\n## # A tibble: 2 × 3\n##   film            userscore_rt criticscore_rt\n##   &lt;chr&gt;                  &lt;int&gt;          &lt;int&gt;\n## 1 Unbroken                  70             51\n## 2 Project Almanac           46             34",
     "crumbs": [
       "The Normal model & sampling variation"
     ]
@@ -1423,7 +1504,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-7-sample-intercepts-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 7: Sample intercepts",
-    "text": "Exercise 7: Sample intercepts\nThe intercepts are roughly normal, centered around the intercept of the larger sample (32.3), and range from roughly 15.88 to 50.106:\n\nresults %&gt;% \n  ggplot(aes(x = sample_intercept)) + \n  geom_density() + \n  geom_vline(xintercept = 32.3, color = \"red\")",
+    "text": "Exercise 7: Sample intercepts\nThe intercepts are roughly normal, centered around the intercept of the larger sample (32.3), and range from roughly 3.517 to 50.278:\n\nresults %&gt;% \n  ggplot(aes(x = sample_intercept)) + \n  geom_density() + \n  geom_vline(xintercept = 32.3, color = \"red\")",
     "crumbs": [
       "The Normal model & sampling variation"
     ]
@@ -1433,7 +1514,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-8-slopes-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 8: Slopes",
-    "text": "Exercise 8: Slopes\n\nintuition\nintuition\nCheck your intuition:\n\n\nresults %&gt;% \n  ggplot(aes(x = sample_slope)) + \n  geom_density() + \n  geom_vline(xintercept = 0.52, color = \"red\")\n\n\n\n\n\n\n\n\n\nWill vary, but should roughly be 0.14.",
+    "text": "Exercise 8: Slopes\n\nintuition\nintuition\nCheck your intuition:\n\n\nresults %&gt;% \n  ggplot(aes(x = sample_slope)) + \n  geom_density() + \n  geom_vline(xintercept = 0.52, color = \"red\")\n\n\n\n\n\n\n\n\n\nWill vary, but should roughly be 0.19.",
     "crumbs": [
       "The Normal model & sampling variation"
     ]
@@ -1443,7 +1524,7 @@
     "href": "activities/L18-sampling-normal.html#exercise-9-standard-error-1",
     "title": "The Normal model & sampling variation",
     "section": "Exercise 9: Standard error",
-    "text": "Exercise 9: Standard error\n\nFor example, suppose my estimate were 0.7:\n\n\n0.7 - 0.52\n## [1] 0.18\n\n\nFor example, suppose my estimate were 0.7. Then my Z-score is (0.7 - 0.52) / 0.14 = 1.2857143\nThis is somewhat subjective. But we’ll learn that if your estimate is within 2 sd of the actual slope, i.e. your Z-score is between -2 and 2, you’re pretty “lucky”.",
+    "text": "Exercise 9: Standard error\n\nFor example, suppose my estimate were 0.7:\n\n\n0.7 - 0.52\n## [1] 0.18\n\n\nFor example, suppose my estimate were 0.7. Then my Z-score is (0.7 - 0.52) / 0.19 = 0.9473684\nThis is somewhat subjective. But we’ll learn that if your estimate is within 2 sd of the actual slope, i.e. your Z-score is between -2 and 2, you’re pretty “lucky”.",
     "crumbs": [
       "The Normal model & sampling variation"
     ]
@@ -2232,7 +2313,7 @@
     "href": "index.html#schedule",
     "title": "STAT 155: Introduction to Statistical Modeling",
     "section": "Schedule",
-    "text": "Schedule\nThe Topic column will contain a link to today’s activity (to follow along on the screen), and the .qmd template column contains a link to download a .qmd file where you can work on the exercises.\n\nDetails for the current week will be filled in throughout the semester. Any urgent announcements will be made over email.\nProject-related due dates are not yet in the schedule.\nDetails are subject to change (with plenty of advance warning).\nUnless specified otherwise:\n\nMoodle Checkpoints (CPs) are due 10 minutes before class.\nPractice problems (PPs) are due on Moodle by 11:59pm on the due date.\n\n\n\n\n\nDate\nTopic\n.qmd template\nDue\n\n\nUnit 1: Simple Linear Regression\n\n\n\n\n\n9/2\nWelcome\n01-foundations-welcome-notes.qmd\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\n\n\n9/4\nUnivariate visual & numerical summaries\n02-foundations-univariate-notes.qmd\nBefore class:\n\nCP 1\n\n\n\n9/9\nIntro to simple linear regression\n03-slr-introduction-notes.qmd\nBefore class:\n\nCP 2\n\n\n\n9/11\nsimple linear regression: formalization\n04-slr-formalization-notes.qmd\nPP 1, CP 3\n\n\n9/16\nModel evaluation\n05-slr-model-eval-notes.qmd\nCP 4 (optional!)\n\n\n9/18\nCategorical predictors\n07-slr-cat-predictor-notes.qmd\nBefore class:\n\nCP 5\n\nDue tonight:\n\nPP 2\n\n\n\nUnit 2: Multiple Linear Regression\n\n\n\n\n\n9/23\nMultiple linear regression discovery day\n08-mlr-intro-notes.qmd\n\n\n\n9/25\nQuiz 1\n\n\n\n\n9/30\nModeling principles\n09-mlr-principles-notes.qmd\nCP 6\n\n\n10/2\nConfounding\n10-mlr-confounding-notes.qmd\nCP 7\n\n\n10/7\nInteractions\n12-mlr-interaction-practice-notes.qmd\nBefore class:\n\nCP 8\n\nDue tonight:\n\nPP 3\n\n\n\n10/9\nModel building\n13-mlr-model-building-1-notes.qmd\nBefore class:\n\nCP 9\n\nBeginning of class:\n\nQuiz 1 Revisions\n\n\n\nUnit 3: Logistic Regression\n\n\n\n\n\n10/14\nLogistic regression I\n16-logistic-univariate-notes.qmd\nBefore class:\n\nCP 10 AND CP 11\n\nDue tonight:\n\nPP 4\n\n\n\n10/16\nFall break (no class!)\n\n\n\n\n10/21\nLogistic regression II\n17-logistic-multiple-evaluation-notes.qmd\nBefore class:\n\nCP 12\n\n\n\n10/23\nReview + project time\n\nDue tonight:\n\nPP 5\n\n\n\nUnit 4: Inference\n\n\n\n\n\n10/28\nTools for inference\n18-sampling-normal-notes.qmd\nBefore class:\n\nCP 13\n\n\n\n10/30\nQuiz 2\n\n\n\n\n11/4\nSampling distributions + CLT\n\nBefore class:\n\nCP 14\n\n\n\n11/6\nProject time\n\nDue tonight:\n\nProject Milestone 1\n\n\n\n11/11\nConfidence intervals\n\nCP 15\n\n\n11/13\nTowards hypothesis testing\n\nPP 6\n\n\n11/18\nHypothesis tests for 1 coefficient\n\nCP 16\n\n\n11/20\nConsiderations in hypothesis testing\n\nPP 7\n\n\n11/25\nProject time\n\nProject Milestone 2\n\n\n11/27\nThanksgiving break\n\n\n\n\n12/2\nNested models\n\nCP 17\n\n\n12/4\nP-values + project time\n\nPP 8\n\n\n12/9\nProject time\n\nProject final submission\n\n\n12/16 (10:30am-12:30pm)\nQuiz 3\n\n\n\n\n\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
+    "text": "Schedule\nThe Topic column will contain a link to today’s activity (to follow along on the screen), and the .qmd template column contains a link to download a .qmd file where you can work on the exercises.\n\nDetails for the current week will be filled in throughout the semester. Any urgent announcements will be made over email.\nProject-related due dates are not yet in the schedule.\nDetails are subject to change (with plenty of advance warning).\nUnless specified otherwise:\n\nMoodle Checkpoints (CPs) are due 10 minutes before class.\nPractice problems (PPs) are due on Moodle by 11:59pm on the due date.\n\n\n\n\n\nDate\nTopic\n.qmd template\nDue\n\n\nUnit 1: Simple Linear Regression\n\n\n\n\n\n9/2\nWelcome\n01-foundations-welcome-notes.qmd\nBefore class:\n\nReview the course syllabus\nFamiliarize yourself with Moodle and the course website\nComplete the Introductions survey\nDownload R and RStudio\n\n\n\n9/4\nUnivariate visual & numerical summaries\n02-foundations-univariate-notes.qmd\nBefore class:\n\nCP 1\n\n\n\n9/9\nIntro to simple linear regression\n03-slr-introduction-notes.qmd\nBefore class:\n\nCP 2\n\n\n\n9/11\nsimple linear regression: formalization\n04-slr-formalization-notes.qmd\nPP 1, CP 3\n\n\n9/16\nModel evaluation\n05-slr-model-eval-notes.qmd\nCP 4 (optional!)\n\n\n9/18\nCategorical predictors\n07-slr-cat-predictor-notes.qmd\nBefore class:\n\nCP 5\n\nDue tonight:\n\nPP 2\n\n\n\nUnit 2: Multiple Linear Regression\n\n\n\n\n\n9/23\nMultiple linear regression discovery day\n08-mlr-intro-notes.qmd\n\n\n\n9/25\nQuiz 1\n\n\n\n\n9/30\nModeling principles\n09-mlr-principles-notes.qmd\nCP 6\n\n\n10/2\nConfounding\n10-mlr-confounding-notes.qmd\nCP 7\n\n\n10/7\nInteractions\n12-mlr-interaction-practice-notes.qmd\nBefore class:\n\nCP 8\n\nDue tonight:\n\nPP 3\n\n\n\n10/9\nModel building\n13-mlr-model-building-1-notes.qmd\nBefore class:\n\nCP 9\n\nBeginning of class:\n\nQuiz 1 Revisions\n\n\n\nUnit 3: Logistic Regression\n\n\n\n\n\n10/14\nLogistic regression I\n16-logistic-univariate-notes.qmd\nBefore class:\n\nCP 10 AND CP 11\n\nDue tonight:\n\nPP 4\n\n\n\n10/16\nFall break (no class!)\n\n\n\n\n10/21\nLogistic regression II\n17-logistic-multiple-evaluation-notes.qmd\nBefore class:\n\nCP 12\n\n\n\n10/23\nReview + project time\n\nDue tonight:\n\nPP 5\n\n\n\nUnit 4: Inference\n\n\n\n\n\n10/28\nTools for inference\n18-sampling-normal-notes.qmd\nBefore class:\n\nCP 13\n\n\n\n10/30\nQuiz 2\n\n\n\n\n11/4\nSampling distributions + CLT\n19-20-sampling-dist-clt-bootstrap-notes.qmd\nBefore class:\n\nCP 14\n\n\n\n11/6\nProject time\n\nDue tonight:\n\nProject Milestone 1\n\n\n\n11/11\nConfidence intervals\n\nCP 15\n\n\n11/13\nTowards hypothesis testing\n\nPP 6\n\n\n11/18\nHypothesis tests for 1 coefficient\n\nCP 16\n\n\n11/20\nConsiderations in hypothesis testing\n\nPP 7\n\n\n11/25\nProject time\n\nProject Milestone 2\n\n\n11/27\nThanksgiving break\n\n\n\n\n12/2\nNested models\n\nCP 17\n\n\n12/4\nP-values + project time\n\nPP 8\n\n\n12/9\nProject time\n\nProject final submission\n\n\n12/16 (10:30am-12:30pm)\nQuiz 3\n\n\n\n\n\nIf you find any typos, bugs, dead links, or have other questions, please email jcarls13@macalester.edu"
   },
   {
     "objectID": "activities/ACTIVITY_TEMPLATE.html",
@@ -2274,7 +2355,7 @@
     "href": "assignments.html",
     "title": "Practice Problems",
     "section": "",
-    "text": "Please review the Practice Problems Policies document!\n\nPractice Problems 1, due 9/12\nPractice Problems 2, due 9/18\nPractice Problems 3, due 10/7\nPractice Problems 4, due 10/14\nPractice Problems 5, due 10/23"
+    "text": "Please review the Practice Problems Policies document!\n\nPractice Problems 1, due 9/12\nPractice Problems 2, due 9/18\nPractice Problems 3, due 10/7\nPractice Problems 4, due 10/14\nPractice Problems 5, due 10/23\nPractice Problems 6, due 11/13"
   },
   {
     "objectID": "project.html",
