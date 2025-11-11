@@ -24,30 +24,223 @@ knitr::opts_chunk$set(
   fig.align = 'center')
 ```
 
+# Announcements
+
+- PP6 is due on Thursday (November 13)
+- Quiz 2 revisions are due a week from today (Tuesday, November 18)
 
 # Notes
 
-## Learning goals
-
-By the end of this lesson, you should be able to:
+::: {.callout-note title = "Learning goals"}
 
 - Construct (approximate) confidence intervals by hand using the 68-95-99.7 rule
 - Construct exact confidence intervals in R
 - Interpret confidence intervals in context by referring to the coefficient of interest
 - Use confidence intervals to make statements about whether there appear to be true population relationships, changes, and differences
 
-## Readings and videos
+![](https://ajohns24.github.io/155_Fall_2025/images/concept_map_8.png)
 
-Please complete the following reading **before** class.
+:::
 
-- Reading: Section 7 Introduction, Section 7.1, Section 7.2 (stop when you get to 7.2.4.3 Confidence Intervals for Prediction) in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+::: {.callout-note title="Additional resources"}
 
-Optionally you can use the following videos as a companion to the reading (not in place of the reading):
+**Required video**
 
-- Video 1: [Introduction to Confidence Intervals](https://youtu.be/CCgpmFjENwA)
-- Video 2: [Confidence Intervals: Construction and Interpretation](https://youtu.be/QAbRYk5g8D8)
+- [Introduction to Confidence Intervals](https://youtu.be/CCgpmFjENwA)
+
+**Optional**
+
+- Read: Section 7 Introduction, 7.1, 7.2 (stop when you get to 7.2.4.3 Confidence Intervals for Prediction) in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+- Watch (after class): [Confidence Intervals: Construction and Interpretation](https://youtu.be/QAbRYk5g8D8)
 
 
+:::
+
+
+\
+\
+\
+\
+
+# References {-}
+
+**Set-up**
+
+- $\beta$ = some *population parameter* (e.g. a model coefficient)
+- $\hat{\beta}$ = a *sample estimate* of $\beta$
+- $\text{s.e.}(\hat{\beta})$ = the *standard error* of $\hat{\beta}$ (essentially the typical error for an estimate calculated from a sample of our size n)
+
+\
+\
+
+
+**Central Limit Theorem (CLT): Approximating the sampling distribution**
+
+The collection of possible $\hat{\beta}$ calculated from different samples of size n (i.e. the *sampling distribution* of $\hat{\beta}$) is Normally distributed around $\beta$:
+
+$$
+\hat{\beta} \sim N(\beta, \; \text{s.e.}(\hat{\beta})^2)
+$$
+
+
+\
+\
+\
+
+
+
+**Confidence interval for $\beta$**
+
+To *communicate and contextualize* the potential error in $\hat{\beta}$, we can calculate a **confidence interval (CI)** for $\beta$. 
+This CI:
+
+- reflects the potential error in $\hat{\beta}$; while
+- providing a range of plausible values for $\beta$, i.e. an **interval estimate**; thus
+- allows us to draw fair conclusions about the population using data from our sample!
+
+Using the CLT, an *approximate* 95% confidence interval for $\beta$ can be calculated by the formula below.
+(More precise calculations are provided in RStudio.)
+
+$$
+\hat{\beta} \pm 2 \text{s.e.}(\hat{\beta})
+$$
+
+
+
+\
+\
+\
+
+
+**What does "95% confidence" mean?!**
+
+- Important nuances:
+    - $\beta$ is "fixed", i.e. *not* random. There's a fixed, "true" value of $\beta$, we just don't know what it is. Thus we *can't* make probability statements about $\hat{\beta}$.
+    - $\hat{\beta}$ is *random* (it varies from sample to sample, depending upon what sample we happen to get). Thus we *can* make probability statements about $\hat{\beta}$.
+
+- Thus "95% confidence" references the randomness and variability in $\hat{\beta}$ and the interval construction process, not $\beta$: 95% of all possible samples will produce 95% CIs that contain the true $\beta$ value.
+
+- In pictures: 200 different 95% CIs for $\beta$ calculated from 200 different samples. Each sample produces a different estimate $\hat{\beta}$ (dot) hence a different 95% CI for $\beta$ (horizontal line). Roughly 95% of these contain $\beta$ (the black intervals) and roughly 5% do not (the red intervals).
+
+![](https://ajohns24.github.io/155_Fall_2025/images/CI_caterpillar_plot.png)
+
+
+
+\
+\
+\
+
+**Interpreting a CI**
+
+Let (a, b) represent the 95% CI for $\beta$.
+
+- Correct: We are *95% confident* that $\beta$ is between a and b.
+- Incorrect: There's a *95% chance* that $\beta$ falls between a and b.    
+    - Nope! $\beta$ is either in there, or it isn't. No probability involved.
+    - It is either in the interval or not, so the probability is 1 or 0.
+- Incorrect: There's a 95% chance that sample estimate $\hat{\beta}$ is between a and b.    
+    - Nope! We have no uncertainty about $\hat{\beta}$ -- we know exactly what it is and it's *always* in the interval by construction.
+
+
+\
+\
+\
+\
+
+
+# Warm-up
+
+## Exercise 1: Standard errors {-}
+
+In the first set of exercises, we'll model the time it takes to complete a mountain hike.
+To begin, let's explore the relationship of completion `time` (in hours) by hike `length` (in miles):
+
+E[time | length] = $\beta_0$ + $\beta_1$ length
+
+A sample *estimate* of this population model, obtained using our data on hiking trails in the Adirondack mountains, is below:
+
+E[`time` | `length`] = $\hat{\beta}_0$ + $\hat{\beta}_1$ `length` = 2.048 + 0.684 `length`
+
+```{r}
+# Import the data & load important packages
+library(tidyverse)
+peaks <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+
+# Model the relationship
+peaks_model_1 <- lm(time ~ length, data = peaks)
+coef(summary(peaks_model_1))
+
+# Visualize the relationship
+peaks %>% 
+  ggplot(aes(y = time, x = length)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+
+### Part a {-}
+
+Since $\hat{\beta}_1 = 0.684$, we *estimate* that the expected hiking time increases by 0.684 for every additional mile in hiking length.
+Report and *interpret* $s.e.(\hat{\beta}_1)$, the *standard error* of this estimate.
+
+### Part b {-}
+
+Considering context, units, and scale of our data (as illustrated in the plot), do you think this is a small, moderate, or large amount of error?
+(Mainly, do you think our slope estimate is pretty accurate or does the standard error make you skeptical?)
+
+
+\
+\
+\
+\
+
+
+
+## Exercise 2: Constructing a CI {-}
+
+Continue to let $\beta_1$ be the "true" population `length` coefficient, and $\hat{\beta}_1 = 0.684$ be our *sample estimate* of $\beta_1$.
+
+### Part a {-}
+
+$\hat{\beta}_1$ simply provides a *point estimate*, or our single best guess, of $\beta_1$.
+To also produce an *interval estimate*, use the 68-95-99.7 Rule to approximate a 95% CI for $\beta_1$.
+
+
+### Part b {-}
+
+We can calculate a more *accurate* CI by applying the `confint()` function to our *model*.
+Your approximation from Part a should be close!
+
+```{r}
+confint(peaks_model_1, level = 0.95)
+```    
+
+
+
+
+\
+\
+\
+\
+
+
+
+## Exercise 3: Interpreting the CI {-}
+
+### Part a {-}
+
+*Interpreting* the CI for $\beta_1$ in context requires that we can interpret $\beta_1$ itself!
+So how can we interpret $\beta_1$ (in general, without assuming a specific value for the unknown $\beta_1$)?
+
+- $\beta_1$ measures the expected completion time for hikes that are 0 miles long
+- $\beta_1$ measures the difference in the expected completion time for hikes that long vs hikes that aren't long
+- $\beta_1$ measures the change in the expected completion time for each additional 1 mile in length
+
+
+### Part b {-}
+
+Per the previous exercise: "We are 95% confident that $\beta_1$ is between 0.56 and 0.81".
+Interpret this CI in *context*, drawing on your answer to Part a.
 
 
 

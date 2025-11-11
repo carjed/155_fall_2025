@@ -46,7 +46,7 @@ website:
         # - "activities/L24-hypothesis-testing-considerations.qmd"
         # - "activities/L23-hypothesis-testing-details.qmd"
         # - "activities/L22-hypothesis-testing-discovery.qmd"
-        # - "activities/L21-confidence-intervals.qmd" 
+        - "activities/L21-confidence-intervals.qmd"
         # # - "activities/L20-bootstrapping.qmd"
         - "activities/L19-20-sampling-dist-clt-bootstrap.qmd"
         - "activities/L18-sampling-normal.qmd"
