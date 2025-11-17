@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 # Notes
 
-- You can download a template file to work with [here](../activity_templates/23_hypothesis_testing_details.qmd).
+- You can download a template file to work with [here](../template_qmds/23-hypothesis-testing-details-notes.qmd).
 - **File organization:** Save this file in the "Activities" subfolder of your "STAT155" folder.
 
 ## Learning goals
