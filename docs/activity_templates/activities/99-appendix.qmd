@@ -1,0 +1,25 @@
+# Installing R and RStudio {.unnumbered}
+
+
+\
+\
+
+
+You're *strongly encouraged* to install R & RStudio on the laptop that you plan to bring to class.
+
+Follow these two steps **in the given order**. (**For those that already have R and RStudio**: if your versions are more than 6 months old, they might not be compatible with the course material. You might either update now or on the fly, if necessary.)
+
+1.  **Download & install R**
+    -   Go to <https://mirror.las.iastate.edu/CRAN/>
+    -   Click the appropriate "Download R for..." link, depending upon your operating system (e.g. Windows, macOS, Linux). Then follow the instructions there to download R.
+    -   If you are using a Mac: Check to see if you have an Intel or Apple Silicon Processor Chip (Apple logo \> About this Mac). This will impact the version you download.
+2.  **Download & install RStudio**
+    -   Go to <https://posit.co/download/rstudio-desktop/>.
+    -   Under Step 2:
+        -   If the website automatically detects your operating system, there will be a "Download RStudio Desktop For ..." button. Click on this to install RStudio.
+        -   Otherwise, there will be a list of operating systems. Click on the "RSTUDIO-..." link under your operating system to install RStudio.
+    -   If you are using a Mac: Once you download the dmg file and click on it, drag the RStudio icon to Applications. Then open Finder and click the eject icon next to the RStudio temporary drive under Locations.
+
+\
+
+*Alternatively*, if you don't plan to use RStudio after this course or are having trouble installing the software, you can use Mac's RStudio server at [rstudio.macalester.edu](rstudio.macalester.edu). **Please note that if you go this route, you will need to meet with the instructor to discuss file management specific to the server.**

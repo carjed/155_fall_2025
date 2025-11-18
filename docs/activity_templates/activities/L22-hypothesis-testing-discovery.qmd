@@ -1,0 +1,400 @@
+# Hypothesis testing: discovery
+
+
+
+```{r include = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE)
+```
+
+
+<!-- create student notes from activity in core-->
+
+{{< include _create_student_notes.qmd >}}
+
+```{r}
+#| echo: false
+#| eval: true
+make_student_notes('Hypothesis testing: discovery', '_L22-hypothesis-testing-discovery.qmd')
+```
+
+<!-- pull activity from core -->
+
+```{r knitr-opts}
+#| echo: false
+#| cache: false
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
+
+{{< include core/_L22-hypothesis-testing-discovery.qmd >}}
+
+
+
+
+
+\
+\
+\
+\
+
+
+
+
+# Solutions
+
+
+
+```{r eval = TRUE}
+# Load the data & packages
+library(tidyverse)
+fish <- read_csv("https://mac-stat.github.io/data/Mercury.csv")
+head(fish)
+```
+
+
+## Exercise 1: Review
+
+
+### Part a
+
+```{r eval = TRUE}
+fish_mod_1 <- lm(Concen ~ Length, data = fish)
+summary(fish_mod_1)
+```
+
+We estimate that for every 1cm increase in length, the expected mercury concentration increases by 0.058ppm.
+
+### Part b
+
+$0.058 \pm 2*0.005 = (0.058 - 0.010, 0.058 + 0.010) = (0.048, 0.068)$
+
+```{r eval = TRUE}
+confint(fish_mod_1, level = 0.95)
+```
+
+
+### Part c
+
+We're 95% confident that for every 1cm increase in length, the expected mercury concentration increases by somewhere between 0.048ppm and 0.068ppm.
+
+
+## Exercise 2: Test a hypothesis using the CI
+
+### Part a 
+
+The simple estimate $\hat{\beta}_1$ has error that we need to account for when making inferences about the population.
+The CI accounts for this error!
+
+### Part b
+
+Yes, the interval doesn't include 0.
+Thus 0 is not a plausible value for $\beta_1$.
+
+
+## Exercise 3: Simulating data under the null value
+
+### Part a
+
+Intuition.
+
+### Part b
+
+
+```{r eval = TRUE}
+# First check out the first 6 fish
+fish %>% 
+  select(Concen, Length) %>% 
+  head()
+
+# Run this chunk a few times!!
+# Shuffle the Length values
+fish %>%
+  select(Concen, Length) %>% 
+  mutate(Length = sample(Length, size = length(Length), replace = FALSE)) %>% 
+  head()
+
+# Shuffle the Length values
+# Run this chunk a few times!!
+# Then plot the resulting sample data and model
+fish %>% 
+  select(Concen, Length) %>% 
+  mutate(Length = sample(Length, size = length(Length), replace = FALSE)) %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+
+
+### Part c 
+
+If there were truly no relationship between `Concen` and `Length`, we'd expect the sample model to have a slope near to (but not exactly) 0.
+
+```{r eval = TRUE}
+set.seed(1)
+shuffled_models <- mosaic::do(500)*(
+  fish %>% 
+  select(Concen, Length) %>% 
+  sample_n(size = length(Length), replace = TRUE) %>% 
+  mutate(Length = sample(Length, size = length(Length), replace = FALSE)) %>%
+  with(lm(Concen ~ Length))
+)
+head(shuffled_models)
+
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_abline(data = shuffled_models, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", se = FALSE, size = 0) # Ignore this line. It's a clunky workaround
+```
+
+### Part d
+
+We'd expect slopes to be Normally distributed around 0 (the null value).
+
+
+```{r eval = TRUE}
+shuffled_models %>% 
+  ggplot(aes(x = Length)) + 
+  geom_density()
+```
+
+
+
+## Exercise 4: Comparing our sample results to the null value (intuition)
+
+### Part a
+
+No! Its slope is much bigger than for the sample models simulated using the null value!
+
+```{r eval = TRUE}
+fish %>% 
+  ggplot(aes(x = Length, y = Concen)) + 
+  geom_abline(data = shuffled_models, 
+              aes(intercept = Intercept, slope = Length), 
+              color = "gray", size = 0.25) + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+### Part b
+
+No! Our slope is much bigger than for the sample models simulated using the null value!
+
+```{r eval = TRUE}
+shuffled_models %>% 
+  ggplot(aes(x = Length)) + 
+  geom_density() + 
+  geom_vline(xintercept = 0.05813, color = "blue")
+```
+
+
+### Part c 
+
+Will vary.
+
+
+## Exercise 5: CLT
+
+The simulated and CLT / theory-informed sampling distributions are similar!
+
+```{r eval = TRUE}
+shuffled_models %>% 
+  ggplot(aes(x = Length)) + 
+  geom_density()
+
+clt_plot <- data.frame(x = 0 + c(-4:4)*0.005) %>% 
+  mutate(y = dnorm(x, sd = 0.005)) %>% 
+  ggplot(aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 0.005)) +
+  geom_segment(aes(x = x, xend = x, y = 0, yend = y), linetype = "dashed") + 
+  scale_x_continuous(breaks = c(-4:4)*0.005) + 
+  xlab("")
+  
+clt_plot
+```
+
+
+
+
+
+## Exercise 6: Comparing our sample results to the null value (test statistic)
+
+```{r eval = TRUE}
+clt_plot + 
+  geom_vline(xintercept = 0.05813, color = "blue")
+```
+
+### Part a 
+
+
+- How far is *our* sample slope estimate of $\hat{\beta}_1 = 0.05813$ from the null value of 0? 0.05813 :)
+
+- In the context of this particular analysis, is that a big or a small number? How can you tell? This seems pretty big relative to the standard error.
+
+
+### Part b 
+
+Our sample slope of 0.058 falls more than 11 standard errors above the null value of 0.
+That's far!!!
+
+```{r}
+(0.058127 - 0) / 0.005228
+```
+
+### Part c
+
+In the `t value` column:
+
+```{r}
+coef(summary(fish_mod_1))
+```
+
+### Part d
+
+- Our sample data is *not* consistent with the null value of $\beta_1 = 0$, i.e. the idea that there's no significant association between mercury concentration and length.
+
+
+
+
+
+## Exercise 7: Comparing our sample results to the null value (p-value)
+
+
+```{r eval = TRUE}
+clt_plot + 
+  geom_vline(xintercept = 0.05813, color = "blue")
+```
+
+
+### Part a
+
+Our estimate is more than 3 s.e. away from 0. Since 99.7% of estimates fall within 3 s.e. the probability of this happening is...
+
+- less than 0.003 (1 - 0.997)
+
+
+### Part b
+
+< 2e-16 (which is very very close to 0)
+
+```{r eval = TRUE}
+coef(summary(fish_mod_1))
+```
+
+### Part c
+
+
+- It's very unlikely that we’d have observed such a steep increase in `Concen` with `Length` among our sample fish "by chance", i.e. if in fact there were no relationship between mercury concentration and length in the broader fish population.
+
+
+
+
+## Exercise 8: River test Part I
+
+
+### Part a 
+
+$\beta_1$, the RiverWacamaw coefficient
+
+The null value is $\beta_1 = 0$
+
+### Part b
+
+$\hat{\beta}_1 = 0.142$ with a standard error of 0.089:
+
+```{r eval = TRUE}
+fish_mod_2 <- lm(Concen ~ River + Length, data = fish)
+
+coef(summary(fish_mod_2))
+```
+
+### Part c
+
+```{r eval = TRUE}
+# Put OUR sample estimate here
+# Round to 3 digits
+est <- 0.142
+
+# Put the corresponding standard error here
+# Round to 3 digits
+se <- 0.089
+
+data.frame(x = 0 + c(-4:4)*se) %>% 
+  mutate(y = dnorm(x, sd = se)) %>% 
+  ggplot(aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = se)) +
+  geom_segment(aes(x = x, xend = x, y = 0, yend = y), linetype = "dashed") + 
+  scale_x_continuous(breaks = c(-4:4)*se) + 
+  geom_vline(xintercept = est, color = "blue")
+  xlab("")
+```
+
+
+## Exercise 9: River test Part II
+
+### Part a
+
+Yes! Our estimate is relatively close to 0 on this scale (within 2 s.e.).
+
+
+### Part b
+
+Our estimate of $\beta_1$, 0.142, falls only 1.59 s.e. from 0:
+
+```{r eval = TRUE}
+(0.142 - 0) / 0.089
+coef(summary(fish_mod_2))
+```
+
+
+### Part c
+
+Our estimate is somewhere between 1 and 2 s.e. from 0:
+
+- between 0.05 and 0.32
+
+An exact p-value is 0.114:
+
+```{r}
+coef(summary(fish_mod_2))
+```
+
+
+### Part d
+
+It is. It is not very far from 0 (when considering s.e.) and would not be unlikely to observe if the null value were true.
+
+
+### Part e
+
+When controlling for length...
+
+- we do not have sufficient evidence to conclude that there's a statistically significant difference in mercury concentration by river.
+
+
+
+## Exercise 10: River CI
+
+### Part a
+
+Rough version:
+
+$0.142 \pm 2*0.089 = (-0.036, 0.320)$
+
+Exact version:
+
+```{r}
+confint(fish_mod_2)
+```
+
+### Part b
+
+When controlling for length...
+
+- we do not have sufficient evidence to conclude that there's a statistically significant difference in mercury concentration by river.
+

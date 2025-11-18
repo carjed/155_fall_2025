@@ -1,0 +1,398 @@
+```{r setup}
+#| include: false
+knitr::opts_chunk$set(
+  collapse = TRUE, 
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE,
+  fig.height = 2.75, 
+  fig.width = 4.25,
+  fig.env = 'figure',
+  fig.pos = 'h',
+  fig.align = 'center')
+```
+
+# Announcements
+
+- PP6 is due on Thursday (November 13)
+- Quiz 2 revisions are due a week from today (Tuesday, November 18)
+
+# Notes
+
+::: {.callout-note title = "Learning goals"}
+
+- Construct (approximate) confidence intervals by hand using the 68-95-99.7 rule
+- Construct exact confidence intervals in R
+- Interpret confidence intervals in context by referring to the coefficient of interest
+- Use confidence intervals to make statements about whether there appear to be true population relationships, changes, and differences
+
+![](https://ajohns24.github.io/155_Fall_2025/images/concept_map_8.png)
+
+:::
+
+::: {.callout-note title="Additional resources"}
+
+**Required video**
+
+- [Introduction to Confidence Intervals](https://youtu.be/CCgpmFjENwA)
+
+**Optional**
+
+- Read: Section 7 Introduction, 7.1, 7.2 (stop when you get to 7.2.4.3 Confidence Intervals for Prediction) in the [STAT 155 Notes](https://mac-stat.github.io/Stat155Notes/)
+- Watch (after class): [Confidence Intervals: Construction and Interpretation](https://youtu.be/QAbRYk5g8D8)
+
+
+:::
+
+
+\
+\
+\
+\
+
+# References {-}
+
+**Set-up**
+
+- $\beta$ = some *population parameter* (e.g. a model coefficient)
+- $\hat{\beta}$ = a *sample estimate* of $\beta$
+- $\text{s.e.}(\hat{\beta})$ = the *standard error* of $\hat{\beta}$ (essentially the typical error for an estimate calculated from a sample of our size n)
+
+\
+\
+
+
+**Central Limit Theorem (CLT): Approximating the sampling distribution**
+
+The collection of possible $\hat{\beta}$ calculated from different samples of size n (i.e. the *sampling distribution* of $\hat{\beta}$) is Normally distributed around $\beta$:
+
+$$
+\hat{\beta} \sim N(\beta, \; \text{s.e.}(\hat{\beta})^2)
+$$
+
+
+\
+\
+\
+
+
+
+**Confidence interval for $\beta$**
+
+To *communicate and contextualize* the potential error in $\hat{\beta}$, we can calculate a **confidence interval (CI)** for $\beta$. 
+This CI:
+
+- reflects the potential error in $\hat{\beta}$; while
+- providing a range of plausible values for $\beta$, i.e. an **interval estimate**; thus
+- allows us to draw fair conclusions about the population using data from our sample!
+
+Using the CLT, an *approximate* 95% confidence interval for $\beta$ can be calculated by the formula below.
+(More precise calculations are provided in RStudio.)
+
+$$
+\hat{\beta} \pm 2 \text{s.e.}(\hat{\beta})
+$$
+
+
+
+\
+\
+\
+
+
+**What does "95% confidence" mean?!**
+
+- Important nuances:
+    - $\beta$ is "fixed", i.e. *not* random. There's a fixed, "true" value of $\beta$, we just don't know what it is. Thus we *can't* make probability statements about $\hat{\beta}$.
+    - $\hat{\beta}$ is *random* (it varies from sample to sample, depending upon what sample we happen to get). Thus we *can* make probability statements about $\hat{\beta}$.
+
+- Thus "95% confidence" references the randomness and variability in $\hat{\beta}$ and the interval construction process, not $\beta$: 95% of all possible samples will produce 95% CIs that contain the true $\beta$ value.
+
+- In pictures: 200 different 95% CIs for $\beta$ calculated from 200 different samples. Each sample produces a different estimate $\hat{\beta}$ (dot) hence a different 95% CI for $\beta$ (horizontal line). Roughly 95% of these contain $\beta$ (the black intervals) and roughly 5% do not (the red intervals).
+
+![](https://ajohns24.github.io/155_Fall_2025/images/CI_caterpillar_plot.png)
+
+
+
+\
+\
+\
+
+**Interpreting a CI**
+
+Let (a, b) represent the 95% CI for $\beta$.
+
+- Correct: We are *95% confident* that $\beta$ is between a and b.
+- Incorrect: There's a *95% chance* that $\beta$ falls between a and b.    
+    - Nope! $\beta$ is either in there, or it isn't. No probability involved.
+    - It is either in the interval or not, so the probability is 1 or 0.
+- Incorrect: There's a 95% chance that sample estimate $\hat{\beta}$ is between a and b.    
+    - Nope! We have no uncertainty about $\hat{\beta}$ -- we know exactly what it is and it's *always* in the interval by construction.
+
+
+\
+\
+\
+\
+
+
+# Warm-up
+
+## Exercise 1: Standard errors {-}
+
+In the first set of exercises, we'll model the time it takes to complete a mountain hike.
+To begin, let's explore the relationship of completion `time` (in hours) by hike `length` (in miles):
+
+E[time | length] = $\beta_0$ + $\beta_1$ length
+
+A sample *estimate* of this population model, obtained using our data on hiking trails in the Adirondack mountains, is below:
+
+E[`time` | `length`] = $\hat{\beta}_0$ + $\hat{\beta}_1$ `length` = 2.048 + 0.684 `length`
+
+```{r}
+# Import the data & load important packages
+library(tidyverse)
+peaks <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+
+# Model the relationship
+peaks_model_1 <- lm(time ~ length, data = peaks)
+coef(summary(peaks_model_1))
+
+# Visualize the relationship
+peaks %>% 
+  ggplot(aes(y = time, x = length)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+
+### Part a {-}
+
+Since $\hat{\beta}_1 = 0.684$, we *estimate* that the expected hiking time increases by 0.684 for every additional mile in hiking length.
+Report and *interpret* $s.e.(\hat{\beta}_1)$, the *standard error* of this estimate.
+
+### Part b {-}
+
+Considering context, units, and scale of our data (as illustrated in the plot), do you think this is a small, moderate, or large amount of error?
+(Mainly, do you think our slope estimate is pretty accurate or does the standard error make you skeptical?)
+
+
+\
+\
+\
+\
+
+
+
+## Exercise 2: Constructing a CI {-}
+
+Continue to let $\beta_1$ be the "true" population `length` coefficient, and $\hat{\beta}_1 = 0.684$ be our *sample estimate* of $\beta_1$.
+
+### Part a {-}
+
+$\hat{\beta}_1$ simply provides a *point estimate*, or our single best guess, of $\beta_1$.
+To also produce an *interval estimate*, use the 68-95-99.7 Rule to approximate a 95% CI for $\beta_1$.
+
+
+### Part b {-}
+
+We can calculate a more *accurate* CI by applying the `confint()` function to our *model*.
+Your approximation from Part a should be close!
+
+```{r}
+confint(peaks_model_1, level = 0.95)
+```    
+
+
+
+
+\
+\
+\
+\
+
+
+
+## Exercise 3: Interpreting the CI {-}
+
+### Part a {-}
+
+*Interpreting* the CI for $\beta_1$ in context requires that we can interpret $\beta_1$ itself!
+So how can we interpret $\beta_1$ (in general, without assuming a specific value for the unknown $\beta_1$)?
+
+- $\beta_1$ measures the expected completion time for hikes that are 0 miles long
+- $\beta_1$ measures the difference in the expected completion time for hikes that long vs hikes that aren't long
+- $\beta_1$ measures the change in the expected completion time for each additional 1 mile in length
+
+
+### Part b {-}
+
+Per the previous exercise: "We are 95% confident that $\beta_1$ is between 0.56 and 0.81".
+Interpret this CI in *context*, drawing on your answer to Part a.
+
+
+
+
+# Exercises
+
+For the first 2 exercises, we'll revisit the bikeshare dataset.
+
+```{r}
+# Load packages and import data
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(stringr)
+library(tidyr)
+library(broom)
+
+bikes <- read_csv("https://mac-stat.github.io/data/bikeshare.csv")
+```
+
+## Exercise 1
+
+**Research question:** Is the relationship between wind speed (`windspeed`) (in miles per hour) and number of riders (`riders_total`) different across weekdays and weekends?
+
+### Part a
+
+Construct and interpret a visualization that would address this question.
+
+
+### Part b
+
+Fit a regression model that would address our research question. (Should it be a linear or a logistic regression model?) Interpret only the coefficient of interest.
+
+```{r}
+mod_bikes <- ___
+```
+
+
+### Part c
+
+- Construct an approximate 95% confidence interval (CI) for the coefficient of interest by hand using the 68-95-99.7 rule.
+- Compare your confidence interval to the one given by `confint()` which gives an exact confidence interval. (The columns give the lower and upper ends of the CI for each coefficient.)
+- Interpret the exact confidence interval in context.
+- Is zero in the interval? Do we have evidence for a real difference in the windspeed-riders relationship across weekends and weekdays?
+
+```{r}
+# By hand (you fill in)
+
+
+# Using confint()
+confint(mod_bikes, level = 0.95)
+```
+
+
+### Part d
+
+Let's see if these results agree when looking at adjusted R-squared.
+
+Fit another regression model that does not have the coefficient of interest from your Part b model. Compare the adjusted R-squared values between this model and the Part b model. Explain your findings.
+
+
+
+
+
+## Exercise 2
+
+**Research question:** How different is holiday ridership from non-holidays, after accounting for confounding factors?
+
+### Part a
+
+We believe that weather category (`weather_cat`), temperature (`temp_actual`), and wind speed (`windspeed`) confound the relationship of interest.
+
+- Draw a causal graph that shows the 5 variables of interest. Based on your graph do you believe that the 3 potential confounders are indeed confounders (and not mediators or colliders)?
+- Construct visualizations that allow you how each potential confounder relates to `riders_total` and to `holiday`.
+
+### Part b
+
+Based on your Part a explorations, fit an appropriate regression model to answer our research question. Interpret only the coefficient of interest.
+
+**A note about scientific notation in R:** Sometimes you may see numbers with the letter `e` in the middle. This is R's way of expressing scientific notation. Whenever you see `e`, replace that with `10 to the power of ...`. So:
+
+- 1.234e+02 is 1.234 x 10^2 = 123.4
+- 1.234e-02 is 1.234 x 10^(-2) = 0.01234
+
+### Part c
+
+- Use `confint()` to construct a 95% confidence interval for the coefficient of interest.
+- Interpret this confidence interval in context.
+- Is zero in the interval? Do we have evidence for a real holiday effect on ridership?
+
+
+
+
+
+## Exercise 3
+
+The Western Collaborative Group Study (WCGS) was designed in order to investigate a possible link between Type A behavior and coronary heart disease (CHD), and to develop a framework to select patients for intervention in order to decrease risk of CHD. The study contained 3154 cis men between the ages of 39 and 59 in California who had no history of CHD. They were enrolled in the study in 1960 and 1961, underwent a medical examination and covered their medical history, and they were re-examined annually for interim cardiovascular history.
+
+A full codebook is available [here](https://github.com/Mac-STAT/data/blob/main/wcgs_codebook.md). We will focus on the following variables:
+
+- `chd`: Presence (1) or absence (0) of CHD over followup (outcome)
+- `tabp`: Presence (1) or absence (0) of Type A behavior (main variable of interest)
+- `age`: Age at time of enrollment in the study (years)
+- `sbp`: Systolic blood pressure
+- `dbp`: Diastolic blood pressure
+- `chol`: Cholesterol (mg/dL)
+- `ncigs`: Number of cigarettes smoked per day
+- `arcus`: Presence (1) or absence (0) of arcus senilis (a colored ring around the cornea made up of lipids like cholesterol and believed to be a risk factor for CHD)
+- `bmi`: BMI = weight * 703 / height^2
+
+**Research question:** Is there a causal effect of Type A/B personality on developing coronary heart disease?
+
+```{r}
+wcgs <- read_csv("https://mac-stat.github.io/data/wcgs.csv")
+```
+
+### Part a
+
+We believe that the following variables are confounders of the relationship between Type A/B personality `tabp` and coronary heart disease (`CHD`): `age + sbp + dbp + chol + ncigs + arcus + bmi`.
+
+Fit a regression model that would address our research question. (Should it be a linear or a logistic regression model?) Interpret only the coefficient of interest.
+
+```{r}
+typea_mod <- ___
+```
+
+### Part b
+
+- Construct a 95% confidence interval for the odds ratio of interest using the following code.
+- Interpret the confidence interval in context.
+- Is 1 contained in the interval? Why is 1 a relevant value to look for here?
+
+### Part c
+
+(On your own time)
+
+The data context in this exercise has a fraught history with the smoking industry. Read [this article](https://www.thecut.com/2016/08/the-tobacco-industry-helped-create-the-type-a-personality.html) for some context about how the Type A personality came to be defined and studied. (One big takeaway: The smoking industry had a large incentive to find something to blame health problems on other than smoking!)
+
+
+
+
+
+## Exercise 4
+
+For each of the following **MISINTERPRETATIONS** of a 95% confidence interval (a,b), explain why the statement is a misinterpretation.
+
+- Misinterpretation 1: "There is a 95% probability that the population parameter is within (a,b)."
+    - **Response:** The population parameter is not random. It is either in the interval or not, so the probability is 1 or 0. The 95% means that 95% of random samples (that are representative of the population of interest) are expected to contain the true population parameter---"95% confidence" is describing confidence in the interval construction process.
+
+- Misinterpretation 2: "There is a 5% probability that the population parameter is not within (a,b)."
+    - **Response:** This is incorrect for the same reason as the first misinterpretation.
+
+- Misinterpretation 3: "There is a 95% chance that the sample estimate in (a,b)."
+    - **Response:** The sample estimate is always in the interval by construction.
+
+
+
+
+
+## Reflection
+
+How are you feeling about your ability to translate research questions into appropriate statistical investigations and addressing those questions using output from those investigations? What has gotten easier? What remains challenging?
+
+> **Response:** 
+
+
+
