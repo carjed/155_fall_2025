@@ -62,7 +62,7 @@ a. Models 1, 2, 4 and 6.
 
 b. 
 
-- Model 1 is nested in Model 2 TRUE
+- Model 1 is nested in Model 2  TRUE
 - Model 1 is nested in Model 3 TRUE
 - Model 1 is nested in Model 4 FALSE
 - Model 2 is nested in Model 3 TRUE
